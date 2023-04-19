@@ -2,7 +2,7 @@
   <header></header>
 </template>
 
-<style>
+<style lang="scss">
   header {
     background-color: #eee;
   }
