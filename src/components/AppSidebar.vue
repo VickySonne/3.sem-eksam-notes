@@ -1,22 +1,24 @@
 <template>
     <aside>
         <div class="menu">
-          <h3>fa-house-chimney Overblik</h3>    
-          <h3>Sagsstyring</h3>
-          <h3>Kasse</h3>
-          <h3>Kunder</h3>
-          <h3>Varer</h3>
-          <h3>Statestik</h3>     
+          <div>
+            <p>Overblik</p>    
+            <p>Sagsstyring</p>
+            <p>Kasse</p>
+            <p>Kunder</p>
+            <p>Varer</p>
+            <p>Statestik</p>     
+          </div>
+
+          <div>
+            <p>Support</p>
+            <p>Indstillinger</p>
           
-          <br>
-          <br>
+            <hr class="rounded">
 
-          <h3>Support</h3>
-          <h3>Indstillinger</h3>
+            <p>Skjul Sidebjælke</p>
+           </div>
 
-          <hr class="rounded">
-
-          <h3>Skjul Sidebjælke</h3>
         </div>
 
     </aside>
@@ -24,19 +26,39 @@
 </template>
 
 <style lang="scss" scoped>
-  aside {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 1rem;
-
+  aside {  
     background-color: #eee;
     width: 300px;
 
-    transition: 0.2 ease-out;
+    .menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    p {
+      padding: 16px;
+      font-size: 14px;
+      margin: 15px;
+      color: #1E293B;
+      font-weight: bolder;
+    }
+
+    p:hover {
+      background-color: #1E293B;
+      color: #eee;
+      margin: 15px;
+    }
+
+    br {
+      display: block;
+      margin: 3rem;
+    }
 
     hr.rounded {
-      border-top: 8px solid #bbb;
+      margin: 15px;
+      border-top: 5px solid #bbb;
       border-radius: 5px;
     }
 
