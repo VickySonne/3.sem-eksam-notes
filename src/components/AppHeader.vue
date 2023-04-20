@@ -2,20 +2,20 @@
   <header>
     <div class="header-container">
       <div class="st-tekst">
-        <p>Team Toaster</p>
+        <p><span class="bold">Team Toaster</span></p>
         <p>(Kunde nr.:4242)</p>
       </div>
 
       <div class="midter-tekst">
-        <p>344 dage tilbage i prøveperiode med alle funktioner tilgængelige Vælg abonnement</p>
+        <p><span class="bold">344 dage</span> tilbage i prøveperiode med alle funktioner tilgængelige <span class="abonnement">Vælg abonnement</span></p>
       </div>
 
       <div class="tredje-tekst">
-        <div class="klokke-ikon">klokke</div> 
+        <div class="ikon klokke">ikon</div> 
         <div class="profil">
-          <div>person</div>
+          <div class="ikon">ikon</div>
           <div><p>CuriousDeveloperTestingStuff</p></div>
-          <div>pil</div>
+          <div class="ikon">ikon</div>
         </div>
       </div>
 
@@ -35,24 +35,51 @@ header {
     width: 100%;
 }
 
+.st-tekst{
+    flex: 1 1 0%;
+}
+
 .midter-tekst{
     flex-grow: 1;
     text-align: center;
 }
 
-.st-tekst{
-    flex: 1 1 0%;
-}
-
 .tredje-tekst{
     flex: 1 1 0%;
-
+    display: flex;
 }
 
 .profil{
-    display: flex; 
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: darkgray;
+    }
+    cursor: pointer;
 }
 
+.klokke{
+    &:hover {
+      background-color: darkgray;
+    }  
+
+    cursor: pointer;
+} 
+
+.ikon{
+    margin: 5px;
+    padding: 5px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.abonnement{
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 
 </style>
