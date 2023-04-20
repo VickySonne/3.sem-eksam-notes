@@ -36,7 +36,7 @@ header {
 }
 
 .st-tekst{
-    flex: 1 1 0%;
+    flex: 2 1 0%;
 }
 
 .midter-tekst{
@@ -63,13 +63,12 @@ header {
     &:hover {
       background-color: darkgray;
     }  
-
     cursor: pointer;
 } 
 
 .ikon{
-    margin: 5px;
-    padding: 5px;
+    padding: 10px;
+  
 }
 
 .bold{
