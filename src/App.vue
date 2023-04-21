@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from "@/components/AppHeader.vue";
 import AppSidebar from "@/components/AppSidebar.vue";
+import MainSagsstyring from "./components/MainSagsstyring.vue";
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import AppSidebar from "@/components/AppSidebar.vue";
       <AppHeader/>
 
       <main>
-        <h1>components go here</h1>
+        <MainSagsstyring />
       </main>
     </div>
   </div>
@@ -21,9 +22,7 @@ import AppSidebar from "@/components/AppSidebar.vue";
 main {
     flex-grow: 1;
     overflow: scroll;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 1rem;
 }
 
 h1 {
