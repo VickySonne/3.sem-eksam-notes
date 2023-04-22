@@ -2,6 +2,7 @@
 import AppHeader from "@/components/AppHeader.vue";
 import AppSidebar from "@/components/AppSidebar.vue";
 import MainTaskOverview from "./components/MainTaskOverview.vue";
+import MainCreateNew from "./components/MainCreateNew.vue";
 </script>
 
 <template>
@@ -12,7 +13,8 @@ import MainTaskOverview from "./components/MainTaskOverview.vue";
       <AppHeader/>
 
       <main>
-        <MainTaskOverview />
+        <!-- <MainTaskOverview /> -->
+        <MainCreateNew />
       </main>
     </div>
   </div>
