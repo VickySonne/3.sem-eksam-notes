@@ -16,7 +16,7 @@
             <p class="tag">Tag 2</p>
         </td>
         <td>Tal kr.</td>
-        <td><button>Knap</button></td>
+        <td><button>Handling</button></td>
     </tr>
 </template>
 
@@ -30,6 +30,13 @@
                 padding: 0.5rem;
 
                 
+            }
+
+            button{
+                border: solid 1px transparent;
+                border-radius: 0.125rem;
+                background-color: aquamarine;
+                padding: 1rem;
             }
             
         }
