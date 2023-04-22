@@ -1,7 +1,7 @@
 <script setup>
 import AppHeader from "@/components/AppHeader.vue";
 import AppSidebar from "@/components/AppSidebar.vue";
-import MainSagsstyring from "./components/MainSagsstyring.vue";
+import MainTaskOverview from "./components/MainTaskOverview.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import MainSagsstyring from "./components/MainSagsstyring.vue";
       <AppHeader/>
 
       <main>
-        <MainSagsstyring />
+        <MainTaskOverview />
       </main>
     </div>
   </div>

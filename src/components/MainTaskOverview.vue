@@ -1,5 +1,5 @@
 <script setup>
-import SagOverviewComp from './SagOverviewComp.vue';
+import TaskOverviewComp from './TaskOverviewComp.vue';
 
 </script>
 
@@ -37,10 +37,10 @@ import SagOverviewComp from './SagOverviewComp.vue';
                 <th>Handlinger</th>
             </thead>
             <tbody>
-                <SagOverviewComp />
-                <SagOverviewComp />
-                <SagOverviewComp />
-                <SagOverviewComp />
+                <TaskOverviewComp />
+                <TaskOverviewComp />
+                <TaskOverviewComp />
+                <TaskOverviewComp />
             </tbody>
         </table>
     </div>
