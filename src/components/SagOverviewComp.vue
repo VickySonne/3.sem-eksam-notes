@@ -11,10 +11,12 @@
             <p>Opgave 1</p>
             <p>Opgave 2</p>
         </td>
+        <td>Beskrivelse her...</td>
         <td>
             <p class="tag">Tag 1</p>
             <p class="tag">Tag 2</p>
         </td>
+        
         <td>Tal kr.</td>
         <td><button>Handling</button></td>
     </tr>

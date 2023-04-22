@@ -31,6 +31,7 @@ import SagOverviewComp from './SagOverviewComp.vue';
                 <th>Afhentes</th>
                 <th>Kunde</th>
                 <th>Opgaver</th>
+                <th>Beskrivelse</th>
                 <th>Tags</th>
                 <th>Pris</th>
                 <th>Handlinger</th>
