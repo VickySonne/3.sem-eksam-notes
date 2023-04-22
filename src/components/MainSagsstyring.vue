@@ -12,7 +12,7 @@ import SagOverviewComp from './SagOverviewComp.vue';
                     <i>i</i>
                     <input type="search" placeholder="Søg...">
                 </div>
-                <div class="status-grid">
+                <div class="status-button">
                     <p>Status</p>
                     <i>i</i>
                 </div>
@@ -25,7 +25,7 @@ import SagOverviewComp from './SagOverviewComp.vue';
         </div>
         <table>
             <thead>
-                <th>>Oprettet</th>
+                <th>Oprettet</th>
                 <th>Status</th>
                 <th>Ansvarlig</th>
                 <th>Afhentes</th>
@@ -46,6 +46,10 @@ import SagOverviewComp from './SagOverviewComp.vue';
 </template>
 
 <style lang="scss" scoped>
+    
+    h2{
+        font-size: 1.5rem;
+    }
     .tool-bar{
         display: flex;
         flex-direction: row;
@@ -67,7 +71,7 @@ import SagOverviewComp from './SagOverviewComp.vue';
         }
 
         .search-field{
-            background-color: #f5f5f5;
+            background-color: rgb(245 245 245);
             padding: 1rem 3rem;
             position: relative;
 
@@ -75,7 +79,44 @@ import SagOverviewComp from './SagOverviewComp.vue';
                 position: absolute;
                 left: 1rem;
                 right: 1rem;
+                pointer-events: none;
             }
+
+            input{
+                cursor: text;
+            }
+
+            ::placeholder {
+                color: grey;
+                opacity: 1; /* Firefox */
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: grey;
+            }
+
+            ::-ms-input-placeholder { /* Microsoft Edge */
+                color: grey;
+            }
+        }
+
+        .status-button{
+            border: solid 1px grey;
+            padding: 0.5rem;
+            border-radius: 0.125rem;
+
+            i{
+                cursor: pointer;
+            }
+        }
+
+        & > p{
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        & > p:hover{
+            text-decoration: underline;
         }
     }
 
@@ -87,12 +128,19 @@ import SagOverviewComp from './SagOverviewComp.vue';
         background-color: rgb(30 41 59);
         color: rgb(249 250 251);
         padding: 1rem;
+        cursor: pointer;
+    }
+
+    .create-new-task:hover{
+        background-color: rgb(71 85 105);
     }
 
     table{
         width: 100%;
 
         thead{
+
+            font-weight: 700;
 
             th{
                 padding: 1rem;
