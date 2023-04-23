@@ -1,5 +1,6 @@
 <script setup>
 import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
+import ProductOverview from './ProductOverview.vue';
 </script>
 
 <template>
@@ -103,8 +104,8 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
                     </form>
                 </section>
 
-                <section class="overflow">
-                    Indsæt Vare component her
+                <section>
+                    <ProductOverview />
                 </section>
 
             </div>
