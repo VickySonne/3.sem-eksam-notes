@@ -21,15 +21,13 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
                 <p>Opret Ny Kunde</p>
                 <div>
                     <div>
-                        <div>
-                            <p>Kunde Navn <span>Kundegruppe</span></p>
-                        </div>
+                        <p>Kunde Navn <span>Kundegruppe</span></p>
                         <p>Telefon nummer</p>
                     </div>
                     <div>
                         <div>
                             <p>Vejnavn</p>
-                            <p><span>Postnummer</span><span>Bynavn</span></p>
+                            <p><span>Postnummer</span>&nbsp;<span>Bynavn</span></p>
                         </div>
                         <div>
                             <i>x</i>
@@ -56,6 +54,7 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 
         <section class="details">
             <h3>Detaljer</h3>
+
             <form>
                 <div>
                     <label for="">Ansvarlig</label>
@@ -64,6 +63,7 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
                         <i>i</i>
                     </div>
                 </div>
+
                 <div>
                     <label for="">Status</label>
                     <div>
@@ -71,19 +71,15 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
                         <i>i</i>
                     </div>
                 </div>
+
                 <div>
                     <label for="">Tags</label>
                     <div>
-                        <ul>
-                            <li>Tag 1</li>
-                            <li>Tag 2</li>
-                            <li>Tag 3</li>
-                            <li>Tag 4</li>
-                            <li>Tag 5</li>
-                        </ul>
+                        <p>Tag</p>
                         <i>i</i>
                     </div>
                 </div>
+
                 <div>
                     <div>
                         <label for="">Afhentning</label>
@@ -94,6 +90,7 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
                         <input type="number" placeholder="kr.">
                     </div>
                 </div>
+
                 <div>
                     <label for="">Beskrivelse</label>
                     <textarea name="" id="" cols="30" rows="10"></textarea>
@@ -108,8 +105,11 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
     </div>
 
     <aside>
-
-        <h3>Opsummering</h3>
+        
+        <div>
+            <h3>Opsummering</h3>
+        </div>
+        
         <div class="create-task">
             <i>i</i>
             <p>Opret Sag</p>
