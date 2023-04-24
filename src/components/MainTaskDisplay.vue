@@ -58,7 +58,10 @@ import ProductOverview from './ProductOverview.vue';
 
         <div class="content-right">
             <div class="customer">
-                <h3>Kunde</h3>
+                <div class="ret-kunde">
+                    <h3>Kunde</h3>
+                    <p>Ret kunde</p>
+                </div>
                 <div class="kunde-container">
                     <p class="first-flex">Hans Wurst <span>regular customers</span></p>
                     <p>Hansvej 1</p>
@@ -254,6 +257,20 @@ import ProductOverview from './ProductOverview.vue';
             padding-bottom: 0.3rem;
         }
 
+    }
+
+    .ret-kunde{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p{
+            cursor: pointer;
+        }
+
+        p:hover{
+            text-decoration: underline;
+        }
     }
 
 </style>
