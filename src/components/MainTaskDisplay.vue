@@ -6,12 +6,24 @@ import ProductOverview from './ProductOverview.vue';
 <template>
 <div class="flex-wrapper">
     <div class="content-left">
-        <div>
+        <section>
             <h3>Detajler</h3>
             <div>
 
             </div>
-        </div>
+        </section>
+        <section>
+            <h3>Opgaver</h3>
+            <div>
+
+            </div>
+        </section>
+        <section>
+            <h3>Dokumenter</h3>
+            <div>
+
+            </div>
+        </section>
         <ProductOverview />
     </div>
 
