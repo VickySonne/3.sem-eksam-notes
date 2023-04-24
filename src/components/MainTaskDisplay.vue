@@ -79,7 +79,7 @@ import ProductOverview from './ProductOverview.vue';
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                         <div class="date">
-                            <p>Mon Apr 24 2023</p>
+                            <small>Mon Apr 24 2023</small>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ import ProductOverview from './ProductOverview.vue';
                             <p>Lorem</p>
                         </div>
                         <div class="date">
-                            <p>Mon Apr 24 2023</p>
+                            <small>Mon Apr 24 2023</small>
                         </div>
                     </div>
 
@@ -212,6 +212,10 @@ import ProductOverview from './ProductOverview.vue';
         .date{
             display: flex;
             align-content: flex-end;
+
+            small{
+                font-size: 0.8rem;
+            }
         }
 
         .send-msg{
