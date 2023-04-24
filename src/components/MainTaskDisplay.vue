@@ -57,7 +57,7 @@ import ProductOverview from './ProductOverview.vue';
         </div>
 
         <div class="content-right">
-            <div>
+            <div class="customer">
                 <h3>Kunde</h3>
                 <div class="kunde-container">
                     <p class="first-flex">Hans Wurst <span>regular customers</span></p>
@@ -67,7 +67,7 @@ import ProductOverview from './ProductOverview.vue';
                     <p>hans@example.com</p>
                 </div>
             </div>
-            <div>
+            <div class="text-msg">
                 <h3>SMS Beskeder</h3>
                 <div class="sms-container">
 
@@ -154,97 +154,106 @@ import ProductOverview from './ProductOverview.vue';
 
 
 // Vicky Styling slut
-.flex-wrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
-    .content-left{
-        width: 70%;
+    .flex-wrapper{
         display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+        flex-direction: row;
+        gap: 1rem;
 
-    .content-right{
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
-}
+        .content-left{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
 
-.sms-container{
-    background-color: rgb(229 231 235);
-    height: 32rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: flex-end;
-    border-radius: .125rem;
-
-    .content-box{
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        margin: 1rem 0;
-        gap: 0.5rem;
-    }
-
-    .text-box{
-        background-color: rgb(30 41 59);
-        color:  rgb(249 250 251);
-        padding: 1rem;
-        max-width: 75%;
-        border-radius: .125rem;
-    }
-
-    
-    .date{
-        display: flex;
-        align-content: flex-end;
-    }
-
-    .send-msg{
-        width: 100%;
-        background-color:  rgb(245 245 245);
-        padding: 1rem;
-        border-radius: .125rem;
-        position: relative;
-
-        i{
-            position: absolute;
-            right: 1rem;
+        .content-right{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
     }
-    
-}
 
-.kunde-container{
-    border-radius: .125rem;
-    padding: 1rem;
-    background-color: rgb(229 231 235);
-    gap: 1rem;
-
-    span{
-        border-radius: .125rem;
-        color: rgb(250 250 250);
-        background-color: rgb(30 41 59); 
-        padding: 0.5rem;
-    }
-
-    .first-flex{
+    .text-msg{
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 1rem;
-        font-weight: 600;
     }
+    .sms-container{
+        background-color: rgb(229 231 235);
+        height: 32rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: flex-end;
+        border-radius: .125rem;
 
-    p{
-        padding-bottom: 0.3rem;
+        .content-box{
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            margin: 1rem 0;
+            gap: 0.5rem;
+        }
+
+        .text-box{
+            background-color: rgb(30 41 59);
+            color:  rgb(249 250 251);
+            padding: 1rem;
+            max-width: 75%;
+            border-radius: .125rem;
+        }
+
+        
+        .date{
+            display: flex;
+            align-content: flex-end;
+        }
+
+        .send-msg{
+            width: 100%;
+            background-color:  rgb(245 245 245);
+            padding: 1rem;
+            border-radius: .125rem;
+            position: relative;
+
+            i{
+                position: absolute;
+                right: 1rem;
+            }
+        }
+        
     }
+    .customer{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .kunde-container{
+        border-radius: .125rem;
+        padding: 1rem;
+        background-color: rgb(229 231 235);
+        gap: 1rem;
 
-}
+        span{
+            border-radius: .125rem;
+            color: rgb(250 250 250);
+            background-color: rgb(30 41 59); 
+            padding: 0.5rem;
+        }
+
+        .first-flex{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        p{
+            padding-bottom: 0.3rem;
+        }
+
+    }
 
 </style>
