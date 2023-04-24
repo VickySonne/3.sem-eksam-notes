@@ -9,18 +9,18 @@
                 <th>Stk. pris</th>
                 <th>Total</th>
             </thead>
-                <tbody>
-                    <td>Centurion Bike</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>100</td>
-                </tbody>
-                <tbody>
-                    <td>Trek Bike</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>200</td>
-                </tbody>
+            <tbody>
+                <td>Centurion Bike</td>
+                <td>1</td>
+                <td>100</td>
+                <td>100</td>
+            </tbody>
+            <tbody>
+                <td>Trek Bike</td>
+                <td>2</td>
+                <td>100</td>
+                <td>200</td>
+            </tbody>
         </table>
         <div class="search-product">
             <div class="search-bar">
