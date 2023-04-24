@@ -22,8 +22,8 @@ import ProductOverview from './ProductOverview.vue';
         <div class="content-left">
             <section>
                 <h3>Detajler</h3>
-                <div>
-                    <div>
+                <div class="section-bg">
+                    <div class="2-columns">
                         <p><span>Status:&nbsp;</span>Status</p>
                         <p><span>Ansvarlig:&nbsp;</span>Navn</p>
                         <p><span>Afhentningstidspunkt:&nbsp;</span>Dato</p>
@@ -43,13 +43,13 @@ import ProductOverview from './ProductOverview.vue';
             </section>
             <section>
                 <h3>Opgaver</h3>
-                <div>
+                <div class="section-bg">
 
                 </div>
             </section>
             <section>
                 <h3>Dokumenter</h3>
-                <div>
+                <div class="section-bg">
 
                 </div>
             </section>
@@ -137,6 +137,7 @@ import ProductOverview from './ProductOverview.vue';
             }
         }
     }
+
     .back-btn{
         display: flex;
         flex-direction: row;
@@ -146,18 +147,30 @@ import ProductOverview from './ProductOverview.vue';
         font-weight: 700;
     }
 
+    .section-bg{
+        background-color: rgb(229 231 235);
+        padding: 1rem;
+    }
+
 
 // Vicky Styling slut
 .flex-wrapper{
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 
     .content-left{
         width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
     }
 
     .content-right{
         width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
     }
 }
 
