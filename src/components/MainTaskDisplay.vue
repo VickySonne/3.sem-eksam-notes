@@ -78,7 +78,7 @@ import ProductOverview from './ProductOverview.vue';
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 .flex-wrapper{
     display: flex;
     flex-direction: row;
