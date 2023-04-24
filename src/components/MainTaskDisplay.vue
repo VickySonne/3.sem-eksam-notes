@@ -119,7 +119,6 @@ import ProductOverview from './ProductOverview.vue';
     .text-box{
         background-color: rgb(30 41 59);
         color: white;
-        max-width: 75%;
         padding: 1rem;
     }
 
@@ -129,7 +128,6 @@ import ProductOverview from './ProductOverview.vue';
         padding: 1rem;
     }
     
-
 }
 
 </style>
