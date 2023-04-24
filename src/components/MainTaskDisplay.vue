@@ -4,8 +4,8 @@ import ProductOverview from './ProductOverview.vue';
 
 
 <template>
-<div>
-    <div>
+<div class="flex-wrapper">
+    <div class="content-left">
         <div>
             <h3>Detajler</h3>
             <div>
@@ -15,7 +15,7 @@ import ProductOverview from './ProductOverview.vue';
         <ProductOverview />
     </div>
 
-    <div>
+    <div class="content-right">
         <div>
             <h3>Kunde</h3>
             <div>
@@ -24,8 +24,26 @@ import ProductOverview from './ProductOverview.vue';
         </div>
         <div>
             <h3>SMS Beskeder</h3>
-            <div>
-                
+            <div class="sms-container">
+
+                <div class="content-box">
+                    <div class="text-box">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                    </div>
+                    <p>Mon Apr 24 2023</p>
+                </div>
+
+                <div class="content-box">
+                    <div class="text-box">
+                        <p>Lorem</p>
+                    </div>
+                    <p>Mon Apr 24 2023</p>
+                </div>
+
+                <div class="send-msg">
+                    <input type="search" placeholder="Søg på varer...">
+                    <i>i</i>
+                </div>
             </div>
         </div>
     </div>
@@ -34,5 +52,34 @@ import ProductOverview from './ProductOverview.vue';
 
 
 <style lang="scss">
+.flex-wrapper{
+    display: flex;
+    flex-direction: row;
+
+    .content-left{
+        width: 70%;
+    }
+
+    .content-right{
+        width: 30%;
+    }
+}
+
+.sms-container{
+    background-color: rgb(229 231 235);
+    height: 32rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+
+    .text-box{
+        background-color: rgb(30 41 59);
+        color: white;
+        max-width: 75%;
+        padding: 1rem;
+    }
+
+}
 
 </style>

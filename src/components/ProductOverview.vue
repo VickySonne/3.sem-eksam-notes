@@ -36,7 +36,7 @@
 
 <style lang="scss">
     .titels-container{
-        background-color: rgb(209, 213, 219);
+        background-color: rgb(229 231 235);
     }
 
     .search-product{
