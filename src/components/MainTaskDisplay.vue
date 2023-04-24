@@ -1,5 +1,6 @@
 <script setup>
 import ProductOverview from './ProductOverview.vue';
+import TodoListeComp from './TodoListeComp.vue';
 </script>
 
 
@@ -21,9 +22,12 @@ import ProductOverview from './ProductOverview.vue';
     <div class="flex-wrapper">
         <div class="content-left">
             <section>
-                <h3>Detajler</h3>
-                <div class="section-bg">
-                    <div class="2-columns">
+                <div class="title-bar">
+                    <h3>Detajler</h3>
+                    <p>Ret detaljer</p>
+                </div>
+                <div class="section-bg two-columns">
+                    <div class="details">
                         <p><span>Status:&nbsp;</span>Status</p>
                         <p><span>Ansvarlig:&nbsp;</span>Navn</p>
                         <p><span>Afhentningstidspunkt:&nbsp;</span>Dato</p>
@@ -34,7 +38,7 @@ import ProductOverview from './ProductOverview.vue';
                     </div>
                     <div>
                         <h4>Tags</h4>
-                        <div>
+                        <div class="tags">
                             <p class="tag">Tag 1</p>
                             <p class="tag">Tag 2</p>
                         </div>
@@ -42,13 +46,27 @@ import ProductOverview from './ProductOverview.vue';
                 </div>
             </section>
             <section>
-                <h3>Opgaver</h3>
-                <div class="section-bg">
-
+                <div class="title-bar">
+                    <h3>Opgaver</h3>
+                    <p>Ret opgaver</p>
+                </div>
+                <div class="section-bg todo-lists">
+                    <div class="catagories">
+                        <TodoListeComp />
+                        <TodoListeComp />
+                        <TodoListeComp />
+                    </div>
+                    <div>
+                        <i>i</i>
+                        <p>Marker alle</p>    
+                    </div>
                 </div>
             </section>
             <section>
-                <h3>Dokumenter</h3>
+                <div class="title-bar">
+                    <h3>Dokumenter</h3>
+                    <p>Ret dokumenter</p>
+                </div>
                 <div class="section-bg">
 
                 </div>
@@ -57,7 +75,7 @@ import ProductOverview from './ProductOverview.vue';
         </div>
 
         <div class="content-right">
-            <div class="customer">
+            <section>
                 <div class="ret-kunde">
                     <h3>Kunde</h3>
                     <p>Ret kunde</p>
@@ -68,10 +86,12 @@ import ProductOverview from './ProductOverview.vue';
                     <p>1234 Hansby</p>
                     <p>31 53 67 37</p>
                     <p>hans@example.com</p>
+                    <p>Kundeenhed Stelnummer</p>
+                    <button class="signature">Tilføj signatur</button>
                 </div>
-            </div>
-            <div class="text-msg">
-                <h3>SMS Beskeder</h3>
+            </section>
+            <section>
+                <h3>SMS-beskeder</h3>
                 <div class="sms-container">
 
                     <div class="content-box">
@@ -97,7 +117,7 @@ import ProductOverview from './ProductOverview.vue';
                         <i>i</i>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </div>
@@ -107,9 +127,33 @@ import ProductOverview from './ProductOverview.vue';
 <style lang="scss" scoped>
 
 // Vicky Styling start
+    .title-bar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p{
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+        p:hover{
+            text-decoration: underline;
+        }
+    }
+
     h3{
         font-weight: 700;
         font-size: 1.125rem;
+    }
+
+    .back-btn{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        
+        cursor: pointer;
+        font-weight: 700;
     }
     .menu-bar{
         display: flex;
@@ -141,18 +185,70 @@ import ProductOverview from './ProductOverview.vue';
         }
     }
 
-    .back-btn{
+    section{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .section-bg{
+        background-color: rgb(229 231 235);
+        padding: 1rem;
+        border-radius: 0.125rem;
+    }
+
+    .two-columns{
         display: flex;
         flex-direction: row;
         gap: 1rem;
         
-        cursor: pointer;
-        font-weight: 700;
+        div{
+            width: 50%;
+
+            span{
+                font-weight: 700;
+            }
+
+            h4{
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+
+            .tags{
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                .tag{
+                    background-color: rgb(30 41 59); 
+                    color: white;
+                    padding: 0.5rem;
+                    border-radius: 0.125rem;
+                }
+            }
+            
+        }
+
+        .details{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
     }
 
-    .section-bg{
-        background-color: rgb(229 231 235);
-        padding: 1rem;
+    .todo-lists{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .catagories{
+            max-width: 70%;
+        }
+
+        & > div{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+        }
+
     }
 
 
@@ -175,12 +271,6 @@ import ProductOverview from './ProductOverview.vue';
             flex-direction: column;
             gap: 3rem;
         }
-    }
-
-    .text-msg{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
     }
     .sms-container{
         background-color: rgb(229 231 235);
@@ -232,11 +322,7 @@ import ProductOverview from './ProductOverview.vue';
         }
         
     }
-    .customer{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+
     .kunde-container{
         border-radius: .125rem;
         padding: 1rem;
@@ -259,6 +345,15 @@ import ProductOverview from './ProductOverview.vue';
 
         p{
             padding-bottom: 0.3rem;
+        }
+
+        .signature{
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .signature:hover{
+            text-decoration: underline;
         }
 
     }

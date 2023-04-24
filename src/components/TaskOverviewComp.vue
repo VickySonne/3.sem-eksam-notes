@@ -52,5 +52,6 @@
         background-color: #e5e7eb;
         padding: 0.5rem;
         margin: 0.25rem;
+        border-radius: 0.125rem;
     }
 </style>
