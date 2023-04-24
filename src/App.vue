@@ -3,6 +3,7 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppSidebar from "@/components/AppSidebar.vue";
 import MainTaskOverview from "./components/MainTaskOverview.vue";
 import MainCreateNew from "./components/MainCreateNew.vue";
+import MainTaskDisplay from "./components/MainTaskDisplay.vue";
 </script>
 
 <template>
@@ -14,7 +15,8 @@ import MainCreateNew from "./components/MainCreateNew.vue";
 
       <main>
         <!-- <MainTaskOverview /> -->
-        <MainCreateNew />
+        <!-- <MainCreateNew /> -->
+        <MainTaskDisplay />
       </main>
     </div>
   </div>
