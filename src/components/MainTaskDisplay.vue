@@ -5,16 +5,16 @@ import ProductOverview from './ProductOverview.vue';
 
 <template>
 <div>
-    <div>
+    <div class="menu-bar">
         <div class="back-btn">
             <i>i</i>
             <p>Tilbage til sagsstyrring</p>
         </div>
-        <div>
+        <div class="tertiary-menu">
             <p>Kontakt</p>
             <p>Print</p>
             <p>Gem</p>
-            <p>Handling</p>
+            <p class="action-btn">Handling</p>
         </div>
     </div>
     
@@ -98,6 +98,39 @@ import ProductOverview from './ProductOverview.vue';
 
 
 <style lang="scss" scoped>
+
+// Vicky Styling start
+    h3{
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+    .menu-bar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .tertiary-menu{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            .action-btn{
+                background-color: greenyellow;
+                border-radius: 0.125rem;
+            }
+        }
+    }
+    .back-btn{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+
+// Vicky Styling slut
 .flex-wrapper{
     display: flex;
     flex-direction: row;

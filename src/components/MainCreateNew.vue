@@ -162,10 +162,6 @@ import ProductOverview from './ProductOverview.vue';
         margin-bottom: 1rem;
         cursor: pointer;
         font-weight: 700;
-
-        // p{
-        //     font-weight: 500;
-        // }
     }
 
     .search-bar{
