@@ -37,19 +37,21 @@
 <style lang="scss">
     .titels-container{
         background-color: rgb(209, 213, 219);
-        padding: 20px 20px;
+        // padding: 20px 0;
     }
 
     .search-product{
         display: flex;
         flex-direction: row;
+        gap: 1rem;
+        padding: 1rem;
     }
 
     .search-bar{
         background-color: white;
         display: flex;
         align-items: center;
-        margin-right: 5px;
+        // margin-right: 5px;
     }
 
     .add-product{
@@ -57,7 +59,7 @@
         background-color: #1E293B;   
         color: white;
         padding: 10px;  
-        margin-left: 5px; 
+        // margin-left: 5px;
     }
 
     th{
@@ -66,12 +68,12 @@
 
     table{
         width: 100%;
-        td{
-            padding-top: 0.8rem;
-            padding-bottom: 0.8rem;
-        }
         th{
-            padding-bottom: 0.8rem;
+            // padding-bottom: 0.8rem;
+            padding: 1rem;
+        }
+        td{
+            padding: 0.5rem 1rem;
         }
     }
 
@@ -84,7 +86,7 @@
     p{
         display: flex;
         align-items: center;
-        padding-left: 1rem;
+        // padding-left: 1rem;
         cursor: pointer;
     }
 
