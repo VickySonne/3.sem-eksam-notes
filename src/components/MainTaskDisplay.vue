@@ -71,14 +71,18 @@ import ProductOverview from './ProductOverview.vue';
                         <div class="text-box">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
-                        <p>Mon Apr 24 2023</p>
+                        <div class="date">
+                            <p>Mon Apr 24 2023</p>
+                        </div>
                     </div>
 
                     <div class="content-box">
                         <div class="text-box">
                             <p>Lorem</p>
                         </div>
-                        <p>Mon Apr 24 2023</p>
+                        <div class="date">
+                            <p>Mon Apr 24 2023</p>
+                        </div>
                     </div>
 
                     <div class="send-msg">
@@ -116,16 +120,35 @@ import ProductOverview from './ProductOverview.vue';
     justify-content: end;
     align-items: flex-end;
 
+    .content-box{
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+
     .text-box{
         background-color: rgb(30 41 59);
         color: white;
         padding: 1rem;
+        max-width: 75%;
+    }
+
+    
+    .date{
+        display: flex;
+        align-content: flex-end;
     }
 
     .send-msg{
         width: 100%;
         background-color:  rgb(245 245 245);
         padding: 1rem;
+        position: relative;
+
+        i{
+            position: absolute;
+            right: 1rem;
+        }
     }
     
 }
