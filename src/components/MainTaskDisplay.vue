@@ -152,18 +152,22 @@ import ProductOverview from './ProductOverview.vue';
     flex-direction: column;
     justify-content: end;
     align-items: flex-end;
+    border-radius: .125rem;
 
     .content-box{
         display: flex;
         flex-direction: column;
         align-items: end;
+        margin: 1rem 0;
+        gap: 0.5rem;
     }
 
     .text-box{
         background-color: rgb(30 41 59);
-        color: white;
+        color:  rgb(249 250 251);
         padding: 1rem;
         max-width: 75%;
+        border-radius: .125rem;
     }
 
     
@@ -176,6 +180,7 @@ import ProductOverview from './ProductOverview.vue';
         width: 100%;
         background-color:  rgb(245 245 245);
         padding: 1rem;
+        border-radius: .125rem;
         position: relative;
 
         i{
