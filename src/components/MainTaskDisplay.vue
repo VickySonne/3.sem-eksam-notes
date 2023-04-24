@@ -67,7 +67,7 @@ import ProductOverview from './ProductOverview.vue';
                     </div>
 
                     <div class="send-msg">
-                        <input type="search" placeholder="Søg på varer...">
+                        <input type="search" placeholder="Send en besked...">
                         <i>i</i>
                     </div>
                 </div>
@@ -95,6 +95,7 @@ import ProductOverview from './ProductOverview.vue';
 .sms-container{
     background-color: rgb(229 231 235);
     height: 32rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -110,8 +111,6 @@ import ProductOverview from './ProductOverview.vue';
     .send-msg{
         width: 100%;
         background-color:  rgb(245 245 245);
-        display: flex;
-        align-self: center;
         padding: 1rem;
     }
     
