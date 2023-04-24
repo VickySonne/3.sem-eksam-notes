@@ -59,8 +59,12 @@ import ProductOverview from './ProductOverview.vue';
         <div class="content-right">
             <div>
                 <h3>Kunde</h3>
-                <div>
-
+                <div class="kunde-container">
+                    <p>Hans Wurst <span>regular customers</span></p>
+                    <p>Hansvej 1</p>
+                    <p>1234 Hansby</p>
+                    <p>31 53 67 37</p>
+                    <p>hans@example.com</p>
                 </div>
             </div>
             <div>
@@ -189,6 +193,20 @@ import ProductOverview from './ProductOverview.vue';
         }
     }
     
+}
+
+.kunde-container{
+    border-radius: .125rem;
+    padding: 1rem;
+    background-color: rgb(229 231 235);
+    gap: 1rem;
+
+    span{
+        border-radius: .125rem;
+        color: rgb(250 250 250);
+        background-color: rgb(30 41 59); 
+        padding: 0.5rem;
+    }
 }
 
 </style>
