@@ -34,7 +34,7 @@
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .titels-container{
         background-color: rgb(229 231 235);
     }

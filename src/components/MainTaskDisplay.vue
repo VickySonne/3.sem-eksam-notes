@@ -4,56 +4,72 @@ import ProductOverview from './ProductOverview.vue';
 
 
 <template>
-<div class="flex-wrapper">
-    <div class="content-left">
-        <section>
-            <h3>Detajler</h3>
-            <div>
-
-            </div>
-        </section>
-        <section>
-            <h3>Opgaver</h3>
-            <div>
-
-            </div>
-        </section>
-        <section>
-            <h3>Dokumenter</h3>
-            <div>
-
-            </div>
-        </section>
-        <ProductOverview />
-    </div>
-
-    <div class="content-right">
-        <div>
-            <h3>Kunde</h3>
-            <div>
-
-            </div>
+<div>
+    <div>
+        <div class="back-btn">
+            <i>i</i>
+            <p>Tilbage til sagsstyrring</p>
         </div>
         <div>
-            <h3>SMS Beskeder</h3>
-            <div class="sms-container">
-                <div class="content-box">
-                    <div class="text-box">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                    </div>
-                    <p>Mon Apr 24 2023</p>
-                </div>
+            <p>Kontakt</p>
+            <p>Print</p>
+            <p>Gem</p>
+            <p>Handling</p>
+        </div>
+    </div>
+    
+    <div class="flex-wrapper">
+        <div class="content-left">
+            <section>
+                <h3>Detajler</h3>
+                <div>
 
-                <div class="content-box">
-                    <div class="text-box">
-                        <p>Lorem</p>
-                    </div>
-                    <p>Mon Apr 24 2023</p>
                 </div>
+            </section>
+            <section>
+                <h3>Opgaver</h3>
+                <div>
 
-                <div class="send-msg">
-                    <input type="search" placeholder="Send en besked...">
-                    <i>i</i>
+                </div>
+            </section>
+            <section>
+                <h3>Dokumenter</h3>
+                <div>
+
+                </div>
+            </section>
+            <ProductOverview />
+        </div>
+
+        <div class="content-right">
+            <div>
+                <h3>Kunde</h3>
+                <div>
+
+                </div>
+            </div>
+            <div>
+                <h3>SMS Beskeder</h3>
+                <div class="sms-container">
+
+                    <div class="content-box">
+                        <div class="text-box">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        </div>
+                        <p>Mon Apr 24 2023</p>
+                    </div>
+
+                    <div class="content-box">
+                        <div class="text-box">
+                            <p>Lorem</p>
+                        </div>
+                        <p>Mon Apr 24 2023</p>
+                    </div>
+
+                    <div class="send-msg">
+                        <input type="search" placeholder="Søg på varer...">
+                        <i>i</i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +78,7 @@ import ProductOverview from './ProductOverview.vue';
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 .flex-wrapper{
     display: flex;
     flex-direction: row;
