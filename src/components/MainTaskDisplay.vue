@@ -92,6 +92,10 @@ import ProductOverview from './ProductOverview.vue';
         padding: 1rem;
     }
 
+    .content-box{
+        display: flex;
+    }
+
 }
 
 </style>
