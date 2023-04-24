@@ -44,19 +44,41 @@
         flex-direction: row;
         gap: 1rem;
         padding: 1rem;
+
+        p{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        p:hover{
+            text-decoration: underline;
+        }
     }
 
     .search-bar{
         background-color: white;
         display: flex;
         align-items: center;
+        gap: 1rem;
+        padding: 1rem 3rem;
+        position: relative;
+
+        i{
+            position: absolute;
+            left: 1rem;
+        }
     }
 
     .add-product{
         cursor: pointer; 
         background-color: #1E293B;   
         color: white;
-        padding: 10px;  
+        padding: 1rem; 
+    }
+
+    .add-product:hover{
+        background-color: rgb(71 85 105);
     }
 
     th{
@@ -79,15 +101,5 @@
         margin-bottom: 1rem;
     }
 
-    p{
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    i{
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-    }
 
 </style>
