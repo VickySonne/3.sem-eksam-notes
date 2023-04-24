@@ -23,7 +23,22 @@ import ProductOverview from './ProductOverview.vue';
             <section>
                 <h3>Detajler</h3>
                 <div>
-
+                    <div>
+                        <p><span>Status:&nbsp;</span>Status</p>
+                        <p><span>Ansvarlig:&nbsp;</span>Navn</p>
+                        <p><span>Afhentningstidspunkt:&nbsp;</span>Dato</p>
+                        <p><span>Aftalt pris:&nbsp;</span>xxx kr.</p>
+                        <p><span>Oprettet af:&nbsp;</span>Navn</p>
+                        <p><span>Oprettet d.&nbsp;</span>Dato</p>
+                        <p><span>Beskrivelse:&nbsp;</span>Text</p>
+                    </div>
+                    <div>
+                        <h4>Tags</h4>
+                        <div>
+                            <p class="tag">Tag 1</p>
+                            <p class="tag">Tag 2</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section>
