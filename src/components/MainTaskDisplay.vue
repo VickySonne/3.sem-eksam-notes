@@ -60,7 +60,7 @@ import ProductOverview from './ProductOverview.vue';
             <div>
                 <h3>Kunde</h3>
                 <div class="kunde-container">
-                    <p>Hans Wurst <span>regular customers</span></p>
+                    <p class="first-flex">Hans Wurst <span>regular customers</span></p>
                     <p>Hansvej 1</p>
                     <p>1234 Hansby</p>
                     <p>31 53 67 37</p>
@@ -220,6 +220,18 @@ import ProductOverview from './ProductOverview.vue';
         background-color: rgb(30 41 59); 
         padding: 0.5rem;
     }
+
+    .first-flex{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: 600;
+    }
+
+    p{
+        padding-bottom: 0.3rem;
+    }
+
 }
 
 </style>
