@@ -14,7 +14,7 @@ import ProductOverview from './ProductOverview.vue';
             <p>Kontakt</p>
             <p>Print</p>
             <p>Gem</p>
-            <p class="action-btn">Handling</p>
+            <div class="action-btn">Handling</div>
         </div>
     </div>
     
@@ -108,15 +108,28 @@ import ProductOverview from './ProductOverview.vue';
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-bottom: 1rem;
+        align-items: center;
 
         .tertiary-menu{
             display: flex;
             flex-direction: row;
             gap: 1rem;
+            align-items: center;
+
+            p{
+                cursor: pointer;
+            }
+
+            p:hover{
+                text-decoration: underline;
+            }
 
             .action-btn{
-                background-color: greenyellow;
+                border: solid 1px transparent;
                 border-radius: 0.125rem;
+                background-color: aquamarine;
+                padding: 1rem;
             }
         }
     }
@@ -124,7 +137,7 @@ import ProductOverview from './ProductOverview.vue';
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        margin-bottom: 1rem;
+        
         cursor: pointer;
         font-weight: 700;
     }
