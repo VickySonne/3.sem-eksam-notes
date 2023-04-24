@@ -37,7 +37,6 @@
 <style lang="scss">
     .titels-container{
         background-color: rgb(209, 213, 219);
-        // padding: 20px 0;
     }
 
     .search-product{
@@ -51,7 +50,6 @@
         background-color: white;
         display: flex;
         align-items: center;
-        // margin-right: 5px;
     }
 
     .add-product{
@@ -59,7 +57,6 @@
         background-color: #1E293B;   
         color: white;
         padding: 10px;  
-        // margin-left: 5px;
     }
 
     th{
@@ -69,7 +66,6 @@
     table{
         width: 100%;
         th{
-            // padding-bottom: 0.8rem;
             padding: 1rem;
         }
         td{
@@ -86,7 +82,6 @@
     p{
         display: flex;
         align-items: center;
-        // padding-left: 1rem;
         cursor: pointer;
     }
 
