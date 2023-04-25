@@ -3,7 +3,6 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
 
 import { createClient } from '@supabase/supabase-js'
-import { equal } from 'assert';
 
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
 
