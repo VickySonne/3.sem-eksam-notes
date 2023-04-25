@@ -1,20 +1,30 @@
-<script setup></script>
+<script setup>
+    const { data } = defineProps(['data']);
+
+    const creationDate = new Date(data.created_at);
+    const pickupDate = new Date(data.pickup);
+
+    console.log(data.tags);
+</script>
 
 <template>
     <tr>
-        <td>Dato</td>
-        <td>Status</td>
-        <td>Navn</td>
-        <td>Dato</td>
-        <td>Kunde</td>
+        <td>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</td>
+        <td>{{ data.status.name }}</td>
+        <td>{{ data.responsible_employee.name }}</td>
+        <td>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</td>
+        <td>{{ data.customer.name }}</td>
         <td>
-            <p>Opgave 1</p>
-            <p>Opgave 2</p>
+            <p class="tag" v-for="task in data.tasks">{{ task.name }}</p>
+            <span v-if="!data.tasks.length">---</span>
         </td>
-        <td>Beskrivelse her...</td>
         <td>
-            <p class="tag">Tag 1</p>
-            <p class="tag">Tag 2</p>
+            {{ data.description }}
+            <span v-if="data.description==null">---</span>
+        </td>
+        <td>
+            <p class="tag" v-for="tag in data.tags">{{ tag.name }}</p>
+            <span v-if="!data.tags.length">---</span>
         </td>
         
         <td>Tal kr.</td>

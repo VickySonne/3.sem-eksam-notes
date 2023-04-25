@@ -1,6 +1,14 @@
 <script setup>
 import ProductOverview from './ProductOverview.vue';
 import TodoListeComp from './TodoListeComp.vue';
+import database from '../database.js';
+
+const { data } = await database
+    .from('cases')
+    .select('*, customer(*), created_by(*), responsible_employee(*), status(*)')
+    .order('created_at', {ascending:false}); 
+
+    console.log(data);
 </script>
 
 

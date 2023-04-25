@@ -1,6 +1,13 @@
 <script setup>
 import TaskOverviewComp from './TaskOverviewComp.vue';
+import database from '../database.js';
 
+const { data } = await database
+    .from('cases')
+    .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
+    .order('created_at', {ascending:false});
+
+    console.log(data);
 </script>
 
 <template>
@@ -37,10 +44,7 @@ import TaskOverviewComp from './TaskOverviewComp.vue';
                 <th>Handlinger</th>
             </thead>
             <tbody>
-                <TaskOverviewComp />
-                <TaskOverviewComp />
-                <TaskOverviewComp />
-                <TaskOverviewComp />
+                <TaskOverviewComp v-for="workcase in data" :data="workcase"/>
             </tbody>
         </table>
     </div>
