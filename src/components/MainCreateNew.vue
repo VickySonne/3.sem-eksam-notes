@@ -1,6 +1,23 @@
 <script async setup>
 import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
+
+// select all employees
+
+
+// selected only the latest created employee (hint: table has a 'created_at' column)
+
+
+// select the employee named 'Cass' (hint: table has a 'name' column)
+
+
+// select all employees and order them by name
+
+
 </script>
 
 <template>
