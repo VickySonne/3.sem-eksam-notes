@@ -1,6 +1,18 @@
 <script setup>
 import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
+
+const { data } = await supabase
+  .from('employees')
+  .select('*')
+  .order('id', { ascending: false })
+  .limit(10)
+
+console.log(data[0].name);
 </script>
 
 <template>
