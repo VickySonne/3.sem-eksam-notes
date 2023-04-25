@@ -5,9 +5,9 @@ import MainCreateNew from "./components/MainCreateNew.vue";
 import MainTaskDisplay from "./components/MainTaskDisplay.vue";
 
 const routes = [
-  { path: '/', component: MainTaskOverview },
-  { path: '/case', component: MainCreateNew },
-  { path: '/case/:id', component: MainTaskDisplay },
+  { path: '/', name: MainTaskOverview, component: MainTaskOverview },
+  { path: '/case', name: MainCreateNew, component: MainCreateNew },
+  { path: '/case/:id', name: MainTaskDisplay, component: MainTaskDisplay, props: {id:null} },
 ]
 
 const router = createRouter({
