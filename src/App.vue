@@ -13,11 +13,13 @@ import MainTaskDisplay from "./components/MainTaskDisplay.vue";
     <div class="app-content">
       <AppHeader/>
 
-      <main>
-        <!-- <MainTaskOverview /> -->
-        <MainCreateNew />
-       <!-- <MainTaskDisplay /> -->
-      </main>
+      <Suspense>
+        <main>
+          <!-- <MainTaskOverview /> -->
+          <MainCreateNew />
+          <!-- <MainTaskDisplay /> -->
+        </main>
+      </Suspense>
     </div>
   </div>
 </template>

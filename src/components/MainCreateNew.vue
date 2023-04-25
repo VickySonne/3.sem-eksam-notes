@@ -1,4 +1,4 @@
-<script setup>
+<script async setup>
 import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
 
