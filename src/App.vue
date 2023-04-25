@@ -14,9 +14,9 @@ import MainTaskDisplay from "./components/MainTaskDisplay.vue";
       <AppHeader/>
 
       <main>
-        <!-- <MainTaskOverview /> -->
+        <MainTaskOverview />
         <!-- <MainCreateNew /> -->
-        <MainTaskDisplay />
+       <!-- <MainTaskDisplay /> -->
       </main>
     </div>
   </div>
