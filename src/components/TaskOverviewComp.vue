@@ -4,7 +4,7 @@
     const creationDate = new Date(data.created_at);
     const pickupDate = new Date(data.pickup);
 
-    console.log(data.tags);
+    
 </script>
 
 <template>
@@ -29,7 +29,7 @@
             </td>
             
             <td>
-                <router-link :to="{ name: 'MainTaskDisplay' }" id="data.id">
+                <router-link :to="{ name: 'MainTaskDisplay' , params: { id: data.id }}">
                     <p>Se Mere</p>
                 </router-link>
             </td>

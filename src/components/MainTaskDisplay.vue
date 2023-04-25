@@ -1,16 +1,21 @@
 <script setup>
-import ProductOverview from './ProductOverview.vue';
-import TodoListeComp from './TodoListeComp.vue';
-import database from '../database.js';
+    import ProductOverview from './ProductOverview.vue';
+    import TodoListeComp from './TodoListeComp.vue';
+    import database from '../database.js';
 
-const { id } = defineProps(['id']);
+    const { id } = defineProps(['id']);
+    // const creationDate = new Date(data.created_at);
+    // const pickupDate = new Date(data.pickup);
 
-// const { data } = await database
-//     .from('cases')
-//     .select('*, customer(*), created_by(*), responsible_employee(*), status(*)')
-//     .order('created_at', {ascending:false}); 
+    const { data } = await database
+        .from('cases')
+        .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
+        .order('created_at', {ascending:false})
+        .eq('id', id);
+        
+        console.log(id);
+        console.log(data);
 
-//     console.log(data);
 </script>
 
 
@@ -38,19 +43,18 @@ const { id } = defineProps(['id']);
                 </div>
                 <div class="section-bg two-columns">
                     <div class="details">
-                        <p><span>Status:&nbsp;</span>Status</p>
-                        <p><span>Ansvarlig:&nbsp;</span>Navn</p>
-                        <p><span>Afhentningstidspunkt:&nbsp;</span>Dato</p>
-                        <p><span>Aftalt pris:&nbsp;</span>xxx kr.</p>
-                        <p><span>Oprettet af:&nbsp;</span>Navn</p>
-                        <p><span>Oprettet d.&nbsp;</span>Dato</p>
-                        <p><span>Beskrivelse:&nbsp;</span>Text</p>
+                        <!-- <p><span>Status:&nbsp;</span>{{ data.status.name }}</p> -->
+                        <!-- <p><span>Ansvarlig:&nbsp;</span>{{ data.responsible_employee.name }}</p>
+                        <p><span>Afhentningstidspunkt:&nbsp;</span>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</p>
+                        <p><span>Aftalt pris:&nbsp;</span>{{ data.negotiated_price }} kr.</p>
+                        <p><span>Oprettet af:&nbsp;</span>{{ data.created_by.name }}</p>
+                        <p><span>Oprettet d.&nbsp;</span>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</p>
+                        <p><span>Beskrivelse:&nbsp;</span>{{ data.description }}</p> -->
                     </div>
-                    <div>
+                    <div v-if="data.tags.length">
                         <h4>Tags</h4>
                         <div class="tags">
-                            <p class="tag">Tag 1</p>
-                            <p class="tag">Tag 2</p>
+                            <p class="tag" v-for="tag in data.tags">{{ tag.name }}</p>
                         </div>
                     </div>
                 </div>
@@ -60,16 +64,18 @@ const { id } = defineProps(['id']);
                     <h3>Opgaver</h3>
                     <p>Ret opgaver</p>
                 </div>
-                <div class="section-bg todo-lists">
+                <div class="section-bg todo-lists" v-if="data.tasks.length">
                     <div class="catagories">
-                        <TodoListeComp />
-                        <TodoListeComp />
-                        <TodoListeComp />
+                        <TodoListeComp v-for="workcase in data" :data="workcase"/>
                     </div>
                     <div>
                         <i>i</i>
                         <p>Marker alle</p>    
                     </div>
+                </div>
+                <div class="section-bg add-todo" v-else>
+                    <i>i</i>
+                    <p>tilføj opgaver</p>
                 </div>
             </section>
             <section>
@@ -91,12 +97,12 @@ const { id } = defineProps(['id']);
                     <p>Ret kunde</p>
                 </div>
                 <div class="kunde-container">
-                    <p class="first-flex">Hans Wurst <span>regular customers</span></p>
-                    <p>Hansvej 1</p>
-                    <p>1234 Hansby</p>
-                    <p>31 53 67 37</p>
-                    <p>hans@example.com</p>
-                    <p>Kundeenhed Stelnummer</p>
+                    <p class="first-flex">{{ data.customer.name }}<span>regular customers</span></p>
+                    <p>{{ data.customer.address}}</p>
+                    <p>{{ data.customer.zipcode }} {{ data.customer.city }}</p>
+                    <p>{{ data.customer.phone }}</p>
+                    <p>{{ data.customer.email }}</p>
+                    <p>Kundeenhed stelnummer: 123456789</p>
                     <button class="signature">Tilføj signatur</button>
                 </div>
             </section>
@@ -259,6 +265,12 @@ const { id } = defineProps(['id']);
             gap: 1rem;
         }
 
+    }
+
+    .add-todo{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
     }
 
 

@@ -7,6 +7,7 @@ const { data } = await database
     .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
     .order('created_at', {ascending:false});
 
+    console.log(data.id)
     console.log(data);
 </script>
 
