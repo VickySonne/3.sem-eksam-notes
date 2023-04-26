@@ -4,8 +4,8 @@
     import database from '../database.js';
 
     const props = defineProps(['id']);
-    // const creationDate = new Date(data.created_at);
-    // const pickupDate = new Date(data.pickup);
+    const creationDate = new Date(data.created_at);
+    const pickupDate = new Date(data.pickup);
 
     const { data } = await database
         .from('cases')
