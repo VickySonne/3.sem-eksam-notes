@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import icons here */
-import {faHome, faTasks, faCashRegister, faUsers, faBarcode, faChartBar, faLifeRing, faCogs, faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import {faHome, faTasks, faCashRegister, faUsers, faBarcode, faChartBar, faLifeRing, faCogs, faArrowLeft, faArrowRight, faBell, faUser, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 
 import './assets/reset.css'
 import './assets/global.css'
@@ -26,6 +26,9 @@ library.add([
     faCogs,
     faArrowLeft,
     faArrowRight,
+    faBell,
+    faUser,
+    faAngleDown,
 ])
 
 app.component('font-awesome-icon', FontAwesomeIcon)
