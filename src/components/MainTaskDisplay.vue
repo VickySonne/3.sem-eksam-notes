@@ -3,18 +3,19 @@
     import TodoListeComp from './TodoListeComp.vue';
     import database from '../database.js';
 
-    const { id } = defineProps(['id']);
+    const props = defineProps(['id']);
     // const creationDate = new Date(data.created_at);
     // const pickupDate = new Date(data.pickup);
 
     const { data } = await database
         .from('cases')
         .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
-        .order('created_at', {ascending:false})
-        .eq('id', id);
-        
-        console.log(id);
-        console.log(data);
+        .eq('id', props.id)
+        .limit(1)
+        .single();
+
+    console.log("The data is:")
+    console.log(data);
 
 </script>
 
@@ -70,7 +71,7 @@
                     </div>
                     <div>
                         <i>i</i>
-                        <p>Marker alle</p>    
+                        <p>Marker alle</p>
                     </div>
                 </div>
                 <div class="section-bg add-todo" v-else>
