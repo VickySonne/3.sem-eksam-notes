@@ -92,7 +92,7 @@
                             <th>Filer</th>
                         </thead>
                         <tbody v-if="data.files.length">
-                            <td v-for="file in data.files">{{ file.source }}</td>
+                            <td v-for="file in data.files">{{ file.name }}</td>
                         </tbody>
                         <p v-else>Ingen filer</p>
                     </table>
