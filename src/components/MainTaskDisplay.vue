@@ -5,7 +5,6 @@
 
     const props = defineProps(['id']);
     
-
     const { data } = await database
         .from('cases')
         .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
@@ -13,8 +12,10 @@
         .limit(1)
         .single();
 
-    console.log("The data is:")
+    console.log(props.id)
     console.log(data);
+
+
 
     const creationDate = new Date(data.created_at);
     const pickupDate = new Date(data.pickup);
@@ -85,8 +86,23 @@
                     <h3>Dokumenter</h3>
                     <p>Ret dokumenter</p>
                 </div>
-                <div class="section-bg">
-
+                <div class="section-bg document-table">
+                    <table>
+                        <thead>
+                            <th>Filer</th>
+                        </thead>
+                        <tbody>
+                            <td>{{  }}</td>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <th>Noter</th>
+                        </thead>
+                        <tbody>
+                            <td>{{  }}</td>
+                        </tbody>
+                    </table>
                 </div>
             </section>
             <ProductOverview />
@@ -273,6 +289,22 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
+    }
+
+    .document-table{
+        display: flex;
+
+        table{
+            width: 50%;
+
+            th{
+                font-weight: 500;
+            }
+
+            td{
+                padding: 1rem 0;
+            }
+        }
     }
 
 
