@@ -7,7 +7,7 @@
     
     const { data } = await database
         .from('cases')
-        .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
+        .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*)')
         .eq('id', props.id)
         .limit(1)
         .single();
@@ -91,17 +91,19 @@
                         <thead>
                             <th>Filer</th>
                         </thead>
-                        <tbody>
-                            <td>{{  }}</td>
+                        <tbody v-if="data.files.length">
+                            <td v-for="file in data.files">{{ file.source }}</td>
                         </tbody>
+                        <p v-else>Ingen filer</p>
                     </table>
                     <table>
                         <thead>
                             <th>Noter</th>
                         </thead>
-                        <tbody>
-                            <td>{{  }}</td>
+                        <tbody v-if="data.notes.length">
+                            <td v-for="note in data.notes">{{ note.content }}</td>
                         </tbody>
+                        <p v-else>Ingen noter</p>
                     </table>
                 </div>
             </section>
