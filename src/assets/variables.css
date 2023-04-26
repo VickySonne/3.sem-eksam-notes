@@ -1,0 +1,9 @@
+:root {
+    --text-primary: #212121;
+    --text-secondary: #FAFAFA;
+
+    --bg-primary: #1E293B;
+    --bg-secondary: #E5E7EB;
+
+    --border-radius: 0.125rem;
+}
