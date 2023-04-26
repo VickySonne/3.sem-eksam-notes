@@ -3,7 +3,9 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import router from "@/router";
-import { ref } from 'vue';
+// import { ref } from 'vue';
+
+// const test = ret()
 
 </script>
 <!-- controllerede inputfelter med use-ref+v-model -->
