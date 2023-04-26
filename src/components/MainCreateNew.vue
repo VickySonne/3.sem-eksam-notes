@@ -3,8 +3,10 @@ import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import router from "@/router";
-</script>
+import { ref } from 'vue';
 
+</script>
+<!-- controllerede inputfelter med use-ref+v-model -->
 <template>
     <div class="main-layout">
         <div class="main-left-content">
@@ -63,7 +65,7 @@ import router from "@/router";
                         <div class="form-input">
                             <label for="">Ansvarlig</label>
                             <div class="input-field">
-                                <p>Name</p>
+                                <input type="select" placeholder="Valg ansvarlig">
                                 <i>i</i>
                             </div>
                         </div>
@@ -71,7 +73,7 @@ import router from "@/router";
                         <div class="form-input">
                             <label for="">Status</label>
                             <div class="input-field">
-                                <p>Status</p>
+                                <input type="select" placeholder="valg status">
                                 <i>i</i>
                             </div>
                         </div>
@@ -79,7 +81,7 @@ import router from "@/router";
                         <div class="form-input">
                             <label for="">Tags</label>
                             <div class="input-field">
-                                <p>Tag</p>
+                                <input type="select" placeholder="valg tags">
                                 <i>i</i>
                             </div>
                         </div>
