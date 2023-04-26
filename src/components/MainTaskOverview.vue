@@ -41,7 +41,7 @@ const { data } = await database
                 <th>Opgaver</th>
                 <th>Beskrivelse</th>
                 <th>Tags</th>
-                <th>Detaljer</th>
+                <th>Pris</th>
                 <th>Handlinger</th>
             </thead>
             <tbody>

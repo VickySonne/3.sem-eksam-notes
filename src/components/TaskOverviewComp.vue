@@ -29,9 +29,7 @@
             </td>
             
             <td>
-                
-                    <p>Se Mere</p>
-               
+               kr.
             </td>
             <td><button>Handling</button></td>
         </tr>
@@ -39,6 +37,8 @@
 
 <style lang="scss" scoped>
     tr{
+        cursor: pointer;
+
         td{
             padding: 1rem;
             vertical-align: middle;
