@@ -48,7 +48,7 @@ defineProps({
     </li>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 p {
     margin-left: 1rem;
     font-size: 0.875rem;
@@ -60,12 +60,12 @@ p {
     border-radius: var(--border-radius);
     display: flex;
     padding: 1rem;
-}
 
-.nav-item:hover {
-    background-color: var(--bg-primary);
-    color: var(--text-secondary);
-    cursor: pointer;
+    &:hover {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        cursor: pointer;
+    }
 }
 
 .icon-container {

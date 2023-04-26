@@ -48,7 +48,8 @@ const toggleLabels = () => showLabels.value = !showLabels.value
 
                 <li class="separator"></li>
 
-                <NavItem label="Skjul&nbsp;Sidebjælke" :icon="showLabels ? 'arrow-left' : 'arrow-right'" :show-label="showLabels"
+                <NavItem label="Skjul&nbsp;Sidebjælke" :icon="showLabels ? 'arrow-left' : 'arrow-right'"
+                         :show-label="showLabels"
                          @click="toggleLabels" :is-disabled="true"/>
             </ul>
         </nav>
@@ -58,10 +59,10 @@ const toggleLabels = () => showLabels.value = !showLabels.value
 <style lang="scss" scoped>
 aside {
   background-color: var(--bg-secondary);
-}
 
-aside.expanded {
-  min-width: 16rem;
+  &.expanded {
+    min-width: 16rem;
+  }
 }
 
 nav {
@@ -71,11 +72,11 @@ nav {
   height: 100%;
   justify-content: space-between;
   padding: 1rem;
-}
 
-nav ul {
-  display: grid;
-  gap: 0.5rem;
+  ul {
+    display: grid;
+    gap: 0.5rem;
+  }
 }
 
 .separator {
