@@ -12,9 +12,6 @@ import AppSidebar from "@/components/layout/AppSidebar.vue";
 
       <Suspense>
         <main>
-          <!-- <MainTaskOverview /> -->
-          <!-- <MainCreateNew /> -->
-          <!-- <MainTaskDisplay /> -->
           <router-view />
         </main>
       </Suspense>
@@ -27,11 +24,6 @@ main {
     flex-grow: 1;
     overflow: scroll;
     padding: 1rem;
-}
-
-h1 {
-    font-size: 3rem;
-    color: #ccc;
 }
 
 .app-container {
