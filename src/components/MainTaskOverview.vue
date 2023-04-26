@@ -1,14 +1,13 @@
 <script setup>
 import TaskOverviewComp from './TaskOverviewComp.vue';
 import database from '../database.js';
+import router from "@/router";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const { data } = await database
     .from('cases')
     .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
     .order('created_at', {ascending:false});
-
-    console.log(data.id)
-    console.log(data);
 </script>
 
 <template>
@@ -26,8 +25,9 @@ const { data } = await database
                 </div>
                 <p>Avanceret søgning</p>
             </div>
-            <div class="create-new-task">
-                <i>i</i>
+
+            <div class="create-new-task" @click="router.push({ path: '/case' })">
+                <font-awesome-icon icon="plus" />
                 <p>Opret Ny Sag</p>
             </div>
         </div>
@@ -128,6 +128,7 @@ const { data } = await database
     }
 
     .create-new-task{
+        align-items: center;
         display: flex;
         flex-direction: row;
         gap: 1rem;

@@ -1,13 +1,15 @@
 <script async setup>
 import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
 import ProductOverview from './ProductOverview.vue';
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import router from "@/router";
 </script>
 
 <template>
     <div class="main-layout">
         <div class="main-left-content">
-            <div class="back-btn">
-                <i>i</i>
+            <div class="back-btn" @click="router.push({ path: '/' })">
+                <font-awesome-icon icon="arrow-left" />
                 <p>Tilbage til sagsstyrring</p>
             </div>
 
@@ -156,6 +158,7 @@ import ProductOverview from './ProductOverview.vue';
         margin-bottom: 1rem;
     }
     .back-btn{
+        align-items: center;
         display: flex;
         flex-direction: row;
         gap: 1rem;
