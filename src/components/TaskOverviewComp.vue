@@ -9,7 +9,7 @@
 </script>
 
 <template>
-        <tr @click="router.push({ path: '/case'+data.id })">
+        <tr @click="router.push({ path: '/case/' + data.id })">
             <td>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</td>
             <td>{{ data.status.name }}</td>
             <td>{{ data.responsible_employee.name }}</td>
