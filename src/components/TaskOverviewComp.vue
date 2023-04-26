@@ -1,4 +1,5 @@
 <script setup>
+    import router from "@/router";
     const props = defineProps(['data']);
 
     const creationDate = new Date(props.data.created_at);
@@ -8,8 +9,7 @@
 </script>
 
 <template>
-    
-        <tr>
+        <tr @click="router.push({ path: '/case'+data.id })">
             <td>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</td>
             <td>{{ data.status.name }}</td>
             <td>{{ data.responsible_employee.name }}</td>
@@ -29,13 +29,12 @@
             </td>
             
             <td>
-                <router-link :to="{ name: 'MainTaskDisplay' , params: { id: data.id }}">
+                
                     <p>Se Mere</p>
-                </router-link>
+               
             </td>
             <td><button>Handling</button></td>
         </tr>
-
 </template>
 
 <style lang="scss" scoped>
