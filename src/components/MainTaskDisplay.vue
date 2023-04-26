@@ -44,13 +44,13 @@
                 </div>
                 <div class="section-bg two-columns">
                     <div class="details">
-                        <!-- <p><span>Status:&nbsp;</span>{{ data.status.name }}</p> -->
-                        <!-- <p><span>Ansvarlig:&nbsp;</span>{{ data.responsible_employee.name }}</p>
+                        <p><span>Status:&nbsp;</span>{{ data.status.name }}</p>
+                        <p><span>Ansvarlig:&nbsp;</span>{{ data.responsible_employee.name }}</p>
                         <p><span>Afhentningstidspunkt:&nbsp;</span>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</p>
-                        <p><span>Aftalt pris:&nbsp;</span>{{ data.negotiated_price }} kr.</p>
+                        <p v-if="!data.negotiated_price==null"><span>Aftalt pris:&nbsp;</span>{{ data.negotiated_price }} kr.</p>
                         <p><span>Oprettet af:&nbsp;</span>{{ data.created_by.name }}</p>
                         <p><span>Oprettet d.&nbsp;</span>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</p>
-                        <p><span>Beskrivelse:&nbsp;</span>{{ data.description }}</p> -->
+                        <p v-if="!data.negotiated_price==null"><span>Beskrivelse:&nbsp;</span>{{ data.description }}</p>
                     </div>
                     <div v-if="data.tags.length">
                         <h4>Tags</h4>

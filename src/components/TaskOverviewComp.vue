@@ -1,8 +1,8 @@
 <script setup>
-    const { data } = defineProps(['data']);
+    const props = defineProps(['data']);
 
-    const creationDate = new Date(data.created_at);
-    const pickupDate = new Date(data.pickup);
+    const creationDate = new Date(props.data.created_at);
+    const pickupDate = new Date(props.data.pickup);
 
     
 </script>
