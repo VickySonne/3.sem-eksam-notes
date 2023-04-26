@@ -138,10 +138,17 @@ import ProductOverview from './ProductOverview.vue';
         }
 
         aside{
-            width: 100%;
-            max-width: 30%;
+            width: 30%;
             position: sticky;
             top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+
+            div{
+                width: 100%
+            }
         }
     }
     .main-content{
@@ -295,8 +302,19 @@ import ProductOverview from './ProductOverview.vue';
             }   
         }
 
-        .overflow{
-            height: 750px;
-            background-color: red;
-        }
+        .create-task{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        border-radius: 0.125rem;
+        background-color: rgb(30 41 59);
+        color: rgb(249 250 251);
+        padding: 1rem;
+        cursor: pointer;
+        max-width: fit-content;
+    }
+
+    .create-task:hover{
+        background-color: rgb(71 85 105);
+    }
 </style>
