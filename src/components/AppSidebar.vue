@@ -1,69 +1,87 @@
+<script setup>
+import NavItem from "@/components/navigation/NavItem.vue";
+import {ref} from "vue";
+
+const topNavItems = [
+    {
+        text: "Overblik",
+        icon: "home",
+    },
+    {
+        text: "Sagsstyring",
+        icon: "tasks",
+        route: "/",
+    },
+    {
+        text: "Kasse",
+        icon: "cash-register",
+    },
+    {
+        text: "Kunder",
+        icon: "users",
+    },
+    {
+        text: "Varer",
+        icon: "barcode",
+    },
+    {
+        text: "Statestik",
+        icon: "chart-bar",
+    }
+];
+
+const showLabels = ref(true)
+const toggleLabels = () => showLabels.value = !showLabels.value
+</script>
+
 <template>
-    <aside>
-        <div class="menu">
-          <div>
-            <p>Overblik</p>    
-            <p>Sagsstyring</p>
-            <p>Kasse</p>
-            <p>Kunder</p>
-            <p>Varer</p>
-            <p>Statestik</p>     
-          </div>
+    <aside :class="{ 'expanded': showLabels }">
+        <nav>
+            <ul>
+                <NavItem v-for="item in topNavItems" :label="item.text" :icon="item.icon" :route="item.route"
+                         :key="item.text" :show-label="showLabels"/>
+            </ul>
 
-          <div>
-            <p>Support</p>
-            <p>Indstillinger</p>
-          
-            <hr class="rounded">
+            <ul>
+                <NavItem label="Support" icon="life-ring" :show-label="showLabels"/>
+                <NavItem label="Indstillinger" icon="cogs" :show-label="showLabels"/>
 
-            <p>Skjul Sidebjælke</p>
-           </div>
+                <li class="separator"></li>
 
-        </div>
-
+                <NavItem label="Skjul&nbsp;Sidebjælke" :icon="showLabels ? 'arrow-left' : 'arrow-right'" :show-label="showLabels"
+                         @click="toggleLabels" :is-disabled="true"/>
+            </ul>
+        </nav>
     </aside>
-
 </template>
 
 <style lang="scss" scoped>
-  aside {  
-    background-color: #eee;
-    width: 300px;
+aside {
+  background-color: var(--bg-secondary);
+}
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
+aside.expanded {
+  min-width: 16rem;
+}
 
-    p {
-      padding: 16px;
-      font-size: 14px;
-      margin: 15px;
-      color: #1E293B;
-      font-weight: bolder;
-    }
+nav {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  height: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+}
 
-    p:hover {
-      background-color: #1E293B;
-      color: #eee;
-      margin: 15px;
-    }
+nav ul {
+  display: grid;
+  gap: 0.5rem;
+}
 
-    br {
-      display: block;
-      margin: 3rem;
-    }
-
-    hr.rounded {
-      margin: 15px;
-      border-top: 5px solid #bbb;
-      border-radius: 5px;
-    }
-
-    @media (max-width: 768px){
-
-    }
-  }
+.separator {
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+  height: 4px;
+  opacity: 0.5;
+}
 </style>

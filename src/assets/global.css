@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --text-primary: #212121;
+    --text-secondary: #FAFAFA;
+
+    --bg-primary: #1E293B;
+    --bg-secondary: #E5E7EB;
+
+    --border-radius: 0.125rem;
+}
+
 html,
 body,
 #app {
@@ -6,5 +18,5 @@ body,
 }
 
 html {
-    font-family: sans-serif;
+    font-family: 'Lexend', sans-serif;
 }
