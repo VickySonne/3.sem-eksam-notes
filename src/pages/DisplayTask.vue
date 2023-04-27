@@ -1,6 +1,6 @@
 <script setup>
-    import ProductOverview from './ProductOverview.vue';
-    import TodoListeComp from './TodoListeComp.vue';
+    import ProductOverview from '../components/ProductOverview.vue';
+    import TodoListeComp from '../components/TodoListeComp.vue';
     import database from '../database.js';
 
     const props = defineProps(['id']);

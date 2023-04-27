@@ -1,6 +1,6 @@
 <script async setup>
-import TodoCatagoriDropdownComp from './TodoCatagoriDropdownComp.vue';
-import ProductOverview from './ProductOverview.vue';
+import TodoCatagoriDropdownComp from '../components/TodoCatagoriDropdownComp.vue';
+import ProductOverview from '../components/ProductOverview.vue';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import router from "@/router";
 // import { ref } from 'vue';

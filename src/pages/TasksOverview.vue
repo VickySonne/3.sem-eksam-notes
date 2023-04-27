@@ -1,5 +1,5 @@
 <script setup>
-import TaskOverviewComp from './TaskOverviewComp.vue';
+import TaskOverviewComp from '../components/TaskOverviewComp.vue';
 import database from '../database.js';
 import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
