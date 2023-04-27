@@ -31,7 +31,7 @@ const pickupDate = new Date(pickup);
         <td>{{ customer.name }}</td>
 
         <td>
-            <p class="tag" v-for="task in tasks">{{ task.name }}</p>
+            <p class="tag" v-for="task in tasks" :key="task.id">{{ task.name }}</p>
             <span v-if="!tasks.length">---</span>
         </td>
 
