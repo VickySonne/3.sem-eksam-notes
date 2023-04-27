@@ -1,10 +1,10 @@
 <script async setup>
 import TodoCatagoriDropdownComp from '../components/TodoCatagoriDropdownComp.vue';
 import ProductOverview from '../components/ProductOverview.vue';
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import router from "@/router";
+
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
+import BackButton from "@/components/shared/BackButton.vue";
 // import { ref } from 'vue';
 
 // const test = ret()
@@ -14,10 +14,7 @@ import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 <template>
     <div class="main-layout">
         <div class="main-left-content">
-            <div class="back-btn" @click="router.push({ path: '/' })">
-                <font-awesome-icon icon="arrow-left" />
-                <p>Tilbage til sagsstyrring</p>
-            </div>
+            <BackButton>Tilbage til sagsstyring</BackButton>
 
             <div class="main-content">
 
@@ -181,15 +178,6 @@ import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
         font-weight: 700;
         font-size: 1.125rem;
         margin-bottom: 1rem;
-    }
-    .back-btn{
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        cursor: pointer;
-        font-weight: 700;
     }
 
     .search-bar{

@@ -2,6 +2,7 @@
     import ProductOverview from '../components/ProductOverview.vue';
     import TodoListeComp from '../components/TodoListeComp.vue';
     import database from '../database.js';
+    import BackButton from "@/components/shared/BackButton.vue";
 
     const props = defineProps(['id']);
     
@@ -25,10 +26,7 @@
 <template>
 <div>
     <div class="menu-bar">
-        <div class="back-btn">
-            <i>i</i>
-            <p>Tilbage til sagsstyrring</p>
-        </div>
+        <BackButton>Tilbage til sagsstyring</BackButton>
 
         <div class="tertiary-menu">
             <p>Kontakt</p>
@@ -132,7 +130,7 @@
 
                 <div class="kunde-container">
                     <p class="first-flex">{{ data.customer.name }}<span>regular customers</span></p>
-                    <p>{{ data.customer.address}}</p>
+                    <p>{{ data.customer.address }}</p>
                     <p>{{ data.customer.zipcode }} {{ data.customer.city }}</p>
                     <p>{{ data.customer.phone }}</p>
                     <p>{{ data.customer.email }}</p>
@@ -199,14 +197,6 @@
         font-size: 1.125rem;
     }
 
-    .back-btn{
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        
-        cursor: pointer;
-        font-weight: 700;
-    }
     .menu-bar{
         display: flex;
         flex-direction: row;
