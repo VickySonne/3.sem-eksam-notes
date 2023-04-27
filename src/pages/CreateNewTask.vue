@@ -49,7 +49,7 @@ import BackButton from "@/components/shared/BackButton.vue";
                 <section class="todos">
                     <h3>Opgaver</h3>
                     <div class="todo-catagories-list section-bg">
-                        <div class="catagories">
+                        <div class="categories">
                             <TodoCatagoriDropdownComp />
                             <TodoCatagoriDropdownComp />
                             <TodoCatagoriDropdownComp />
@@ -247,7 +247,7 @@ import BackButton from "@/components/shared/BackButton.vue";
             flex-direction: row;
             justify-content: space-between;
 
-            .catagories{
+            .categories{
                 display: flex;
                 gap: 1rem;
             }

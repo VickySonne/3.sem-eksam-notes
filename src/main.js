@@ -22,7 +22,7 @@ import {
     faUser,
     faAngleDown,
     faPlus,
-    faMagnifyingGlass
+    faMagnifyingGlass, faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'
 
 import './assets/reset.css'
@@ -46,7 +46,8 @@ library.add([
     faUser,
     faAngleDown,
     faPlus,
-    faMagnifyingGlass
+    faMagnifyingGlass,
+    faPaperPlane
 ])
 
 app.component('font-awesome-icon', FontAwesomeIcon)
