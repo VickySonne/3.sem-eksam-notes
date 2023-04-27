@@ -51,7 +51,7 @@ const { data } = await database
                 </thead>
 
                 <tbody>
-                    <TaskOverviewComp v-for="workcase in data" :data="workcase"/>
+                    <TaskOverviewComp v-for="workcase in data" :data="workcase" :key="workcase.id"/>
                 </tbody>
             </table>
         </section>
