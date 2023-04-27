@@ -94,26 +94,42 @@
                 <div class="section-bg document-table">
                     <table>
                         <thead>
-                            <th>Filer</th>
+                            <tr>
+                                <th>Filer</th>
+                            </tr>
                         </thead>
 
                         <tbody v-if="data.files.length">
-                            <td v-for="file in data.files" :key="file.id">{{ file.name }}</td>
+                            <tr>
+                                <td v-for="file in data.files" :key="file.id">{{ file.name }}</td>
+                            </tr>
                         </tbody>
 
-                        <p v-else>Ingen filer</p>
+                        <tbody v-else>
+                            <tr>
+                                <td>Ingen filer</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <table>
                         <thead>
-                            <th>Noter</th>
+                            <tr>
+                                <th>Noter</th>
+                            </tr>
                         </thead>
 
                         <tbody v-if="data.notes.length">
-                            <td v-for="note in data.notes" :key="note.id">{{ note.content }}</td>
+                            <tr>
+                                <td v-for="note in data.notes" :key="note.id">{{ note.content }}</td>
+                            </tr>
                         </tbody>
 
-                        <p v-else>Ingen noter</p>
+                        <tbody v-else>
+                            <tr>
+                                <td>Ingen noter</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </section>
