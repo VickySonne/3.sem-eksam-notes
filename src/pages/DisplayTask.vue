@@ -29,6 +29,7 @@
             <i>i</i>
             <p>Tilbage til sagsstyrring</p>
         </div>
+
         <div class="tertiary-menu">
             <p>Kontakt</p>
             <p>Print</p>
@@ -44,6 +45,7 @@
                     <h3>Detajler</h3>
                     <p>Ret detaljer</p>
                 </div>
+
                 <div class="section-bg two-columns">
                     <div class="details">
                         <p><span>Status:&nbsp;</span>{{ data.status.name }}</p>
@@ -54,10 +56,11 @@
                         <p><span>Oprettet d.&nbsp;</span>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</p>
                         <p v-if="!data.negotiated_price==null"><span>Beskrivelse:&nbsp;</span>{{ data.description }}</p>
                     </div>
+
                     <div v-if="data.tags.length">
                         <h4>Tags</h4>
                         <div class="tags">
-                            <p class="tag" v-for="tag in data.tags">{{ tag.name }}</p>
+                            <p class="tag" v-for="tag in data.tags" :key="tag.id">{{ tag.name }}</p>
                         </div>
                     </div>
                 </div>
@@ -67,46 +70,56 @@
                     <h3>Opgaver</h3>
                     <p>Ret opgaver</p>
                 </div>
+
                 <div class="section-bg todo-lists" v-if="data.tasks.length">
                     <div class="catagories">
-                        <TodoListeComp v-for="workcase in data" :data="workcase"/>
+                        <TodoListeComp v-for="workcase in data" :data="workcase" :key="workcase.id"/>
                     </div>
                     <div>
                         <i>i</i>
                         <p>Marker alle</p>
                     </div>
                 </div>
+
                 <div class="section-bg add-todo" v-else>
                     <i>i</i>
                     <p>tilføj opgaver</p>
                 </div>
             </section>
+
             <section>
                 <div class="title-bar">
                     <h3>Dokumenter</h3>
                     <p>Ret dokumenter</p>
                 </div>
+
                 <div class="section-bg document-table">
                     <table>
                         <thead>
                             <th>Filer</th>
                         </thead>
+
                         <tbody v-if="data.files.length">
-                            <td v-for="file in data.files">{{ file.name }}</td>
+                            <td v-for="file in data.files" :key="file.id">{{ file.name }}</td>
                         </tbody>
+
                         <p v-else>Ingen filer</p>
                     </table>
+
                     <table>
                         <thead>
                             <th>Noter</th>
                         </thead>
+
                         <tbody v-if="data.notes.length">
-                            <td v-for="note in data.notes">{{ note.content }}</td>
+                            <td v-for="note in data.notes" :key="note.id">{{ note.content }}</td>
                         </tbody>
+
                         <p v-else>Ingen noter</p>
                     </table>
                 </div>
             </section>
+
             <ProductOverview />
         </div>
 
@@ -116,6 +129,7 @@
                     <h3>Kunde</h3>
                     <p>Ret kunde</p>
                 </div>
+
                 <div class="kunde-container">
                     <p class="first-flex">{{ data.customer.name }}<span>regular customers</span></p>
                     <p>{{ data.customer.address}}</p>
@@ -126,14 +140,15 @@
                     <button class="signature">Tilføj signatur</button>
                 </div>
             </section>
+
             <section>
                 <h3>SMS-beskeder</h3>
                 <div class="sms-container">
-
                     <div class="content-box">
                         <div class="text-box">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
+
                         <div class="date">
                             <small>Mon Apr 24 2023</small>
                         </div>
@@ -143,6 +158,7 @@
                         <div class="text-box">
                             <p>Lorem</p>
                         </div>
+
                         <div class="date">
                             <small>Mon Apr 24 2023</small>
                         </div>
