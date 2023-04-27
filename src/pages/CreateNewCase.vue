@@ -173,6 +173,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: fit-content;
     position: sticky;
     right: 0;
     top: 0;
