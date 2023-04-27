@@ -10,9 +10,23 @@ import {ref} from 'vue';
 import database from "@/database";
 import router from "@/router";
 
-const customer = ref(1)
+const {data: statusOptions} = await database
+    .from('statuses')
+    .select('id, name')
+
+const {data: employeeOptions} = await database.from('employees').select('id, name')
+
+const {data: customerOptions} = await database.from('customers').select('id, name')
+//
+// const {data: tagsOptions} = await database.from('tags').select('id, name')
+//
+// const {data: tasksOptions} = await database.from('tasks').select('id, name')
+//
+// const {data: productsOptions} = await database.from('products').select('id, name')
+
+const customer = ref(null)
 const description = ref("")
-const responsibleEmployee = ref(1)
+const responsibleEmployee = ref(employeeOptions[0].id)
 const pickupDate = ref(new Date())
 const status = ref(1)
 const price = ref(0)
@@ -21,20 +35,6 @@ const deposit = ref(0)
 // const tags = ref([])
 // const tasks = ref([])
 // const products = ref([])
-
-const {data: statusOptions} = await database
-    .from('statuses')
-    .select('id, name')
-
-const {data: employeeOptions} = await database.from('employees').select('id, name')
-
-// const {data: customerOptions} = await database.from('customers').select('id, name')
-//
-// const {data: tagsOptions} = await database.from('tags').select('id, name')
-//
-// const {data: tasksOptions} = await database.from('tasks').select('id, name')
-//
-// const {data: productsOptions} = await database.from('products').select('id, name')
 
 const parseDate = (event) => {
     const newDate = new Date(event.target.value);
@@ -222,6 +222,38 @@ const updateStatus = (event) => {
         <aside>
             <div class="section-bg">
                 <h3>Opsummering</h3>
+
+                <div class="summary">
+                    <p v-if="customer">
+                        <span>Kunde: </span>
+                        {{ customerOptions.find(e => e.id == customer).name }}
+                    </p>
+
+                    <p v-if="responsibleEmployee">
+                        <span>Ansvarlig: </span>
+                        {{ employeeOptions.find(e => e.id == responsibleEmployee).name }}
+                    </p>
+
+                    <p v-if="status">
+                        <span>Status: </span>
+                        {{ statusOptions.find(e => e.id == status).name }}
+                    </p>
+
+                    <p v-if="pickupDate">
+                        <span>Afhentning: </span>
+                        {{ pickupDate.toLocaleString() }}
+                    </p>
+
+                    <p v-if="price">
+                        <span>Pris: </span>
+                        {{ price }}
+                    </p>
+
+                    <p v-if="description">
+                        <span class="block">Beskrivelse: </span>
+                        {{ description }}
+                    </p>
+                </div>
             </div>
 
             <div class="create-task" @click="createCase()">
@@ -234,6 +266,22 @@ const updateStatus = (event) => {
 </template>
 
 <style lang="scss" scoped>
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  span {
+    font-weight: 600;
+
+    &.block {
+      display: block;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
 .header {
   padding-bottom: 1rem;
 }
