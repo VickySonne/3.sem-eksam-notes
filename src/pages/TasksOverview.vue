@@ -13,7 +13,8 @@ const { data } = await database
 <template>
     <div>
         <h2>Sagsstyrring</h2>
-        <div class="tool-bar">
+
+        <section class="tool-bar">
             <div class="search-bar">
                 <div class="search-field">
                     <i>i</i>
@@ -30,24 +31,30 @@ const { data } = await database
                 <font-awesome-icon icon="plus" />
                 <p>Opret Ny Sag</p>
             </div>
-        </div>
-        <table>
-            <thead>
-                <th>Oprettet</th>
-                <th>Status</th>
-                <th>Ansvarlig</th>
-                <th>Afhentes</th>
-                <th>Kunde</th>
-                <th>Opgaver</th>
-                <th>Beskrivelse</th>
-                <th>Tags</th>
-                <th>Pris</th>
-                <th>Handlinger</th>
-            </thead>
-            <tbody>
-                <TaskOverviewComp v-for="workcase in data" :data="workcase"/>
-            </tbody>
-        </table>
+        </section>
+
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Oprettet</th>
+                        <th>Status</th>
+                        <th>Ansvarlig</th>
+                        <th>Afhentes</th>
+                        <th>Kunde</th>
+                        <th>Opgaver</th>
+                        <th>Beskrivelse</th>
+                        <th>Tags</th>
+                        <th>Pris</th>
+                        <th>Handlinger</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <TaskOverviewComp v-for="workcase in data" :data="workcase"/>
+                </tbody>
+            </table>
+        </section>
     </div>
 </template>
 
