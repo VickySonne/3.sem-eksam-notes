@@ -3,6 +3,8 @@ import TodoCatagoriDropdownComp from '../components/TodoCatagoriDropdownComp.vue
 import ProductOverview from '../components/ProductOverview.vue';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import router from "@/router";
+import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
+import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 // import { ref } from 'vue';
 
 // const test = ret()
@@ -66,25 +68,37 @@ import router from "@/router";
                     <form class="grid-wrapper section-bg">
                         <div class="form-input">
                             <label for="">Ansvarlig</label>
+
                             <div class="input-field">
-                                <input type="select" placeholder="Valg ansvarlig">
-                                <i>i</i>
+                                <CustomSelect>
+                                    <CustomSelectItem value="0">Vælg ansvarlig</CustomSelectItem>
+                                    <CustomSelectItem value="1">Ansvarlig 1</CustomSelectItem>
+                                    <CustomSelectItem value="2">Ansvarlig 2</CustomSelectItem>
+                                </CustomSelect>
                             </div>
                         </div>
 
                         <div class="form-input">
                             <label for="">Status</label>
+
                             <div class="input-field">
-                                <input type="select" placeholder="valg status">
-                                <i>i</i>
+                                <CustomSelect>
+                                    <CustomSelectItem value="0">Vælg status</CustomSelectItem>
+                                    <CustomSelectItem value="1">Status 1</CustomSelectItem>
+                                    <CustomSelectItem value="2">Status 2</CustomSelectItem>
+                                </CustomSelect>
                             </div>
                         </div>
 
                         <div class="form-input">
                             <label for="">Tags</label>
+
                             <div class="input-field">
-                                <input type="select" placeholder="valg tags">
-                                <i>i</i>
+                                <CustomSelect>
+                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>
+                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>
+                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>
+                                </CustomSelect>
                             </div>
                         </div>
 
