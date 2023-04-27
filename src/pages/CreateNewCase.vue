@@ -287,11 +287,20 @@ h3 {
   }
 }
 
+
 .price-input {
   position: relative;
 
+
   input {
     width: 100%;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   p {
