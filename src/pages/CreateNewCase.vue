@@ -147,7 +147,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
             </div>
 
             <div class="create-task">
-                <i>i</i>
+                <font-awesome-icon icon="plus"/>
                 <p>Opret Sag</p>
             </div>
 
@@ -302,6 +302,7 @@ h3 {
 }
 
 .create-task {
+  align-items: center;
   display: flex;
   gap: 1rem;
   border-radius: 0.125rem;
