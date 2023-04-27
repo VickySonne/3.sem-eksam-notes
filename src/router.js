@@ -1,8 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
 
-import MainTaskOverview from "./pages/TasksOverview.vue";
-import MainCreateNew from "./pages/CreateNewTask.vue";
-import MainTaskDisplay from "./pages/DisplayTask.vue";
+import MainTaskOverview from "./pages/CasesOverview.vue";
+import MainCreateNew from "./pages/CreateNewCase.vue";
+import MainTaskDisplay from "./pages/DisplayCase.vue";
 import ComingSoon from "@/components/ComingSoon.vue";
 
 const routes = [
