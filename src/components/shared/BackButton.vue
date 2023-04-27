@@ -13,7 +13,7 @@ defineProps({
 
 <template>
     <div @click="router.push({ path: destination })">
-        <font-awesome-icon icon="arrow-left" />
+        <font-awesome-icon icon="arrow-left"/>
 
         <p>
             <slot></slot>
@@ -28,5 +28,7 @@ div {
   display: flex;
   font-weight: 600;
   gap: 1rem;
+  padding-block: 1rem;
+  width: fit-content;
 }
 </style>

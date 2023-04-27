@@ -148,8 +148,7 @@ import BackButton from "@/components/shared/BackButton.vue";
 
 <style lang="scss" scoped>
 .header {
-    padding-bottom: 2rem;
-    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 
