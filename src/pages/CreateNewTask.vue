@@ -12,10 +12,12 @@ import BackButton from "@/components/shared/BackButton.vue";
 </script>
 <!-- controllerede inputfelter med use-ref+v-model -->
 <template>
+    <div class="header">
+        <BackButton>Tilbage til sagsstyring</BackButton>
+    </div>
+
     <div class="main-layout">
         <div class="main-left-content">
-            <BackButton>Tilbage til sagsstyring</BackButton>
-
             <div class="main-content">
 
                 <section class="customer">
@@ -145,6 +147,11 @@ import BackButton from "@/components/shared/BackButton.vue";
 </template>
 
 <style lang="scss" scoped>
+.header {
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+}
+
 
     .main-layout{
         display: flex;
