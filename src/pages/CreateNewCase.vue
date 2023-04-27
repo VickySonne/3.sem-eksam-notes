@@ -185,27 +185,29 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
   display: flex;
   flex-direction: column;
   gap: 3rem;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
 }
 
 h3 {
   font-weight: 700;
   font-size: 1.125rem;
-  margin-bottom: 1rem;
 }
 
 .search-bar {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
   align-items: center;
+  display: flex;
+  gap: 1rem;
 
   & > p {
-    font-weight: 700;
     cursor: pointer;
-  }
+    font-weight: 700;
 
-  & > p:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -229,7 +231,6 @@ h3 {
 
 .todo-categories-list {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   .categories {
@@ -240,7 +241,6 @@ h3 {
 
 .create-custom-todo {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
   background-color: white;
   padding: 1rem;
@@ -264,7 +264,6 @@ h3 {
 
     .input-field {
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       background-color: white;
       padding: 0.5rem;

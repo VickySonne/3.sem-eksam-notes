@@ -23,11 +23,10 @@
 
     .category{
         display: flex;
-        flex-direction: row;
         gap: 1rem;
         background-color: white;
         padding: 1rem;
-        border-radius: 0.125rem;
+        border-radius: var(--border-radius);
 
         i{
             cursor: pointer;

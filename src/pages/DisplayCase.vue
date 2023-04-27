@@ -235,7 +235,6 @@ const pickupDate = new Date(pickup);
 // Vicky Styling start
 .title-bar {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   p {
@@ -254,17 +253,15 @@ h3 {
 }
 
 .menu-bar {
+  align-items: center;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1rem;
-  align-items: center;
 
   .tertiary-menu {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
     align-items: center;
+    display: flex;
+    gap: 1rem;
 
     p {
       cursor: pointer;
@@ -275,10 +272,10 @@ h3 {
     }
 
     .action-btn {
-      border: solid 1px transparent;
-      border-radius: 0.125rem;
-      background-color: aquamarine;
-      padding: 1rem;
+      background-color: var(--bg-primary);
+      border-radius: var(--border-radius);
+      color: var(--text-secondary);
+      padding: var(--default-padding);
     }
   }
 }
@@ -291,13 +288,12 @@ section {
 
 .section-bg {
   background-color: rgb(229 231 235);
+  border-radius: var(--border-radius);
   padding: 1rem;
-  border-radius: 0.125rem;
 }
 
 .two-columns {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
 
   div {
@@ -314,10 +310,10 @@ section {
       gap: 0.5rem;
 
       .tag {
-        background-color: rgb(30 41 59);
-        color: white;
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
         padding: 0.5rem;
-        border-radius: 0.125rem;
+        border-radius: var(--border-radius)
       }
     }
 
@@ -336,7 +332,6 @@ section {
 
 .todo-lists {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   .categories {
@@ -345,7 +340,6 @@ section {
 
   & > div {
     display: flex;
-    flex-direction: row;
     gap: 1rem;
   }
 }
@@ -353,7 +347,6 @@ section {
 .add-todo {
   align-items: center;
   display: flex;
-  flex-direction: row;
   gap: 1rem;
 }
 
@@ -377,7 +370,6 @@ section {
 // Vicky Styling slut
 .flex-wrapper {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
 
   .content-left {
@@ -398,12 +390,12 @@ section {
 .sms-container {
   background-color: rgb(229 231 235);
   height: 32rem;
-  padding: 1rem;
+  padding: var(--default-padding);
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: flex-end;
-  border-radius: .125rem;
+  border-radius: var(--border-radius);
 
   .content-box {
     display: flex;
@@ -414,17 +406,17 @@ section {
   }
 
   .text-box {
-    background-color: rgb(30 41 59);
-    color: rgb(249 250 251);
-    padding: 1rem;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
     max-width: 75%;
-    border-radius: .125rem;
+    padding: var(--default-padding);
   }
 
 
   .date {
-    display: flex;
     align-content: flex-end;
+    display: flex;
 
     small {
       font-size: 0.8rem;
@@ -433,7 +425,7 @@ section {
 
   .send-msg {
     align-items: center;
-    background-color: rgb(245 245 245);
+    background-color: var(--text-secondary);
     border-radius: var(--border-radius);
     display: flex;
     padding: 1rem;
@@ -451,15 +443,15 @@ section {
 }
 
 .kunde-container {
-  border-radius: .125rem;
-  padding: 1rem;
+  border-radius: var(--border-radius);
+  padding: var(--default-padding);
   background-color: rgb(229 231 235);
   gap: 1rem;
 
   span {
-    border-radius: .125rem;
-    color: rgb(250 250 250);
-    background-color: rgb(30 41 59);
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
     padding: 0.5rem;
   }
 
@@ -477,25 +469,23 @@ section {
   .signature {
     font-weight: 700;
     margin-top: 1rem;
-  }
 
-  .signature:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
-
 }
 
 .ret-kunde {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   p {
     cursor: pointer;
-  }
 
-  p:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
