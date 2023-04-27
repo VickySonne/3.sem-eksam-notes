@@ -226,17 +226,17 @@ const updateStatus = (event) => {
                 <div class="summary">
                     <p v-if="customer">
                         <span>Kunde: </span>
-                        {{ customerOptions.find(e => e.id == customer).name }}
+                        {{ customerOptions.find(e => e.id === parseInt(customer)).name }}
                     </p>
 
                     <p v-if="responsibleEmployee">
                         <span>Ansvarlig: </span>
-                        {{ employeeOptions.find(e => e.id == responsibleEmployee).name }}
+                        {{ employeeOptions.find(e => e.id === parseInt(responsibleEmployee)).name }}
                     </p>
 
                     <p v-if="status">
                         <span>Status: </span>
-                        {{ statusOptions.find(e => e.id == status).name }}
+                        {{ statusOptions.find(e => e.id === parseInt(status)).name }}
                     </p>
 
                     <p v-if="pickupDate">
