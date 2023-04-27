@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="catagori">
+    <div class="category">
         <div>
             <h4>Kategori Name</h4>
             <ul>
@@ -21,7 +21,7 @@
 
 <style lang="scss" scoped>
 
-    .catagori{
+    .category{
         display: flex;
         flex-direction: row;
         gap: 1rem;
