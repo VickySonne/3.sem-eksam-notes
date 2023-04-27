@@ -6,9 +6,81 @@ import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-// import { ref } from 'vue';
+import {ref} from 'vue';
+import database from "@/database";
+import router from "@/router";
 
-// const test = ret()
+const customer = ref(1)
+const description = ref("")
+const responsibleEmployee = ref(1)
+const pickupDate = ref(new Date())
+const status = ref(1)
+const price = ref(0)
+const deposit = ref(0)
+
+// const tags = ref([])
+// const tasks = ref([])
+// const products = ref([])
+
+const {data: statusOptions} = await database
+    .from('statuses')
+    .select('id, name')
+
+const {data: employeeOptions} = await database.from('employees').select('id, name')
+
+// const {data: customerOptions} = await database.from('customers').select('id, name')
+//
+// const {data: tagsOptions} = await database.from('tags').select('id, name')
+//
+// const {data: tasksOptions} = await database.from('tasks').select('id, name')
+//
+// const {data: productsOptions} = await database.from('products').select('id, name')
+
+const parseDate = (event) => {
+    const newDate = new Date(event.target.value);
+
+    if (!isNaN(newDate.getTime())) {
+        pickupDate.value = newDate;
+    }
+}
+
+const getCurrentDateTimeString = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`
+}
+
+const createCase = () => {
+    database.from('cases').insert({
+        created_by: 1,
+        customer: customer.value,
+        description: description.value,
+        responsible_employee: responsibleEmployee.value,
+        pickup: pickupDate.value,
+        status: status.value,
+        negotiated_price: price.value,
+        deposit: deposit.value,
+    }).select().single().then(data => {
+        router.push({path: '/case/' + data.data.id})
+    })
+}
+
+const updateEmployee = (event) => {
+    responsibleEmployee.value = event.target.value
+}
+
+// const updateCustomer = (event) => {
+//     customer.value = event.target.value
+// }
+
+const updateStatus = (event) => {
+    status.value = event.target.value
+}
 
 </script>
 <!-- controllerede inputfelter med use-ref+v-model -->
@@ -80,10 +152,10 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                             <label for="">Ansvarlig</label>
 
                             <div class="input-field">
-                                <CustomSelect>
-                                    <CustomSelectItem value="0">Vælg ansvarlig</CustomSelectItem>
-                                    <CustomSelectItem value="1">Ansvarlig 1</CustomSelectItem>
-                                    <CustomSelectItem value="2">Ansvarlig 2</CustomSelectItem>
+                                <CustomSelect :callback="updateEmployee">
+                                    <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id" :key="employee.id">
+                                        {{employee.name}}
+                                    </CustomSelectItem>
                                 </CustomSelect>
                             </div>
                         </div>
@@ -92,10 +164,10 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                             <label for="">Status</label>
 
                             <div class="input-field">
-                                <CustomSelect>
-                                    <CustomSelectItem value="0">Vælg status</CustomSelectItem>
-                                    <CustomSelectItem value="1">Status 1</CustomSelectItem>
-                                    <CustomSelectItem value="2">Status 2</CustomSelectItem>
+                                <CustomSelect :callback="updateStatus">
+                                    <CustomSelectItem v-for="status in statusOptions" :value="status.id" :key="status.id">
+                                        {{status.name}}
+                                    </CustomSelectItem>
                                 </CustomSelect>
                             </div>
                         </div>
@@ -104,25 +176,25 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                             <label for="">Tags</label>
 
                             <div class="input-field">
-                                <CustomSelect>
-                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>
-                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>
-                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>
-                                </CustomSelect>
+<!--                                <CustomSelect :multiple="true">-->
+<!--                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
+<!--                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
+<!--                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
+<!--                                </CustomSelect>-->
                             </div>
                         </div>
 
                         <div class="flex-wrapper">
                             <div class="form-input">
                                 <label for="">Afhentning</label>
-                                <input class="input-field" type="datetime-local">
+                                <input @change="parseDate" :value="getCurrentDateTimeString()" class="input-field" type="datetime-local">
                             </div>
 
                             <div class="form-input">
                                 <label for="">Aftalt Pris</label>
 
                                 <div class="price-input">
-                                    <input class="input-field" type="number" placeholder="Intern pris">
+                                    <input v-model="price" class="input-field" type="number" placeholder="Intern pris">
                                     <p>kr.</p>
                                 </div>
                             </div>
@@ -130,7 +202,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
                         <div class="form-input description">
                             <label for="">Beskrivelse</label>
-                            <textarea class="input-field" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea v-model="description" class="input-field" name="" id="" cols="30" rows="10"></textarea>
                         </div>
                     </form>
                 </section>
@@ -146,7 +218,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                 <h3>Opsummering</h3>
             </div>
 
-            <div class="create-task">
+            <div class="create-task" @click="createCase()">
                 <font-awesome-icon icon="plus"/>
                 <p>Opret Sag</p>
             </div>
