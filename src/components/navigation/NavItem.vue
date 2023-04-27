@@ -45,7 +45,7 @@ const isActive = () => {
     <li>
         <router-link :to=route class="nav-item" v-if="!isDisabled" :class="isActive() ? 'active' : ''">
             <div class="icon-container">
-                <font-awesome-icon :icon=icon/>
+                <font-awesome-icon :icon=icon />
             </div>
 
             <p v-if="showLabel">{{ label }}</p>
