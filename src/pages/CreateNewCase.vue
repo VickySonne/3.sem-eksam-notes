@@ -1,5 +1,5 @@
 <script async setup>
-import TodoCatagoriDropdownComp from '../components/TodoCatagoriDropdownComp.vue';
+// import TodoCatagoriDropdownComp from '../components/TodoCatagoriDropdownComp.vue';
 import ProductOverview from '../components/ProductOverview.vue';
 
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
@@ -20,7 +20,8 @@ const {data: customerOptions} = await database.from('customers').select('id, nam
 //
 // const {data: tagsOptions} = await database.from('tags').select('id, name')
 //
-// const {data: tasksOptions} = await database.from('tasks').select('id, name')
+const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)')
+
 //
 // const {data: productsOptions} = await database.from('products').select('id, name')
 
@@ -31,6 +32,8 @@ const pickupDate = ref(new Date())
 const status = ref(1)
 const price = ref(0)
 const deposit = ref(0)
+
+const currentTaskCategory = ref(taskOptions[0].id)
 
 // const tags = ref([])
 // const tasks = ref([])
@@ -88,6 +91,10 @@ const updateStatus = (event) => {
     status.value = event.target.value
 }
 
+const switchCategory = (categoryId) => {
+    currentTaskCategory.value = categoryId
+}
+
 </script>
 <!-- controllerede inputfelter med use-ref+v-model -->
 <template>
@@ -136,16 +143,29 @@ const updateStatus = (event) => {
                 <section class="todos">
                     <h3>Opgaver</h3>
 
-                    <div class="todo-categories-list section-bg">
-                        <div class="categories">
-                            <TodoCatagoriDropdownComp/>
-                            <TodoCatagoriDropdownComp/>
-                            <TodoCatagoriDropdownComp/>
+                    <div class="section-bg">
+                        <div class="todo-categories-list">
+                            <div class="categories">
+                                <!-- Temporary for testing purposes -->
+                                <div v-for="category in taskOptions" @click="switchCategory(category.id)"
+                                     :key="category.id">
+                                    <p>{{ category.name }}</p>
+                                </div>
+
+                                <!-- <TodoCatagoriDropdownComp/>-->
+                                <!-- <TodoCatagoriDropdownComp/>-->
+                                <!-- <TodoCatagoriDropdownComp/>-->
+                            </div>
+
+                            <div class="create-custom-todo">
+                                <i>i</i>
+                                <p>Custom Opgave</p>
+                            </div>
                         </div>
 
-                        <div class="create-custom-todo">
-                            <i>i</i>
-                            <p>Custom Opgave</p>
+                        <div>
+                            <p v-for="task in taskOptions.find((t) => t.id === currentTaskCategory).tasks"
+                               :key="task.id">{{ task.name }}</p>
                         </div>
                     </div>
                 </section>
@@ -159,8 +179,9 @@ const updateStatus = (event) => {
 
                             <div class="input-field">
                                 <CustomSelect :callback="updateEmployee">
-                                    <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id" :key="employee.id">
-                                        {{employee.name}}
+                                    <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id"
+                                                      :key="employee.id">
+                                        {{ employee.name }}
                                     </CustomSelectItem>
                                 </CustomSelect>
                             </div>
@@ -171,8 +192,9 @@ const updateStatus = (event) => {
 
                             <div class="input-field">
                                 <CustomSelect :callback="updateStatus">
-                                    <CustomSelectItem v-for="status in statusOptions" :value="status.id" :key="status.id">
-                                        {{status.name}}
+                                    <CustomSelectItem v-for="status in statusOptions" :value="status.id"
+                                                      :key="status.id">
+                                        {{ status.name }}
                                     </CustomSelectItem>
                                 </CustomSelect>
                             </div>
@@ -182,18 +204,19 @@ const updateStatus = (event) => {
                             <label for="">Tags</label>
 
                             <div class="input-field">
-<!--                                <CustomSelect :multiple="true">-->
-<!--                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
-<!--                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
-<!--                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
-<!--                                </CustomSelect>-->
+                                <!--                                <CustomSelect :multiple="true">-->
+                                <!--                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
+                                <!--                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
+                                <!--                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
+                                <!--                                </CustomSelect>-->
                             </div>
                         </div>
 
                         <div class="flex-wrapper">
                             <div class="form-input">
                                 <label for="">Afhentning</label>
-                                <input @change="parseDate" :value="getCurrentDateTimeString()" class="input-field" type="datetime-local">
+                                <input @change="parseDate" :value="getCurrentDateTimeString()" class="input-field"
+                                       type="datetime-local">
                             </div>
 
                             <div class="form-input">
@@ -208,7 +231,8 @@ const updateStatus = (event) => {
 
                         <div class="form-input description">
                             <label for="">Beskrivelse</label>
-                            <textarea v-model="description" class="input-field" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea v-model="description" class="input-field" name="" id="" cols="30"
+                                      rows="10"></textarea>
                         </div>
                     </form>
                 </section>
