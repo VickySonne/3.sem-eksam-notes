@@ -3,11 +3,17 @@ import TaskOverviewComp from '../components/TaskOverviewComp.vue';
 import database from '../database.js';
 import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
+import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 
 const { data } = await database
     .from('cases')
     .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
     .order('created_at', {ascending:false});
+
+const { data: statusOptions } = await database
+    .from('statuses')
+    .select('id, name')
 </script>
 
 <template>
@@ -17,13 +23,16 @@ const { data } = await database
         <section class="tool-bar">
             <div class="search-bar">
                 <div class="search-field">
-                    <i>i</i>
+                    <font-awesome-icon icon="magnifying-glass" />
                     <input type="search" placeholder="Søg...">
                 </div>
-                <div class="status-button">
-                    <p>Status</p>
-                    <i>i</i>
-                </div>
+
+
+                <CustomSelect>
+                    <CustomSelectItem value="0">Sorter efter status</CustomSelectItem>
+                    <CustomSelectItem v-for="status in statusOptions" :key="status.id" :value="status.id">{{ status.name }}</CustomSelectItem>
+                </CustomSelect>
+
                 <p>Avanceret søgning</p>
             </div>
 
@@ -86,8 +95,11 @@ const { data } = await database
 
         .search-field{
             background-color: rgb(245 245 245);
-            padding: 1rem 3rem;
+            padding: 1rem;
             position: relative;
+
+            align-items: center;
+            display: flex;
 
             i{
                 position: absolute;
