@@ -45,12 +45,18 @@ const parseDate = (event) => {
 }
 
 const getCurrentDateTimeString = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const toPaddedString = (number) => {
+        return number.toString().padStart(2, '0')
+    }
+
+    const now = new Date()
+
+    const year = now.getFullYear()
+
+    const month = toPaddedString(now.getMonth() + 1)
+    const day = toPaddedString(now.getDate())
+    const hours = toPaddedString(now.getHours())
+    const minutes = toPaddedString(now.getMinutes())
 
     return `${year}-${month}-${day}T${hours}:${minutes}`
 }
