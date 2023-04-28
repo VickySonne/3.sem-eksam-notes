@@ -9,7 +9,7 @@ const props = defineProps(['id']);
 
 const {data: workCase} = await database
     .from('cases')
-    .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*)')
+    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*)')
     .eq('id', props.id)
     .limit(1)
     .single();
@@ -24,7 +24,7 @@ const {
     tasks,
     files,
     notes,
-    customer,
+    customers,
     created_at: createdAt,
     pickup,
 } = {...workCase}
@@ -185,11 +185,11 @@ const pickupDate = new Date(pickup);
                     </div>
 
                     <div class="kunde-container">
-                        <p class="first-flex">{{ customer.name }}<span>regular customers</span></p>
-                        <p>{{ customer.address }}</p>
-                        <p>{{ customer.zipcode }} {{ customer.city }}</p>
-                        <p>{{ customer.phone }}</p>
-                        <p>{{ customer.email }}</p>
+                        <p class="first-flex">{{ customers.name }}<span>regular customers</span></p>
+                        <p>{{ customers.address }}</p>
+                        <p>{{ customers.zipcode }} {{ customers.city }}</p>
+                        <p>{{ customers.phone }}</p>
+                        <p>{{ customers.email }}</p>
                         <p>Kundeenhed stelnummer: 123456789</p>
                         <button class="signature">Tilføj signatur</button>
                     </div>

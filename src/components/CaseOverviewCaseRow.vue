@@ -14,8 +14,6 @@ const {
     pickup,
 } = {...props.data}
 
-console.log(customers)
-
 const creationDate = new Date(createdAt);
 const pickupDate = new Date(pickup);
 </script>
