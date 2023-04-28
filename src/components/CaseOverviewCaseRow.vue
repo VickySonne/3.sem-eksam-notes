@@ -6,13 +6,15 @@ const props = defineProps(['data']);
 const {
     status,
     responsible_employee: responsibleEmployee,
-    customer,
+    customers,
     tasks,
     tags,
     description,
     created_at: createdAt,
     pickup,
 } = {...props.data}
+
+console.log(customers)
 
 const creationDate = new Date(createdAt);
 const pickupDate = new Date(pickup);
@@ -28,8 +30,8 @@ const pickupDate = new Date(pickup);
 
         <td>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</td>
 
-        <td v-if="customer">
-            {{ customer.name }}
+        <td v-if="customers">
+            {{ customers.name }}
         </td>
 
         <td v-else>
