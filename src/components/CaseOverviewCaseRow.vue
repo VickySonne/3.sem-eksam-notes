@@ -22,13 +22,19 @@ const pickupDate = new Date(pickup);
     <tr @click="router.push({ path: '/case/' + data.id })">
         <td>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</td>
 
-        <td>{{ status.name }}</td>
+        <td>{{ status?.name }}</td>
 
         <td>{{ responsibleEmployee.name }}</td>
 
         <td>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</td>
 
-        <td>{{ customer.name }}</td>
+        <td v-if="customer">
+            {{ customer.name }}
+        </td>
+
+        <td v-else>
+            ---
+        </td>
 
         <td>
             <p class="tag" v-for="task in tasks" :key="task.id">{{ task.name }}</p>
