@@ -8,8 +8,8 @@ import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 
 const {data} = await database
     .from('cases')
-    .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
-    .order('created_at', {ascending: false});
+    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
+    .order('created_at', {ascending: false})
 
 const {data: statusOptions} = await database
     .from('statuses')
