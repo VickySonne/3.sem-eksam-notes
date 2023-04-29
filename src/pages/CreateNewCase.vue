@@ -85,11 +85,11 @@ const createCase = () => {
 }
 
 const updateEmployee = (event) => {
-    responsibleEmployee.value = event.target.value
+    responsibleEmployee.value = employeeOptions.find(e => e.id === parseInt(event.target.value))
 }
 
 const updateStatus = (event) => {
-    status.value = event.target.value
+    status.value = statusOptions.find(e => e.id === parseInt(event.target.value))
 }
 
 const switchCategory = (categoryId) => {
