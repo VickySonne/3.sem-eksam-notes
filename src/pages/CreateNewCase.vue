@@ -25,7 +25,8 @@ const {data: taskOptions} = await database.from('task_categories').select('id, n
 //
 // const {data: productsOptions} = await database.from('products').select('id, name')
 
-const customer = ref(null)
+const customer = ref(customerOptions[0].id)
+const payee = ref(customerOptions[0].id)
 const description = ref("")
 const responsibleEmployee = ref(employeeOptions[0].id)
 const pickupDate = ref(new Date())
@@ -68,6 +69,7 @@ const createCase = () => {
     database.from('cases').insert({
         created_by: 1,
         customer: customer.value,
+        payee: payee.value,
         description: description.value,
         responsible_employee: responsibleEmployee.value,
         pickup: pickupDate.value,
