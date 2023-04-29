@@ -45,7 +45,7 @@ const expandedDescription = ref(false);
             <span v-if="!tasks.length">-</span>
         </td>
 
-        <td class="description-container" @click.stop="expandedDescription = !expandedDescription">
+        <td class="description-container" :class="{expandable: description !== null && description.length > 20}" @click.stop="expandedDescription = !expandedDescription">
             <p :class="{expanded: expandedDescription}">
                 {{ description }}
             </p>
@@ -78,9 +78,9 @@ const expandedDescription = ref(false);
 
 .description-container {
     cursor: pointer;
-    max-width: 10rem;
+    max-width: 20ch;
 
-    &:hover {
+    &.expandable:hover {
         background-color: var(--bg-primary);
         color: var(--text-secondary);
     }
