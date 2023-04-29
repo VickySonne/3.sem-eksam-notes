@@ -37,6 +37,7 @@ defineProps({
 
 select {
     padding: var(--default-padding);
+    text-align: left;
     width: 100%;
 }
 

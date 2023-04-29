@@ -1,6 +1,8 @@
 <script setup>
 import router from "@/router";
 import {ref} from "vue";
+import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
+import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 
 const props = defineProps(['data']);
 
@@ -64,8 +66,13 @@ const expandedDescription = ref(false);
             <p v-else>-</p>
         </td>
 
-        <td>
-            <button>Handling</button>
+        <td @click.stop>
+            <CustomSelect>
+                <CustomSelectItem value="0">Handlinger</CustomSelectItem>
+                <CustomSelectItem value="0">Meld klar</CustomSelectItem>
+                <CustomSelectItem value="0">Something</CustomSelectItem>
+                <CustomSelectItem value="0">Another thing</CustomSelectItem>
+            </CustomSelect>
         </td>
     </tr>
 </template>
