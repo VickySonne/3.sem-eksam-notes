@@ -34,28 +34,28 @@ const pickupDate = new Date(pickup);
         </td>
 
         <td v-else>
-            ---
+            -
         </td>
 
         <td>
             <p class="tag" v-for="task in tasks" :key="task.id">{{ task.name }}</p>
-            <span v-if="!tasks.length">---</span>
+            <span v-if="!tasks.length">-</span>
         </td>
 
         <td>
             {{ description }}
-            <span v-if="!description">---</span>
+            <span v-if="!description">-</span>
         </td>
 
         <td>
             <p class="tag" v-for="tag in tags" :key="tag.id">{{ tag.name }}</p>
-            <span v-if="!tags.length">---</span>
+            <span v-if="!tags.length">-</span>
         </td>
 
         <td class="price-container">
             {{ price }}
             <p v-if="price">kr.</p>
-            <p v-else>---</p>
+            <p v-else>-</p>
         </td>
 
         <td>
