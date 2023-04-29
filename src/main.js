@@ -48,7 +48,8 @@ library.add([
     faPlus,
     faMagnifyingGlass,
     faPaperPlane,
-    faCheck
+    faCheck,
+    faAngleDown
 ])
 
 app.component('font-awesome-icon', FontAwesomeIcon)

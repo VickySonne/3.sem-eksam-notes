@@ -7,3 +7,7 @@ defineProps(['value'])
       <slot></slot>
   </option>
 </template>
+
+<style lang="scss" scoped>
+
+</style>

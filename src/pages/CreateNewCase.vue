@@ -202,39 +202,33 @@ const countSelectedTasksInCategory = (category) => {
                         <div class="form-input">
                             <label for="">Ansvarlig</label>
 
-                            <div class="input-field">
-                                <CustomSelect :callback="updateEmployee">
-                                    <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id"
-                                                      :key="employee.id">
-                                        {{ employee.name }}
-                                    </CustomSelectItem>
-                                </CustomSelect>
-                            </div>
+                            <CustomSelect :callback="updateEmployee">
+                                <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id"
+                                                  :key="employee.id">
+                                    {{ employee.name }}
+                                </CustomSelectItem>
+                            </CustomSelect>
                         </div>
 
                         <div class="form-input">
                             <label for="">Status</label>
 
-                            <div class="input-field">
-                                <CustomSelect :callback="updateStatus">
-                                    <CustomSelectItem v-for="status in statusOptions" :value="status.id"
-                                                      :key="status.id">
-                                        {{ status.name }}
-                                    </CustomSelectItem>
-                                </CustomSelect>
-                            </div>
+                            <CustomSelect :callback="updateStatus">
+                                <CustomSelectItem v-for="status in statusOptions" :value="status.id"
+                                                  :key="status.id">
+                                    {{ status.name }}
+                                </CustomSelectItem>
+                            </CustomSelect>
                         </div>
 
                         <div class="form-input">
                             <label for="">Tags</label>
 
-                            <div class="input-field">
-                                <!--                                <CustomSelect :multiple="true">-->
-                                <!--                                    <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
-                                <!--                                    <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
-                                <!--                                    <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
-                                <!--                                </CustomSelect>-->
-                            </div>
+<!--                            <CustomSelect :multiple="true">-->
+<!--                                <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
+<!--                                <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
+<!--                                <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
+<!--                            </CustomSelect>-->
                         </div>
 
                         <div class="flex-wrapper">
