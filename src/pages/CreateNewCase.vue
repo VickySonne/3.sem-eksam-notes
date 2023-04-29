@@ -80,7 +80,16 @@ const createCase = () => {
         negotiated_price: price.value,
         deposit: deposit.value,
     }).select().single().then(data => {
-        router.push({path: '/case/' + data.data.id})
+        // router.push({path: '/case/' + data.data.id})
+
+        database.from("cases_tasks").insert(selectedTasks.value.map(task => {
+            return {
+                case_id: data.data.id,
+                task_id: task.id,
+            }
+        })).then(() => {
+            router.push({path: '/case/' + data.data.id})
+        })
     })
 }
 
