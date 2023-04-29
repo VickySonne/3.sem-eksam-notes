@@ -95,22 +95,26 @@ const switchCategory = (categoryId) => {
     currentTaskCategory.value = categoryId
 }
 
-const taskIsSelected = (taskId) => {
-    return selectedTasks.value.includes(taskId)
+const taskIsSelected = (task) => {
+    return selectedTasks.value.some(t => t.id === task.id)
 }
 
-const toggleTask = (taskId) => {
-    if (taskIsSelected(taskId)) {
-        selectedTasks.value = selectedTasks.value.filter(id => id !== taskId)
+const toggleTask = (task) => {
+    if (taskIsSelected(task)) {
+        selectedTasks.value = selectedTasks.value.filter(t => t.id !== task.id)
     } else {
-        selectedTasks.value.push(taskId)
+        selectedTasks.value.push(task)
     }
 }
 
 const findSelectedTasks = () => {
     return taskOptions.reduce((accumulator, category) => {
-        return accumulator.concat(category.tasks.filter(task => taskIsSelected(task.id)))
+        return accumulator.concat(category.tasks.filter(task => taskIsSelected(task)))
     }, [])
+}
+
+const countSelectedTasksInCategory = (category) => {
+    return category.tasks.filter(task => taskIsSelected(task)).length
 }
 
 </script>
@@ -167,6 +171,7 @@ const findSelectedTasks = () => {
                                 <div v-for="category in taskOptions" @click="switchCategory(category.id)"
                                      :key="category.id" class="category" :class="{selected: currentTaskCategory === category.id}">
                                     <p>{{ category.name }}</p>
+                                    <small>{{ countSelectedTasksInCategory(category) }}</small>
                                 </div>
                             </div>
 
@@ -178,10 +183,10 @@ const findSelectedTasks = () => {
 
                         <div class="task-selection-grid">
                             <div v-for="task in taskOptions.find(t => t.id === currentTaskCategory).tasks"
-                                 :key="task.id" class="task" :class="{ selected: taskIsSelected(task.id) }"
-                                 @click="toggleTask(task.id)">
+                                 :key="task.id" class="task" :class="{ selected: taskIsSelected(task) }"
+                                 @click="toggleTask(task)">
                                 <div class="checkbox">
-                                    <font-awesome-icon icon="check" :class="{invisible: !taskIsSelected(task.id)}"/>
+                                    <font-awesome-icon icon="check" :class="{invisible: !taskIsSelected(task)}"/>
                                 </div>
 
                                 <p>{{ task.name }}</p>
@@ -454,9 +459,12 @@ h3 {
     gap: 1rem;
 
       .category {
+          align-items: center;
           background-color: #fff;
           border-radius: var(--border-radius);
           cursor: pointer;
+          display: flex;
+          gap: 2rem;
           padding: var(--default-padding);
 
           &.selected {
