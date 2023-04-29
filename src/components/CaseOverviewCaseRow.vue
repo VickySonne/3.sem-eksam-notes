@@ -1,5 +1,6 @@
 <script setup>
 import router from "@/router";
+import {ref} from "vue";
 
 const props = defineProps(['data']);
 
@@ -17,6 +18,8 @@ const {
 
 const creationDate = new Date(createdAt);
 const pickupDate = new Date(pickup);
+
+const expandedDescription = ref(false);
 </script>
 
 <template>
@@ -42,8 +45,11 @@ const pickupDate = new Date(pickup);
             <span v-if="!tasks.length">-</span>
         </td>
 
-        <td>
-            {{ description }}
+        <td class="description-container" @click.stop="expandedDescription = !expandedDescription">
+            <p :class="{expanded: expandedDescription}">
+                {{ description }}
+            </p>
+
             <span v-if="!description">-</span>
         </td>
 
@@ -70,6 +76,22 @@ const pickupDate = new Date(pickup);
     display: flex;
 }
 
+.description-container {
+    cursor: pointer;
+    max-width: 10rem;
+
+    &:hover {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+    }
+
+    p:not(.expanded) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
 tr {
   cursor: pointer;
 
@@ -82,10 +104,6 @@ tr {
 
     &:last-child {
       text-align: right;
-    }
-
-    p {
-      padding: 0.5rem;
     }
 
     button {
