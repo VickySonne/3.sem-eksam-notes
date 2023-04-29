@@ -31,7 +31,7 @@ const description = ref("")
 const responsibleEmployee = ref(employeeOptions[0].id)
 const pickupDate = ref(new Date())
 const status = ref(1)
-const price = ref(0)
+const price = ref(null)
 const deposit = ref(0)
 
 const currentTaskCategory = ref(taskOptions[0].id)
@@ -174,7 +174,8 @@ const countSelectedTasksInCategory = (category) => {
                         <div class="todo-categories-list">
                             <div class="categories">
                                 <div v-for="category in taskOptions" @click="switchCategory(category.id)"
-                                     :key="category.id" class="category" :class="{selected: currentTaskCategory === category.id}">
+                                     :key="category.id" class="category"
+                                     :class="{selected: currentTaskCategory === category.id}">
                                     <p>{{ category.name }}</p>
                                     <small>{{ countSelectedTasksInCategory(category) }}</small>
                                 </div>
@@ -224,11 +225,11 @@ const countSelectedTasksInCategory = (category) => {
                         <div class="form-input">
                             <label for="">Tags</label>
 
-<!--                            <CustomSelect :multiple="true">-->
-<!--                                <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
-<!--                                <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
-<!--                                <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
-<!--                            </CustomSelect>-->
+                            <!--                            <CustomSelect :multiple="true">-->
+                            <!--                                <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
+                            <!--                                <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
+                            <!--                                <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
+                            <!--                            </CustomSelect>-->
                         </div>
 
                         <div class="flex-wrapper">
@@ -319,17 +320,17 @@ const countSelectedTasksInCategory = (category) => {
 }
 
 .title-bar {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    p {
-        margin-right: 1rem;
-        cursor: pointer;
+  p {
+    margin-right: 1rem;
+    cursor: pointer;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }
 
 .task-selection-grid {
@@ -459,27 +460,27 @@ h3 {
 .todo-categories-list {
   display: flex;
   justify-content: space-between;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 
   .categories {
     align-items: center;
     display: flex;
     gap: 1rem;
 
-      .category {
-          align-items: center;
-          background-color: #fff;
-          border-radius: var(--border-radius);
-          cursor: pointer;
-          display: flex;
-          gap: 2rem;
-          padding: var(--default-padding);
+    .category {
+      align-items: center;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      display: flex;
+      gap: 2rem;
+      padding: var(--default-padding);
 
-          &.selected {
-              background-color: var(--bg-primary);
-              color: var(--text-secondary);
-          }
+      &.selected {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
       }
+    }
   }
 }
 
@@ -507,12 +508,9 @@ h3 {
     }
 
     .input-field {
-      display: flex;
-      justify-content: space-between;
-      background-color: white;
-      padding: 0.5rem;
-      border: 0 solid #e5e7eb;
-      border-radius: 0.125rem;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      padding: var(--default-padding);
     }
   }
 
@@ -534,7 +532,6 @@ h3 {
 .price-input {
   position: relative;
 
-
   input {
     width: 100%;
     -moz-appearance: textfield;
@@ -548,8 +545,9 @@ h3 {
 
   p {
     position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
