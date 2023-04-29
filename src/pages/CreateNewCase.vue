@@ -165,7 +165,10 @@ const countSelectedTasksInCategory = (category) => {
                 </section>
 
                 <section class="todos">
-                    <h3>Opgaver</h3>
+                    <div class="title-bar">
+                        <h3>Opgaver</h3>
+                        <p>Tilpasset opgave</p>
+                    </div>
 
                     <div class="section-bg">
                         <div class="todo-categories-list">
@@ -175,11 +178,6 @@ const countSelectedTasksInCategory = (category) => {
                                     <p>{{ category.name }}</p>
                                     <small>{{ countSelectedTasksInCategory(category) }}</small>
                                 </div>
-                            </div>
-
-                            <div class="create-custom-todo">
-                                <i>i</i>
-                                <p>Custom Opgave</p>
                             </div>
                         </div>
 
@@ -324,6 +322,20 @@ const countSelectedTasksInCategory = (category) => {
 <style lang="scss" scoped>
 .invisible {
   visibility: hidden;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+        margin-right: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .task-selection-grid {
