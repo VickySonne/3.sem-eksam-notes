@@ -5,6 +5,8 @@ import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
+import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
+import {ref} from "vue";
 
 const {data} = await database
     .from('cases')
@@ -14,6 +16,8 @@ const {data} = await database
 const {data: statusOptions} = await database
     .from('statuses')
     .select('id, name')
+
+const searchRef = ref("")
 </script>
 
 <template>
@@ -24,7 +28,7 @@ const {data: statusOptions} = await database
             <div class="search-bar">
                 <div class="search-field">
                     <font-awesome-icon icon="magnifying-glass"/>
-                    <input type="search" placeholder="Søg...">
+                    <input type="search" placeholder="Søg..." v-model="searchRef">
                 </div>
 
 
@@ -63,7 +67,7 @@ const {data: statusOptions} = await database
                 </thead>
 
                 <tbody>
-                    <TaskOverviewComp v-for="workcase in data" :data="workcase" :key="workcase.id"/>
+                    <TaskOverviewComp v-for="workcase in data.filter(c => recursiveObjectSearch(c, searchRef))" :data="workcase" :key="workcase.id"/>
                 </tbody>
             </table>
         </section>
