@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {ref} from 'vue';
 import database from "@/database";
 import router from "@/router";
+import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 
 const {data: statusOptions} = await database
     .from('statuses')
@@ -25,12 +26,14 @@ const {data: taskOptions} = await database.from('task_categories').select('id, n
 //
 // const {data: productsOptions} = await database.from('products').select('id, name')
 
-const customer = ref(customerOptions[0].id)
-const payee = ref(customerOptions[0].id)
+const searchRef = ref("")
+
+const selectedCustomer = ref(null)
+const payee = ref(customerOptions[0])
 const description = ref("")
-const responsibleEmployee = ref(employeeOptions[0].id)
+const responsibleEmployee = ref(employeeOptions[0])
 const pickupDate = ref(new Date())
-const status = ref(1)
+const status = ref(statusOptions[0])
 const price = ref(null)
 const deposit = ref(0)
 
@@ -68,12 +71,12 @@ const getCurrentDateTimeString = () => {
 const createCase = () => {
     database.from('cases').insert({
         created_by: 1,
-        customer: customer.value,
-        payee: payee.value,
+        customer: selectedCustomer.value.id,
+        payee: payee.value.id,
         description: description.value,
-        responsible_employee: responsibleEmployee.value,
+        responsible_employee: responsibleEmployee.value.id,
         pickup: pickupDate.value,
-        status: status.value,
+        status: status.value.id,
         negotiated_price: price.value,
         deposit: deposit.value,
     }).select().single().then(data => {
@@ -84,10 +87,6 @@ const createCase = () => {
 const updateEmployee = (event) => {
     responsibleEmployee.value = event.target.value
 }
-
-// const updateCustomer = (event) => {
-//     customer.value = event.target.value
-// }
 
 const updateStatus = (event) => {
     status.value = event.target.value
@@ -118,9 +117,8 @@ const findSelectedTasks = () => {
 const countSelectedTasksInCategory = (category) => {
     return category.tasks.filter(task => taskIsSelected(task)).length
 }
-
 </script>
-<!-- controllerede inputfelter med use-ref+v-model -->
+
 <template>
     <div class="header">
         <BackButton>Tilbage til sagsstyring</BackButton>
@@ -132,33 +130,48 @@ const countSelectedTasksInCategory = (category) => {
                 <section class="customer">
                     <h3>Kunde</h3>
 
-                    <div class="search-bar">
+                    <div v-if="!selectedCustomer" class="search-bar">
                         <div class="search-field">
                             <font-awesome-icon icon="magnifying-glass"/>
-                            <input type="search" placeholder="Find kunde...">
+                            <input type="search" placeholder="Find kunde..." v-model="searchRef">
                         </div>
 
                         <p>Opret Ny Kunde</p>
+                    </div>
 
-                        <div class="selected-customer">
-                            <div>
-                                <p>Kunde Navn <span>Kundegruppe</span></p>
-                                <p>Telefon nummer</p>
+                    <div v-if="!selectedCustomer && searchRef.length" class="customer-list">
+                        <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))" @click="selectedCustomer = customer"
+                             :key="customer.id">
+                            <div class="customer-info">
+                                <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ customer.phone }}</p>
                             </div>
 
                             <div>
-                                <div>
-                                    <p>Vejnavn</p>
+                                <p>{{ customer.address }}</p>
 
-                                    <p>
-                                        <span>Postnummer</span>
-                                        <span>Bynavn</span>
-                                    </p>
-                                </div>
+                                <p>
+                                    <span>{{ customer.zipcode }}</span>
+                                    <span>{{ customer.city }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                                <div>
-                                    <i>x</i>
-                                </div>
+                    <div v-if="selectedCustomer" class="selected-customer" @click="selectedCustomer = null">
+                        <div>
+                            <div class="customer-info">
+                                <p>{{ selectedCustomer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ selectedCustomer.phone }}</p>
+                            </div>
+
+                            <div>
+                                <p>{{ selectedCustomer.address }}</p>
+
+                                <p>
+                                    <span>{{ selectedCustomer.zipcode }}</span>
+                                    <span>{{ selectedCustomer.city }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -268,19 +281,19 @@ const countSelectedTasksInCategory = (category) => {
                 <h3>Opsummering</h3>
 
                 <div class="summary">
-                    <p v-if="customer">
+                    <p v-if="selectedCustomer">
                         <span>Kunde: </span>
-                        {{ customerOptions.find(e => e.id === parseInt(customer)).name }}
+                        {{ selectedCustomer.name }}
                     </p>
 
                     <p v-if="responsibleEmployee">
                         <span>Ansvarlig: </span>
-                        {{ employeeOptions.find(e => e.id === parseInt(responsibleEmployee)).name }}
+                        {{ responsibleEmployee.name }}
                     </p>
 
                     <p v-if="status">
                         <span>Status: </span>
-                        {{ statusOptions.find(e => e.id === parseInt(status)).name }}
+                        {{ status.name }}
                     </p>
 
                     <p v-if="pickupDate">
@@ -439,8 +452,62 @@ h3 {
   }
 }
 
+.customer-list {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: var(--default-padding);
+
+    & > div {
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        padding: var(--default-padding);
+        width: 100%;
+
+        &:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+    }
+}
+
 .selected-customer {
-  display: none;
+  background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    display: flex;
+    padding: var(--default-padding);
+
+    & > div {
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        padding: var(--default-padding);
+        width: 100%;
+
+        &:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+    }
+}
+
+
+.customer-group {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    padding: 0.55rem;
+}
+
+.customer-info {
+    flex-grow: 1;
+}
+
+.search-bar {
+    margin-bottom: 1rem;
 }
 
 .search-field {
