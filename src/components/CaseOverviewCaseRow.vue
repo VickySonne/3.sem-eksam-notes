@@ -12,6 +12,7 @@ const {
     description,
     created_at: createdAt,
     pickup,
+    price
 } = {...props.data}
 
 const creationDate = new Date(createdAt);
@@ -43,7 +44,7 @@ const pickupDate = new Date(pickup);
 
         <td>
             {{ description }}
-            <span v-if="description==null">---</span>
+            <span v-if="!description">---</span>
         </td>
 
         <td>
@@ -51,8 +52,10 @@ const pickupDate = new Date(pickup);
             <span v-if="!tags.length">---</span>
         </td>
 
-        <td>
-            kr.
+        <td class="price-container">
+            {{ price }}
+            <p v-if="price">kr.</p>
+            <p v-else>---</p>
         </td>
 
         <td>
@@ -62,6 +65,11 @@ const pickupDate = new Date(pickup);
 </template>
 
 <style lang="scss" scoped>
+.price-container {
+    align-items: center;
+    display: flex;
+}
+
 tr {
   cursor: pointer;
 
@@ -71,7 +79,6 @@ tr {
 
   td {
     padding: var(--default-padding);
-    vertical-align: middle;
 
     &:last-child {
       text-align: right;
