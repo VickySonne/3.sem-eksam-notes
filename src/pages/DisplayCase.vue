@@ -1,6 +1,6 @@
 <script setup>
 import ProductOverview from '../components/ProductOverview.vue';
-import TodoListeComp from '../components/TodoListeComp.vue';
+// import TodoListeComp from '../components/TodoListeComp.vue';
 import database from '../database.js';
 import BackButton from "@/components/shared/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -42,7 +42,7 @@ onUpdated(() => {
 
 const {data: workCase} = await database
     .from('cases')
-    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*), messages(*)')
+    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), cases_tasks(*), files(*), notes(*), messages(*)')
     .eq('id', props.id)
     .limit(1)
     .single()
@@ -57,12 +57,29 @@ const {
     negotiated_price: negotiatedPrice,
     tags,
     tasks,
+    cases_tasks: casesTasks,
     files,
     notes,
     customers,
     created_at: createdAt,
     pickup,
 } = {...workCase}
+
+tasks.map(task => {
+    task.completed = casesTasks.find(t => t.task_id === task.id).completed
+})
+
+const tasksRef = ref(tasks)
+
+const toggleTaskCompletion = async (task) => {
+    task.completed = !task.completed
+
+    await database
+        .from('cases_tasks')
+        .update({completed: task.completed})
+        .eq('case_id', props.id)
+        .eq('task_id', task.id)
+}
 
 const creationDate = new Date(createdAt)
 const pickupDate = new Date(pickup)
@@ -143,20 +160,15 @@ const pickupDate = new Date(pickup)
                         <p>Ret opgaver</p>
                     </div>
 
-                    <div class="section-bg todo-lists" v-if="tasks.length">
-                        <div class="categories">
-                            <TodoListeComp v-for="task in tasks" :data="task" :key="task.id"/>
-                        </div>
+                    <div class="section-bg task-selection-grid" v-if="tasks.length">
+                        <div v-for="task in tasksRef"
+                             :key="task.id" class="task" :class="{ selected: task.completed }" @click="toggleTaskCompletion(task)">
+                            <div class="checkbox">
+                                <font-awesome-icon icon="check" :class="{invisible: !task.completed}"/>
+                            </div>
 
-                        <div>
-                            <i>i</i>
-                            <p>Marker alle</p>
+                            <p>{{ task.name }}</p>
                         </div>
-                    </div>
-
-                    <div class="section-bg add-todo" v-else>
-                        <font-awesome-icon icon="plus"/>
-                        <p>tilføj opgaver</p>
                     </div>
                 </section>
 
@@ -258,6 +270,43 @@ const pickupDate = new Date(pickup)
 
 
 <style lang="scss" scoped>
+.invisible {
+    visibility: hidden;
+}
+.task-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    .task {
+        align-items: center;
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        display: flex;
+        gap: 1rem;
+        padding: var(--default-padding);
+
+        &.selected {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+        }
+
+        .checkbox {
+            align-items: center;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            padding: 0.25rem;
+
+            svg {
+                height: 1rem;
+                width: 1rem;
+            }
+        }
+    }
+}
 
 // Vicky Styling start
 .title-bar {
