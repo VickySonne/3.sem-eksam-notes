@@ -16,7 +16,7 @@ const {
     created_at: createdAt,
     pickup,
     price
-} = {...props.data}
+} = props.data
 
 const creationDate = new Date(createdAt);
 const pickupDate = new Date(pickup);
