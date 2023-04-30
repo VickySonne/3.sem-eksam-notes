@@ -26,9 +26,10 @@ const expandedDescription = ref(false);
 
 <template>
     <tr @click="router.push({ path: '/case/' + data.id })">
+        
         <td>{{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}</td>
 
-        <td>{{ status?.name }}</td>
+        <td>{{ status.name }}</td>
 
         <td>{{ responsibleEmployee.name }}</td>
 

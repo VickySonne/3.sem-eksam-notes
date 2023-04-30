@@ -124,7 +124,7 @@ const pickupDate = new Date(pickup)
                                 {{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}
                             </p>
 
-                            <p v-if="!negotiatedPrice==null">
+                            <p v-if="negotiatedPrice">
                                 <span>Aftalt pris:</span>
                                 {{ negotiatedPrice }} kr.
                             </p>
@@ -139,7 +139,7 @@ const pickupDate = new Date(pickup)
                                 {{ new Intl.DateTimeFormat('da-DK').format(creationDate) }}
                             </p>
 
-                            <p v-if="!description==null">
+                            <p v-if="description">
                                 <span>Beskrivelse:</span>
                                 {{ description }}
                             </p>
