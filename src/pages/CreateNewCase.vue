@@ -21,7 +21,7 @@ const {data: customerOptions} = await database.from('customers').select('id, nam
 //
 // const {data: tagsOptions} = await database.from('tags').select('id, name')
 //
-const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)')
+const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)').eq('tasks.one_off', false)
 
 //
 // const {data: productsOptions} = await database.from('products').select('id, name')
