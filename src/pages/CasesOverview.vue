@@ -10,7 +10,7 @@ import {ref} from "vue";
 
 const {data} = await database
     .from('cases')
-    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*)')
+    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
     .order('created_at', {ascending: false})
 
 const {data: statusOptions} = await database
