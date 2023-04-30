@@ -67,7 +67,8 @@ const searchRef = ref("")
                 </thead>
 
                 <tbody>
-                    <TaskOverviewComp v-for="workcase in data.filter(c => recursiveObjectSearch(c, searchRef))" :data="workcase" :key="workcase.id"/>
+                <TaskOverviewComp v-for="workcase in data.filter(c => recursiveObjectSearch(c, searchRef))"
+                                  :data="workcase" :key="workcase.id"/>
                 </tbody>
             </table>
         </section>
@@ -104,8 +105,15 @@ th:last-child {
   .search-field {
     align-items: center;
     background-color: rgb(245 245 245);
+    border-radius: var(--border-radius);
     display: flex;
-    padding: var(--default-padding)
+    gap: 1rem;
+    padding-left: var(--default-padding);
+
+    input {
+      padding: var(--default-padding);
+      padding-left: 0;
+    }
   }
 
   .status-button {

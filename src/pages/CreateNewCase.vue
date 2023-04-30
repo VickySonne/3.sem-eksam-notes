@@ -149,7 +149,8 @@ const countSelectedTasksInCategory = (category) => {
                     </div>
 
                     <div v-if="!selectedCustomer && searchRef.length" class="customer-list">
-                        <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))" @click="selectedCustomer = customer"
+                        <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))"
+                             @click="selectedCustomer = customer"
                              :key="customer.id">
                             <div class="customer-info">
                                 <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
@@ -462,69 +463,75 @@ h3 {
 }
 
 .customer-list {
-    background-color: var(--bg-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: var(--default-padding);
+
+  & > div {
+    background-color: #fff;
     border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
     padding: var(--default-padding);
+    width: 100%;
 
-    & > div {
-        background-color: #fff;
-        border-radius: var(--border-radius);
-        padding: var(--default-padding);
-        width: 100%;
-
-        &:hover {
-            background-color: var(--bg-primary);
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
+    &:hover {
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      cursor: pointer;
     }
+  }
 }
 
 .selected-customer {
   background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  display: flex;
+  padding: var(--default-padding);
+
+  & > div {
+    background-color: #fff;
     border-radius: var(--border-radius);
-    display: flex;
     padding: var(--default-padding);
+    width: 100%;
 
-    & > div {
-        background-color: #fff;
-        border-radius: var(--border-radius);
-        padding: var(--default-padding);
-        width: 100%;
-
-        &:hover {
-            background-color: var(--bg-primary);
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
+    &:hover {
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      cursor: pointer;
     }
+  }
 }
 
 
 .customer-group {
-    background-color: var(--bg-primary);
-    border-radius: var(--border-radius);
-    color: var(--text-secondary);
-    padding: 0.55rem;
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+  color: var(--text-secondary);
+  padding: 0.55rem;
 }
 
 .customer-info {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .search-bar {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .search-field {
+  align-items: center;
   background-color: rgb(245 245 245);
   border-radius: var(--border-radius);
   display: flex;
   gap: 1rem;
-  padding: 1rem;
+  padding-left: var(--default-padding);
+
+  input {
+    padding: var(--default-padding);
+    padding-left: 0;
+  }
 }
 
 .section-bg {
