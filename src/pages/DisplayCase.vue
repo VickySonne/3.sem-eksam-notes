@@ -63,7 +63,7 @@ const {
     customers,
     created_at: createdAt,
     pickup,
-} = {...workCase}
+} = workCase
 
 tasks.map(task => {
     task.completed = casesTasks.find(t => t.task_id === task.id).completed
