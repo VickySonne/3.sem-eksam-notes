@@ -117,14 +117,29 @@ const toggleTask = (task) => {
     }
 }
 
-const findSelectedTasks = () => {
-    return taskOptions.reduce((accumulator, category) => {
-        return accumulator.concat(category.tasks.filter(task => taskIsSelected(task)))
-    }, [])
-}
 
 const countSelectedTasksInCategory = (category) => {
     return category.tasks.filter(task => taskIsSelected(task)).length
+}
+
+const showCustomTaskInput = ref(false)
+
+const toggleCustomTask = () => {
+    customTaskRef.value = ""
+    showCustomTaskInput.value = !showCustomTaskInput.value
+}
+
+const customTaskRef = ref("")
+
+const createCustomTask = () => {
+    database.from("tasks").insert({
+        name: customTaskRef.value,
+        one_off: true,
+    }).select().single().then(data => {
+        console.log(data.data)
+        selectedTasks.value.push(data.data)
+        toggleCustomTask()
+    })
 }
 </script>
 
@@ -190,7 +205,15 @@ const countSelectedTasksInCategory = (category) => {
                 <section class="todos">
                     <div class="title-bar">
                         <h3>Opgaver</h3>
-                        <p>Tilpasset opgave</p>
+
+                        <div>
+                            <p v-if="!showCustomTaskInput" @click="toggleCustomTask">Tilpasset opgave</p>
+
+                            <div v-else>
+                                <input v-model="customTaskRef" type="text" placeholder="Indtast opgave" class="custom-task-input">
+                                <button @click="createCustomTask">Submit</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="section-bg">
@@ -321,10 +344,16 @@ const countSelectedTasksInCategory = (category) => {
                         {{ description }}
                     </p>
 
-                    <p v-if="selectedTasks">
-                        <span class="block">Opgaver: </span>
-                        {{ findSelectedTasks().map(t => t.name).join(', ') }}
-                    </p>
+                    <div v-if="selectedTasks">
+                        <p>Opgaver: </p>
+
+                        <ul>
+                            <li v-for="task in selectedTasks" :key="task.id">
+                                &nbsp;&nbsp;- {{ task.name }}
+                                <span v-if="task.one_off" @click="selectedTasks = selectedTasks.filter(t => t.id !== task.id)">X</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -518,6 +547,14 @@ h3 {
 
 .search-bar {
   margin-bottom: 1rem;
+}
+
+
+.custom-task-input {
+    background-color: rgb(245 245 245);
+    border-radius: var(--border-radius);
+    padding: var(--default-padding);
+    margin-bottom: 1rem;
 }
 
 .search-field {
