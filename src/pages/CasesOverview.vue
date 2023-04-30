@@ -18,6 +18,25 @@ const {data: statusOptions} = await database
     .select('id, name')
 
 const searchRef = ref("")
+
+const searchFilteredCases = () => {
+    return data.filter(c => {
+        const searchAbleProperties = {
+            responsible_employee: c.responsible_employee?.name,
+            status: c.status?.name,
+            customers: c.customers?.name,
+            tasks: c.tasks.map(t => t.name),
+            tags: c.tags.map(t => t.name),
+            description: c.description,
+            price: c.price,
+            // created_by: c.created_by?.name,
+            created_at: c.created_at,
+            pickup: c.pickup
+        }
+
+        return recursiveObjectSearch(searchAbleProperties, searchRef.value)
+    })
+}
 </script>
 
 <template>
@@ -67,7 +86,7 @@ const searchRef = ref("")
                 </thead>
 
                 <tbody>
-                <TaskOverviewComp v-for="workcase in data.filter(c => recursiveObjectSearch(c, searchRef))"
+                <TaskOverviewComp v-for="workcase in searchFilteredCases()"
                                   :data="workcase" :key="workcase.id"/>
                 </tbody>
             </table>
