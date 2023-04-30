@@ -152,7 +152,11 @@ const createCustomTask = () => {
         <div class="main-left-content">
             <div class="main-content">
                 <section class="customer">
-                    <h3>Kunde</h3>
+                    <div class="customer-header">
+                        <h3>Kunde</h3>
+
+                        <p v-if="selectedCustomer">Anden betaler</p>
+                    </div>
 
                     <div v-if="!selectedCustomer" class="search-bar">
                         <div class="search-field">
@@ -367,6 +371,22 @@ const createCustomTask = () => {
 </template>
 
 <style lang="scss" scoped>
+.customer-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    p {
+        cursor: pointer;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 .invisible {
   visibility: hidden;
 }
