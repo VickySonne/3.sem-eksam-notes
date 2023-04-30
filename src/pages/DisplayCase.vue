@@ -4,15 +4,50 @@ import TodoListeComp from '../components/TodoListeComp.vue';
 import database from '../database.js';
 import BackButton from "@/components/shared/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {onMounted, onUpdated, ref} from "vue";
+import supabase from "../database.js";
 
-const props = defineProps(['id']);
+const props = defineProps(['id'])
+
+const textMessagingRef = ref("")
+
+const sendTextMessage = async () => {
+    const message = textMessagingRef.value
+    textMessagingRef.value = ""
+
+    await supabase.from("messages").insert(
+        {
+            case_id: props.id,
+            contents: message,
+        }
+    ).select().then(data => {
+        messagesRef.value.push(data.data[0])
+    })
+}
+
+const scrollMessagesContainerToBottom = () => {
+    const messagesContainer = document.querySelector("#messagesContainer")
+    messagesContainer.scrollTop = messagesContainer.scrollHeight
+}
+
+onMounted(() => {
+    scrollMessagesContainerToBottom()
+})
+
+// fake it till you make it
+// this is a "hack" to make the messages container scroll to the bottom when a new message is added
+onUpdated(() => {
+    scrollMessagesContainerToBottom()
+})
 
 const {data: workCase} = await database
     .from('cases')
-    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*)')
+    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), files(*), notes(*), messages(*)')
     .eq('id', props.id)
     .limit(1)
-    .single();
+    .single()
+
+const messagesRef = ref(workCase.messages)
 
 const {
     status,
@@ -29,8 +64,8 @@ const {
     pickup,
 } = {...workCase}
 
-const creationDate = new Date(createdAt);
-const pickupDate = new Date(pickup);
+const creationDate = new Date(createdAt)
+const pickupDate = new Date(pickup)
 </script>
 
 
@@ -198,29 +233,21 @@ const pickupDate = new Date(pickup);
                 <section>
                     <h3>SMS-beskeder</h3>
                     <div class="sms-container">
-                        <div class="content-box">
-                            <div class="text-box">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                            </div>
+                        <div id="messagesContainer" class="messages-container">
+                            <div v-for="message in messagesRef" class="content-box" :key="message.id">
+                                <div class="text-box">
+                                    <p>{{ message.contents }}</p>
+                                </div>
 
-                            <div class="date">
-                                <small>Mon Apr 24 2023</small>
-                            </div>
-                        </div>
-
-                        <div class="content-box">
-                            <div class="text-box">
-                                <p>Lorem</p>
-                            </div>
-
-                            <div class="date">
-                                <small>Mon Apr 24 2023</small>
+                                <div class="date">
+                                    <small>{{ new Date(message.created_at).toLocaleString() }}</small>
+                                </div>
                             </div>
                         </div>
 
                         <div class="send-msg">
-                            <input type="search" placeholder="Send en besked...">
-                            <font-awesome-icon icon="paper-plane"/>
+                            <input type="search" placeholder="Send en besked..." v-model="textMessagingRef">
+                            <font-awesome-icon icon="paper-plane" @click="sendTextMessage()"/>
                         </div>
                     </div>
                 </section>
@@ -387,58 +414,64 @@ section {
   }
 }
 
-.sms-container {
-  background-color: rgb(229 231 235);
-  height: 32rem;
-  padding: var(--default-padding);
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: flex-end;
-  border-radius: var(--border-radius);
+.messages-container {
+    height: 24rem;
+    overflow: scroll;
+    padding: var(--default-padding);
+    width: 100%;
+}
 
-  .content-box {
+.sms-container {
+    align-items: flex-end;
+    background-color: rgb(229 231 235);
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    align-items: end;
-    margin: 1rem 0;
-    gap: 0.5rem;
-  }
-
-  .text-box {
-    background-color: var(--bg-primary);
-    border-radius: var(--border-radius);
-    color: var(--text-secondary);
-    max-width: 75%;
+    justify-content: end;
     padding: var(--default-padding);
-  }
 
-
-  .date {
-    align-content: flex-end;
-    display: flex;
-
-    small {
-      font-size: 0.8rem;
-    }
-  }
-
-  .send-msg {
-    align-items: center;
-    background-color: var(--text-secondary);
-    border-radius: var(--border-radius);
-    display: flex;
-    padding: 1rem;
-    width: 100%;
-
-    :first-child {
-      flex-grow: 1;
+    .content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin: 1rem 0;
+        gap: 0.5rem;
     }
 
-    :last-child {
-      cursor: pointer;
+    .text-box {
+        background-color: var(--bg-primary);
+        border-radius: var(--border-radius);
+        color: var(--text-secondary);
+        max-width: 75%;
+        padding: var(--default-padding);
     }
-  }
+
+
+    .date {
+        align-content: flex-end;
+        display: flex;
+
+        small {
+            font-size: 0.8rem;
+        }
+    }
+
+    .send-msg {
+        align-items: center;
+        background-color: var(--text-secondary);
+        border-radius: var(--border-radius);
+        display: flex;
+        padding: 1rem;
+        width: 100%;
+
+        :first-child {
+            flex-grow: 1;
+        }
+
+        :last-child {
+            cursor: pointer;
+        }
+    }
 
 }
 
