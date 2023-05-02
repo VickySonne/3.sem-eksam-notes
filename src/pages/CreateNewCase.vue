@@ -10,6 +10,7 @@ import {ref} from 'vue';
 import database from "@/database";
 import router from "@/router";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
+import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 const {data: statusOptions} = await database
     .from('statuses')
@@ -167,7 +168,7 @@ const selectedPayee = ref(null)
                             <input type="search" placeholder="Find kunde..." v-model="searchRef">
                         </div>
 
-                        <p>Opret Ny Kunde</p>
+                        <p @click="comingSoonDialogue">Opret Ny Kunde</p>
                     </div>
 
                     <div v-if="!selectedCustomer && searchRef.length" class="customer-list">
