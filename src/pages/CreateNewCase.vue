@@ -414,8 +414,8 @@ const selectedPayee = ref(null)
                         {{ description }}
                     </p>
 
-                    <div v-if="selectedTasks">
-                        <p>Opgaver: </p>
+                    <div v-if="selectedTasks.length">
+                        <p><span>Opgaver:</span></p>
 
                         <ul>
                             <li v-for="task in selectedTasks" :key="task.id">
