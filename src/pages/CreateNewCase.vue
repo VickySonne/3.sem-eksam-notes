@@ -25,7 +25,7 @@ const {data: customerOptions} = await database.from('customers').select('id, nam
 const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)').eq('tasks.one_off', false)
 
 //
-// const {data: productsOptions} = await database.from('products').select('id, name')
+const {data: productOptions} = await database.from('products').select('id, name, sell_price')
 
 const searchRef = ref("")
 
@@ -145,6 +145,16 @@ const createCustomTask = () => {
 
 const showPayeeOptions = ref(false)
 const selectedPayee = ref(null)
+
+const selectedProducts = ref([])
+
+const addProduct = (product) => {
+    selectedProducts.value.push(product)
+}
+
+const removeProduct = (product) => {
+    selectedProducts.value = selectedProducts.value.filter(p => p.id !== product.id)
+}
 </script>
 
 <template>
@@ -159,7 +169,8 @@ const selectedPayee = ref(null)
                     <div class="customer-header">
                         <h3>Kunde</h3>
 
-                        <p v-if="selectedCustomer && !showPayeeOptions" @click="showPayeeOptions = true">Anden betaler</p>
+                        <p v-if="selectedCustomer && !showPayeeOptions" @click="showPayeeOptions = true">Anden
+                            betaler</p>
                     </div>
 
                     <div v-if="!selectedCustomer" class="search-bar">
@@ -276,7 +287,8 @@ const selectedPayee = ref(null)
                             <p v-if="!showCustomTaskInput" @click="toggleCustomTask">Tilpasset opgave</p>
 
                             <div v-else>
-                                <input v-model="customTaskRef" type="text" placeholder="Indtast opgave" class="custom-task-input">
+                                <input v-model="customTaskRef" type="text" placeholder="Indtast opgave"
+                                       class="custom-task-input">
                                 <button @click="createCustomTask">Submit</button>
                             </div>
                         </div>
@@ -309,7 +321,8 @@ const selectedPayee = ref(null)
                 </section>
 
                 <section>
-                    <ProductOverview/>
+                    <ProductOverview :add-product="addProduct" :remove-product="removeProduct"
+                                     :selected-products="selectedProducts" :products="productOptions"/>
                 </section>
 
                 <section class="details">
@@ -421,7 +434,8 @@ const selectedPayee = ref(null)
                         <ul>
                             <li v-for="task in selectedTasks" :key="task.id">
                                 &nbsp;&nbsp;- {{ task.name }}
-                                <span v-if="task.one_off" @click="selectedTasks = selectedTasks.filter(t => t.id !== task.id)">X</span>
+                                <span v-if="task.one_off"
+                                      @click="selectedTasks = selectedTasks.filter(t => t.id !== task.id)">X</span>
                             </li>
                         </ul>
                     </div>
@@ -439,19 +453,19 @@ const selectedPayee = ref(null)
 
 <style lang="scss" scoped>
 .customer-header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 
-    p {
-        cursor: pointer;
-        margin-bottom: 1rem;
-        margin-right: 1rem;
+  p {
+    cursor: pointer;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }
 
 .invisible {
@@ -638,10 +652,10 @@ h3 {
 
 
 .custom-task-input {
-    background-color: rgb(245 245 245);
-    border-radius: var(--border-radius);
-    padding: var(--default-padding);
-    margin-bottom: 1rem;
+  background-color: rgb(245 245 245);
+  border-radius: var(--border-radius);
+  padding: var(--default-padding);
+  margin-bottom: 1rem;
 }
 
 .search-field {

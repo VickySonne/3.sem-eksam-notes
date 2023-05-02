@@ -1,5 +1,33 @@
 <script setup>
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
+import {ref, toRefs} from "vue";
+
+const props = defineProps({
+    products: {
+        type: Array,
+        required: true
+    },
+    selectedProducts: {
+        type: Array,
+        required: true
+    },
+    addProduct: {
+        type: Function,
+        required: true
+    },
+    removeProduct: {
+        type: Function,
+        required: true
+    }
+})
+
+const {
+    products,
+    selectedProducts
+} = toRefs(props)
+
+const searchRef = ref("")
 </script>
 
 <template>
@@ -9,11 +37,20 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
         <div class="search-product">
             <div class="search-bar">
                 <font-awesome-icon icon="magnifying-glass"/>
-                <input type="search" placeholder="Søg på varer...">
+                <input type="search" placeholder="Søg på varer..." v-model="searchRef">
             </div>
 
             <button class="add-product">Tilføj vare</button>
             <p>Tilføj kundeenhed</p>
+        </div>
+
+        <div v-if="searchRef.length">
+            <div v-for="product in products.filter(p => recursiveObjectSearch(p, searchRef))"
+                 @click="addProduct(product)"
+                 :key="product.id">
+                <p>{{ product.name }}</p>
+                <p>{{ product.sell_price }}</p>
+            </div>
         </div>
 
         <div class="titels-container">
@@ -28,18 +65,11 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>Centurion Bike</td>
+                <tr v-for="product in selectedProducts" :key="product.id" @click="removeProduct(product)">
+                    <td>{{ product.name }}</td>
                     <td>1</td>
+                    <td> {{ product.sell_price }} </td>
                     <td>100</td>
-                    <td>100</td>
-                </tr>
-
-                <tr>
-                    <td>Trek Bike</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>200</td>
                 </tr>
                 </tbody>
             </table>
