@@ -6,6 +6,16 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     <div>
         <h3>Varer</h3>
 
+        <div class="search-product">
+            <div class="search-bar">
+                <font-awesome-icon icon="magnifying-glass"/>
+                <input type="search" placeholder="Søg på varer...">
+            </div>
+
+            <button class="add-product">Tilføj vare</button>
+            <p>Tilføj kundeenhed</p>
+        </div>
+
         <div class="titels-container">
             <table>
                 <thead>
@@ -33,16 +43,6 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                 </tr>
                 </tbody>
             </table>
-
-            <div class="search-product">
-                <div class="search-bar">
-                    <font-awesome-icon icon="magnifying-glass"/>
-                    <input type="search" placeholder="Søg på varer...">
-                </div>
-
-                <button class="add-product">Tilføj vare</button>
-                <p>Tilføj kundeenhed</p>
-            </div>
         </div>
     </div>
 </template>
@@ -50,12 +50,13 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 <style lang="scss" scoped>
 .titels-container {
   background-color: rgb(229 231 235);
+    padding-bottom: 1rem;
 }
 
 .search-product {
   display: flex;
   gap: 1rem;
-  padding: 1rem;
+    margin-bottom: 1rem;
 
   p {
     display: flex;
@@ -70,7 +71,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 .search-bar {
   align-items: center;
-  background-color: white;
+  background-color: var(--bg-secondary);
   display: flex;
   gap: 1rem;
   padding: 1rem;
@@ -98,6 +99,11 @@ table {
   td {
     padding: 0.5rem 1rem;
   }
+
+    td:last-child,
+    th:last-child {
+        text-align: right;
+    }
 }
 
 h3 {
