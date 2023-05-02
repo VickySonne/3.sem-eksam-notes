@@ -406,7 +406,7 @@ const selectedPayee = ref(null)
 
                     <p v-if="price">
                         <span>Pris: </span>
-                        {{ price }}
+                        {{ price }} kr.
                     </p>
 
                     <p v-if="description">
