@@ -141,6 +141,9 @@ const createCustomTask = () => {
         toggleCustomTask()
     })
 }
+
+const showPayeeOptions = ref(false)
+const selectedPayee = ref(null)
 </script>
 
 <template>
@@ -155,7 +158,7 @@ const createCustomTask = () => {
                     <div class="customer-header">
                         <h3>Kunde</h3>
 
-                        <p v-if="selectedCustomer">Anden betaler</p>
+                        <p v-if="selectedCustomer && !showPayeeOptions" @click="showPayeeOptions = true">Anden betaler</p>
                     </div>
 
                     <div v-if="!selectedCustomer" class="search-bar">
@@ -169,7 +172,10 @@ const createCustomTask = () => {
 
                     <div v-if="!selectedCustomer && searchRef.length" class="customer-list">
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))"
-                             @click="selectedCustomer = customer"
+                             @click="() => {
+                                 selectedCustomer = customer
+                                 searchRef = ''
+                             }"
                              :key="customer.id">
                             <div class="customer-info">
                                 <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
@@ -200,6 +206,61 @@ const createCustomTask = () => {
                                 <p>
                                     <span>{{ selectedCustomer.zipcode }}</span>
                                     <span>{{ selectedCustomer.city }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section v-if="showPayeeOptions" class="payee">
+                    <div class="customer-header">
+                        <h3>Anden betaler</h3>
+
+                        <p v-if="selectedCustomer && !selectedPayee" @click="showPayeeOptions = false">Luk</p>
+                    </div>
+
+                    <div v-if="!selectedPayee" class="search-bar">
+                        <div class="search-field">
+                            <font-awesome-icon icon="magnifying-glass"/>
+                            <input type="search" placeholder="Find kunde..." v-model="searchRef">
+                        </div>
+
+                        <p>Opret Ny Kunde</p>
+                    </div>
+
+                    <div v-if="!selectedPayee && searchRef.length" class="customer-list">
+                        <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))"
+                             @click="selectedPayee = customer"
+                             :key="customer.id">
+                            <div class="customer-info">
+                                <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ customer.phone }}</p>
+                            </div>
+
+                            <div>
+                                <p>{{ customer.address }}</p>
+
+                                <p>
+                                    <span>{{ customer.zipcode }}</span>
+                                    <span>{{ customer.city }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="selectedPayee" class="selected-customer" @click="selectedPayee = null">
+                        <div>
+                            <div class="customer-info">
+                                <p>{{ selectedPayee.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ selectedPayee.phone }}</p>
+                            </div>
+
+                            <div>
+                                <p>{{ selectedPayee.address }}</p>
+
+                                <p>
+                                    <span>{{ selectedPayee.zipcode }}</span>
+                                    <span>{{ selectedPayee.city }}</span>
                                 </p>
                             </div>
                         </div>
@@ -321,6 +382,11 @@ const createCustomTask = () => {
                     <p v-if="selectedCustomer">
                         <span>Kunde: </span>
                         {{ selectedCustomer.name }}
+                    </p>
+
+                    <p v-if="selectedPayee">
+                        <span>Betales af: </span>
+                        {{ selectedPayee.name }}
                     </p>
 
                     <p v-if="responsibleEmployee">
