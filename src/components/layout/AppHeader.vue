@@ -79,6 +79,7 @@ const toggleDropdown = () => {
 
 header {
   align-items: center;
+  box-shadow: var(--shadow);
   display: flex;
   gap: 1rem;
   justify-content: space-between;
