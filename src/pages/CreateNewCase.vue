@@ -307,6 +307,10 @@ const selectedPayee = ref(null)
                     </div>
                 </section>
 
+                <section>
+                    <ProductOverview/>
+                </section>
+
                 <section class="details">
                     <h3>Detaljer</h3>
 
@@ -366,10 +370,6 @@ const selectedPayee = ref(null)
                                       rows="10"></textarea>
                         </div>
                     </form>
-                </section>
-
-                <section>
-                    <ProductOverview/>
                 </section>
             </div>
         </div>
