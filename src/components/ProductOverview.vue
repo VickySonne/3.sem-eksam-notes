@@ -38,6 +38,7 @@ const searchRef = ref("")
             <div class="search-bar">
                 <font-awesome-icon icon="magnifying-glass"/>
                 <input type="search" placeholder="Søg på varer..." v-model="searchRef">
+                <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
             </div>
 
             <button class="add-product">Tilføj vare</button>
@@ -78,6 +79,12 @@ const searchRef = ref("")
 </template>
 
 <style lang="scss" scoped>
+.invisible {
+    visibility: hidden;
+}
+
+
+
 .titels-container {
   background-color: rgb(229 231 235);
     padding-bottom: 1rem;
@@ -105,6 +112,10 @@ const searchRef = ref("")
   display: flex;
   gap: 1rem;
   padding: 1rem;
+
+    svg:last-child {
+        cursor: pointer;
+    }
 }
 
 .add-product {

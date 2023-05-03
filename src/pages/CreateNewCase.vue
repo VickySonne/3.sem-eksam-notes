@@ -177,6 +177,7 @@ const removeProduct = (product) => {
                         <div class="search-field">
                             <font-awesome-icon icon="magnifying-glass"/>
                             <input type="search" placeholder="Find kunde..." v-model="searchRef">
+                            <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
                         </div>
 
                         <p @click="comingSoonDialogue">Opret Ny Kunde</p>
@@ -234,6 +235,7 @@ const removeProduct = (product) => {
                             <div class="search-field">
                                 <font-awesome-icon icon="magnifying-glass"/>
                                 <input type="search" placeholder="Find kunde..." v-model="searchRef">
+                                <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
                             </div>
 
                             <p>Opret Ny Kunde</p>
@@ -616,6 +618,7 @@ h3 {
   align-items: center;
   display: flex;
   gap: 1rem;
+    margin-bottom: 1rem;
 
   & > p {
     cursor: pointer;
@@ -625,6 +628,9 @@ h3 {
       text-decoration: underline;
     }
   }
+    svg:last-child {
+        cursor: pointer;
+    }
 }
 
 .customer-list {
@@ -681,10 +687,6 @@ h3 {
   flex-grow: 1;
 }
 
-.search-bar {
-  margin-bottom: 1rem;
-}
-
 
 .custom-task-input {
     align-items: center;
@@ -712,12 +714,12 @@ h3 {
   border-radius: var(--border-radius);
   display: flex;
   gap: 1rem;
-  padding-left: var(--default-padding);
+  padding-inline: var(--default-padding);
 
   input {
-    padding: var(--default-padding);
-    padding-left: 0;
+    padding-block: var(--default-padding);
   }
+
 }
 
 .section-bg {

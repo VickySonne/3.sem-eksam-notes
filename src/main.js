@@ -22,7 +22,7 @@ import {
     faUser,
     faAngleDown,
     faPlus,
-    faMagnifyingGlass, faPaperPlane, faCheck, faArrowRightFromBracket, faPeopleArrows
+    faMagnifyingGlass, faPaperPlane, faCheck, faArrowRightFromBracket, faPeopleArrows, faTimes
 } from '@fortawesome/free-solid-svg-icons'
 
 import './assets/reset.css'
@@ -51,7 +51,8 @@ library.add([
     faCheck,
     faAngleDown,
     faArrowRightFromBracket,
-    faPeopleArrows
+    faPeopleArrows,
+    faTimes
 ])
 
 app.component('font-awesome-icon', FontAwesomeIcon)
