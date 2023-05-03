@@ -45,7 +45,7 @@ const searchRef = ref("")
             <p>Tilføj kundeenhed</p>
         </div>
 
-        <div v-if="searchRef.length">
+        <div v-if="searchRef.length" class="product-container">
             <div v-for="product in products.filter(p => recursiveObjectSearch(p, searchRef))"
                  @click="addProduct(product)"
                  :key="product.id">
@@ -82,6 +82,49 @@ const searchRef = ref("")
 .invisible {
     visibility: hidden;
 }
+
+.product-container {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: var(--default-padding);
+    margin-bottom: 1rem;
+
+    & > div {
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        padding: var(--default-padding);
+        width: 100%;
+
+        &:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+    }
+}
+
+//
+//.product-container {
+//    display: grid;
+//    gap: 0.5rem;
+//    margin-bottom: 1rem;
+//
+//    .product {
+//        background-color: var(--bg-secondary);
+//        border-radius: var(--border-radius);
+//        cursor: pointer;
+//        display: grid;
+//        gap: 0.5rem;
+//        padding: var(--default-padding);
+//
+//        p:first-child {
+//            font-weight: 600;
+//        }
+//    }
+//}
 
 
 
