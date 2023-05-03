@@ -184,6 +184,10 @@ const removeProduct = (product) => {
                     </div>
 
                     <div v-if="!selectedCustomer && searchRef.length" class="customer-list">
+                        <div @click="comingSoonDialogue" v-if="!customerOptions.filter(c => recursiveObjectSearch(c, searchRef)).length">
+                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
+                        </div>
+
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))"
                              @click="() => {
                                  selectedCustomer = customer
@@ -245,6 +249,10 @@ const removeProduct = (product) => {
                     </div>
 
                     <div v-if="!selectedPayee && searchRef.length" class="customer-list">
+                        <div @click="comingSoonDialogue" v-if="!customerOptions.filter(c => recursiveObjectSearch(c, searchRef)).length">
+                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
+                        </div>
+
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, searchRef))"
                              @click="selectedPayee = customer"
                              :key="customer.id">

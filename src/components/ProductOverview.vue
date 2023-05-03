@@ -55,7 +55,11 @@ const searchRef = ref("")
         </div>
 
         <div class="titels-container">
-            <table>
+            <div v-if="!selectedProducts.length" class="nothing-selected">
+                <h4>Ingen varer valgt</h4>
+            </div>
+
+            <table v-if="selectedProducts.length">
                 <thead>
                 <tr>
                     <th>Navn</th>
@@ -74,6 +78,8 @@ const searchRef = ref("")
                 </tr>
                 </tbody>
             </table>
+<!--            weird, but this needs to stay for paddings sake -->
+            <div v-if="selectedProducts.length" class="weird-padding"></div>
         </div>
     </div>
 </template>
@@ -81,6 +87,14 @@ const searchRef = ref("")
 <style lang="scss" scoped>
 .invisible {
     visibility: hidden;
+}
+
+.nothing-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 5rem;
 }
 
 .product-container {
@@ -130,7 +144,10 @@ const searchRef = ref("")
 
 .titels-container {
   background-color: rgb(229 231 235);
-    padding-bottom: 1rem;
+
+    .weird-padding {
+        padding-top: 0.5rem;
+    }
 }
 
 .search-product {
