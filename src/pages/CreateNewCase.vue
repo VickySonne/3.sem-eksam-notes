@@ -431,14 +431,14 @@ const removeProduct = (product) => {
                         {{ description }}
                     </p>
 
-                    <div v-if="selectedTasks.length">
+                    <div v-if="selectedTasks">
                         <p><span>Opgaver:</span></p>
 
-                        <ul>
+                        <ul class="selected-tasks">
                             <li v-for="task in selectedTasks" :key="task.id">
                                 &nbsp;&nbsp;- {{ task.name }}
                                 <span v-if="task.one_off"
-                                      @click="selectedTasks = selectedTasks.filter(t => t.id !== task.id)">X</span>
+                                      @click="selectedTasks = selectedTasks.filter(t => t.id !== task.id)">FJERN</span>
                             </li>
                         </ul>
                     </div>
@@ -455,6 +455,22 @@ const removeProduct = (product) => {
 </template>
 
 <style lang="scss" scoped>
+.selected-tasks {
+    li {
+        margin-block: 1rem;
+    }
+    span {
+        cursor: pointer;
+        margin-left: 0.5rem;
+        font-size: 0.75rem;
+        opacity: 0.65;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
 .customer-header {
   align-items: center;
   display: flex;
