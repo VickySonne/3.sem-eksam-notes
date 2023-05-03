@@ -288,10 +288,11 @@ const removeProduct = (product) => {
                         <div>
                             <p v-if="!showCustomTaskInput" @click="toggleCustomTask">Tilpasset opgave</p>
 
-                            <div v-else>
-                                <input v-model="customTaskRef" type="text" placeholder="Indtast opgave"
-                                       class="custom-task-input">
-                                <button @click="createCustomTask">Submit</button>
+                            <div v-else class="custom-task-input">
+                                <input v-model="customTaskRef" type="text" placeholder="Indtast opgave">
+                                <button @click="createCustomTask">Opret</button>
+
+                                <p @click="toggleCustomTask">Luk</p>
                             </div>
                         </div>
                     </div>
@@ -670,10 +671,23 @@ h3 {
 
 
 .custom-task-input {
-  background-color: rgb(245 245 245);
-  border-radius: var(--border-radius);
-  padding: var(--default-padding);
-  margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    input {
+        background-color: rgb(245 245 245);
+        border-radius: var(--border-radius);
+        padding: var(--default-padding);
+    }
+
+    button {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: var(--default-padding);
+    }
 }
 
 .search-field {
