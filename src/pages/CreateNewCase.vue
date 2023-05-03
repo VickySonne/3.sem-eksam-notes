@@ -433,7 +433,7 @@ const removeProduct = (product) => {
                         {{ description }}
                     </p>
 
-                    <div v-if="selectedTasks">
+                    <div v-if="selectedTasks.length">
                         <p><span>Opgaver:</span></p>
 
                         <ul class="selected-tasks">
