@@ -227,17 +227,19 @@ const removeProduct = (product) => {
                 <section v-if="showPayeeOptions" class="payee">
                     <div class="customer-header">
                         <h3>Anden betaler</h3>
-
-                        <p v-if="selectedCustomer && !selectedPayee" @click="showPayeeOptions = false">Luk</p>
                     </div>
 
-                    <div v-if="!selectedPayee" class="search-bar">
-                        <div class="search-field">
-                            <font-awesome-icon icon="magnifying-glass"/>
-                            <input type="search" placeholder="Find kunde..." v-model="searchRef">
+                    <div v-if="!selectedPayee" class="search-bar-container">
+                        <div class="search-bar">
+                            <div class="search-field">
+                                <font-awesome-icon icon="magnifying-glass"/>
+                                <input type="search" placeholder="Find kunde..." v-model="searchRef">
+                            </div>
+
+                            <p>Opret Ny Kunde</p>
                         </div>
 
-                        <p>Opret Ny Kunde</p>
+                        <p v-if="selectedCustomer && !selectedPayee" @click="showPayeeOptions = false">Luk</p>
                     </div>
 
                     <div v-if="!selectedPayee && searchRef.length" class="customer-list">
@@ -575,6 +577,22 @@ const removeProduct = (product) => {
 h3 {
   font-weight: 700;
   font-size: 1.125rem;
+}
+
+.search-bar-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1rem;
+
+    & > p {
+        cursor: pointer;
+        font-weight: 700;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .search-bar {
