@@ -111,10 +111,14 @@ const searchRef = ref("")
   background-color: var(--bg-secondary);
   display: flex;
   gap: 1rem;
-  padding: 1rem;
+  padding-inline: 1rem;
 
     svg:last-child {
         cursor: pointer;
+    }
+
+    input {
+        padding-block: 1rem;
     }
 }
 
