@@ -478,7 +478,7 @@ section {
 
 .messages-container {
     height: 24rem;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: var(--default-padding);
     width: 100%;
 }
