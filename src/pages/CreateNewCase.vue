@@ -81,17 +81,23 @@ const createCase = () => {
         status: status.value.id,
         negotiated_price: price.value,
         deposit: deposit.value,
-    }).select().single().then(data => {
-        // router.push({path: '/case/' + data.data.id})
-
-        database.from("cases_tasks").insert(selectedTasks.value.map(task => {
+    }).select().single().then(async data => {
+        await database.from("cases_tasks").insert(selectedTasks.value.map(task => {
             return {
                 case_id: data.data.id,
                 task_id: task.id,
             }
-        })).then(() => {
-            router.push({path: '/case/' + data.data.id})
-        })
+        }))
+
+        await database.from("cases_products").insert(selectedProducts.value.map(product => {
+            return {
+                case_id: data.data.id,
+                product_id: product.id,
+                count: product.count
+            }
+        }))
+
+        await router.push({path: '/case/' + data.data.id})
     })
 }
 
