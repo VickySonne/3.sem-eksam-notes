@@ -246,6 +246,10 @@ const pickupDate = new Date(pickup)
                     <h3>SMS-beskeder</h3>
                     <div class="sms-container">
                         <div id="messagesContainer" class="messages-container">
+                            <div v-if="!messagesRef.length" class="no-messages">
+                                <p>Ingen beskeder sendt på denne sag.</p>
+                            </div>
+
                             <div v-for="message in messagesRef" class="content-box" :key="message.id">
                                 <div class="text-box">
                                     <p>{{ message.contents }}</p>
@@ -273,6 +277,15 @@ const pickupDate = new Date(pickup)
 .invisible {
     visibility: hidden;
 }
+
+.no-messages {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
 .task-selection-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
