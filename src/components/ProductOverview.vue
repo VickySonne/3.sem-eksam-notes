@@ -2,6 +2,7 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, toRefs} from "vue";
+import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 const props = defineProps({
     products: {
@@ -41,8 +42,8 @@ const searchRef = ref("")
                 <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
             </div>
 
-            <button class="add-product">Tilføj vare</button>
-            <p>Tilføj kundeenhed</p>
+            <button class="add-product" @click="comingSoonDialogue">Tilføj ny vare</button>
+            <p @click="comingSoonDialogue">Tilføj kundeenhed</p>
         </div>
 
         <div v-if="searchRef.length" class="product-container">
@@ -51,6 +52,10 @@ const searchRef = ref("")
                  :key="product.id">
                 <p>{{ product.name }}</p>
                 <p>{{ product.sell_price }}</p>
+            </div>
+
+            <div @click="comingSoonDialogue" v-if="!products.filter(p => recursiveObjectSearch(p, searchRef)).length">
+                <p>Ingen varer fundet. <span>Klik for at oprette en ny vare.</span></p>
             </div>
         </div>
 
