@@ -404,10 +404,10 @@ const removeProduct = (product) => {
                             </div>
 
                             <div class="form-input">
-                                <label for="">Aftalt Pris</label>
+                                <label for="">Aftalt Pris (internt)</label>
 
                                 <div class="price-input">
-                                    <input v-model="price" class="input-field" type="number" placeholder="Intern pris">
+                                    <input v-model="price" class="input-field" type="number" placeholder="Indtast pris">
                                     <p>kr.</p>
                                 </div>
                             </div>
@@ -416,7 +416,7 @@ const removeProduct = (product) => {
                         <div class="form-input description">
                             <label for="">Beskrivelse</label>
                             <textarea v-model="description" class="input-field" name="" id="" cols="30"
-                                      rows="10"></textarea>
+                                      rows="10" placeholder="Indtast evt. beskrivelse af sagen..."></textarea>
                         </div>
                     </form>
                 </section>
