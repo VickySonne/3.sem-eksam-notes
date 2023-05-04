@@ -474,6 +474,18 @@ const removeProduct = (product) => {
                             </li>
                         </ul>
                     </div>
+
+                    <div v-if="selectedProducts.length">
+                        <p><span>Produkter:</span></p>
+
+                        <ul class="selected-tasks">
+                            <li v-for="product in selectedProducts" :key="product.id">
+                                &nbsp;&nbsp;- {{ product.name }}
+                                <span v-if="product.count > 1"
+                                      @click="selectedProducts = selectedProducts.filter(p => p.id !== product.id)">{{ product.count }} stk.</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
