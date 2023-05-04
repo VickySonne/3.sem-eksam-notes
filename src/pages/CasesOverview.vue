@@ -6,12 +6,42 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
-import {ref} from "vue";
+import {ref, watch} from "vue";
+import supabase from "../database.js";
 
-const {data} = await database
-    .from('cases')
-    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
-    .order('created_at', {ascending: false})
+const {count} = await supabase.from("cases").select("id", {
+    count: "exact",
+    head: true
+})
+
+const pagination = ref({
+    page: 1,
+    perPage: 10,
+    total: count
+})
+
+const fetchData = () => {
+    return database
+        .from('cases')
+        .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
+        .order('created_at', {ascending: false})
+        .range(
+            (pagination.value.page - 1) * pagination.value.perPage,
+            (pagination.value.page - 1) * pagination.value.perPage + pagination.value.perPage - 1
+        )
+}
+
+const {data} = await fetchData()
+const dataRef = ref(data)
+
+watch(pagination, async () => {
+    console.log('pagination changed')
+    const {data} = await fetchData()
+
+    console.log(data)
+
+    dataRef.value = data
+}, {deep: true})
 
 const {data: statusOptions} = await database
     .from('statuses')
@@ -20,7 +50,7 @@ const {data: statusOptions} = await database
 const searchRef = ref("")
 
 const searchFilteredCases = () => {
-    return data.filter(c => {
+    return dataRef.value.filter(c => {
         const searchAbleProperties = {
             responsible_employee: c.responsible_employee?.name,
             status: c.status?.name,
@@ -91,10 +121,36 @@ const searchFilteredCases = () => {
                 </tbody>
             </table>
         </section>
+
+        <section class="pagination">
+            <div @click="pagination.page > 1 ? pagination.page-- : ''">
+                <p>Previous page</p>
+            </div>
+
+            <div>
+                <p>{{ pagination.page }}</p>
+            </div>
+
+            <div @click="pagination.page < pagination.total / pagination.perPage ? pagination.page++ : ''">
+                <p>Next page</p>
+            </div>
+        </section>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.pagination {
+    align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+    padding: var(--default-padding);
+
+    div {
+        cursor: pointer;
+    }
+}
+
 h2 {
   font-size: 1.5rem;
   font-weight: 700;
