@@ -264,7 +264,7 @@ const removeProduct = (product) => {
                                 <font-awesome-icon icon="times" :class="{invisible: !payeeSearchRef.length}" class="close-button" @click="payeeSearchRef = ''"/>
                             </div>
 
-                            <p>Opret Ny Kunde</p>
+                            <p @click="comingSoonDialogue">Opret Ny Kunde</p>
                         </div>
 
                         <p v-if="selectedCustomer && !selectedPayee" @click="showPayeeOptions = false">Luk</p>
