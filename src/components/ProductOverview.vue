@@ -72,14 +72,17 @@ const searchRef = ref("")
                 <tbody>
                 <tr v-for="product in selectedProducts" :key="product.id" @click="removeProduct(product)">
                     <td>{{ product.name }}</td>
-                    <td>1</td>
-                    <td> {{ product.sell_price }} </td>
-                    <td>100</td>
+                    <td>{{ product.count }}</td>
+                    <td>{{ product.sell_price }}</td>
+                    <td>{{ product.sell_price * product.count }}</td>
                 </tr>
                 </tbody>
             </table>
-<!--            weird, but this needs to stay for paddings sake -->
-            <div v-if="selectedProducts.length" class="weird-padding"></div>
+
+            <div v-if="selectedProducts.length" class="total-container">
+                <div></div>
+                <p>{{ selectedProducts.reduce((a, p) => a + (p.sell_price * p.count), 0) }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -87,6 +90,19 @@ const searchRef = ref("")
 <style lang="scss" scoped>
 .invisible {
     visibility: hidden;
+}
+
+.total-container {
+    padding: var(--default-padding);
+    text-align: right;
+
+    & > div:first-child {
+        background-color: var(--bg-primary);
+        border-radius: var(--border-radius);
+        height: 2px;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
 }
 
 .nothing-selected {
@@ -144,10 +160,6 @@ const searchRef = ref("")
 
 .titels-container {
   background-color: rgb(229 231 235);
-
-    .weird-padding {
-        padding-top: 0.5rem;
-    }
 }
 
 .search-product {

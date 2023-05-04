@@ -149,7 +149,17 @@ const selectedPayee = ref(null)
 const selectedProducts = ref([])
 
 const addProduct = (product) => {
-    selectedProducts.value.push(product)
+    if (selectedProducts.value.some(p => p.id === product.id)) {
+        selectedProducts.value = selectedProducts.value.map(p => {
+            if (p.id === product.id) {
+                return {...p, count: p.count + 1}
+            }
+
+            return p
+        })
+    } else {
+        selectedProducts.value.push({...product, count: 1})
+    }
 }
 
 const removeProduct = (product) => {
