@@ -8,6 +8,7 @@ import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, watch} from "vue";
 import supabase from "../database.js";
+import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 const {count} = await supabase.from("cases").select("id", {
     count: "exact",
@@ -89,7 +90,7 @@ const searchFilteredCases = () => {
                     </CustomSelectItem>
                 </CustomSelect>
 
-                <p>Avanceret søgning</p>
+                <p @click="comingSoonDialogue">Avanceret søgning</p>
             </div>
 
             <div class="create-new-task" @click="router.push({ path: '/case' })">
