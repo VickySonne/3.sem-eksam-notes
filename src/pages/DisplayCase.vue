@@ -1,5 +1,5 @@
 <script setup>
-import ProductOverview from '../components/ProductOverview.vue';
+// import ProductOverview from '../components/ProductOverview.vue';
 // import TodoListeComp from '../components/TodoListeComp.vue';
 import database from '../database.js';
 import BackButton from "@/components/shared/BackButton.vue";
@@ -221,7 +221,7 @@ const pickupDate = new Date(pickup)
                     </div>
                 </section>
 
-                <ProductOverview/>
+<!--                <ProductOverview/>-->
             </div>
 
             <div class="content-right">
