@@ -104,7 +104,7 @@ const pickupDate = new Date(pickup)
                 <section>
                     <div class="title-bar">
                         <h3>Detajler</h3>
-                        <p>Ret detaljer</p>
+<!--                        <p>Ret detaljer</p>-->
                     </div>
 
                     <div class="section-bg two-columns">
@@ -157,7 +157,7 @@ const pickupDate = new Date(pickup)
                 <section>
                     <div class="title-bar">
                         <h3>Opgaver</h3>
-                        <p>Ret opgaver</p>
+<!--                        <p>Ret opgaver</p>-->
                     </div>
 
                     <div class="section-bg task-selection-grid" v-if="tasks.length">
@@ -175,7 +175,7 @@ const pickupDate = new Date(pickup)
                 <section>
                     <div class="title-bar">
                         <h3>Dokumenter</h3>
-                        <p>Ret dokumenter</p>
+<!--                        <p>Ret dokumenter</p>-->
                     </div>
 
                     <div class="section-bg document-table">
@@ -228,7 +228,7 @@ const pickupDate = new Date(pickup)
                 <section>
                     <div class="ret-kunde">
                         <h3>Kunde</h3>
-                        <p>Ret kunde</p>
+<!--                        <p>Ret kunde</p>-->
                     </div>
 
                     <div class="kunde-container">
