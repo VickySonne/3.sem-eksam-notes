@@ -36,10 +36,7 @@ const {data} = await fetchData()
 const dataRef = ref(data)
 
 watch(pagination, async () => {
-    console.log('pagination changed')
     const {data} = await fetchData()
-
-    console.log(data)
 
     dataRef.value = data
 }, {deep: true})
