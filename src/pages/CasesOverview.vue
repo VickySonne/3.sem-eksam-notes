@@ -7,33 +7,40 @@ import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, watch} from "vue";
-import supabase from "../database.js";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
-const {count} = await supabase.from("cases").select("id", {
-    count: "exact",
-    head: true
-})
 
-const pagination = ref({
-    page: 1,
-    perPage: 10,
-    total: count
-})
 
 const fetchData = () => {
     return database
         .from('cases')
         .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
         .order('created_at', {ascending: false})
-        .range(
-            (pagination.value.page - 1) * pagination.value.perPage,
-            (pagination.value.page - 1) * pagination.value.perPage + pagination.value.perPage - 1
-        )
 }
 
 const {data} = await fetchData()
 const dataRef = ref(data)
+const searchRef = ref("")
+
+const pagination = ref({
+    page: 1,
+    perPage: 10,
+    dataLength: dataRef.value.length,
+    getNumberOfPages: function () {
+        return Math.ceil(this.dataLength / this.perPage)
+    },
+    getPaginatedResults: function () {
+        const start = (pagination.value.page - 1) * pagination.value.perPage
+        const end = start + pagination.value.perPage
+
+        return searchFilteredCases().slice(start, end)
+    }
+})
+
+watch(searchRef, () => {
+    pagination.value.page = 1
+    pagination.value.dataLength = searchFilteredCases().length
+}, {deep: true})
 
 watch(pagination, async () => {
     const {data} = await fetchData()
@@ -44,8 +51,6 @@ watch(pagination, async () => {
 const {data: statusOptions} = await database
     .from('statuses')
     .select('id, name')
-
-const searchRef = ref("")
 
 const searchFilteredCases = () => {
     return dataRef.value.filter(c => {
@@ -114,13 +119,13 @@ const searchFilteredCases = () => {
                 </thead>
 
                 <tbody>
-                <TaskOverviewComp v-for="workcase in searchFilteredCases()"
+                <TaskOverviewComp v-for="workcase in pagination.getPaginatedResults()"
                                   :data="workcase" :key="workcase.id"/>
                 </tbody>
             </table>
         </section>
 
-        <section class="pagination">
+        <section v-if="pagination.getNumberOfPages() > 0" class="pagination">
             <div @click="pagination.page--" :class="{
                 invisible: pagination.page === 1
             }">
@@ -128,14 +133,18 @@ const searchFilteredCases = () => {
             </div>
 
             <div>
-                <p>{{ pagination.page }} af {{ Math.ceil(pagination.total / pagination.perPage) }}</p>
+                <p>{{ pagination.page }} af {{ pagination.getNumberOfPages() }}</p>
             </div>
 
             <div @click="pagination.page++" :class="{
-                invisible: pagination.page >= pagination.total / pagination.perPage
+                invisible: pagination.page >= pagination.getNumberOfPages()
             }">
                 <font-awesome-icon icon="caret-right"/>
             </div>
+        </section>
+
+        <section v-else class="no-results">
+            <p>Ingen resultater fundet.</p>
         </section>
     </div>
 </template>
@@ -143,6 +152,11 @@ const searchFilteredCases = () => {
 <style lang="scss" scoped>
 .invisible {
   visibility: hidden;
+}
+
+.no-results {
+  text-align: center;
+  padding: 5rem;
 }
 
 .pagination {
