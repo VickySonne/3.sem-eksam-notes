@@ -10,7 +10,6 @@ import {ref, watch} from "vue";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 
-
 const fetchData = () => {
     return database
         .from('cases')
@@ -81,6 +80,8 @@ const searchFilteredCases = () => {
                 <div class="search-field">
                     <font-awesome-icon icon="magnifying-glass"/>
                     <input type="search" placeholder="Søg..." v-model="searchRef">
+                    <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button"
+                                       @click="searchRef = ''"/>
                 </div>
 
 
@@ -211,13 +212,17 @@ th:last-child {
     border-radius: var(--border-radius);
     display: flex;
     gap: 1rem;
-    padding-left: var(--default-padding);
+    padding-inline: var(--default-padding);
 
     input {
-      padding: var(--default-padding);
-      padding-left: 0;
+      padding-block: var(--default-padding);
+    }
+
+    .close-button {
+      cursor: pointer;
     }
   }
+
 
   .status-button {
     border: solid 1px grey;
