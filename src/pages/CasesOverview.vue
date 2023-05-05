@@ -121,32 +121,48 @@ const searchFilteredCases = () => {
         </section>
 
         <section class="pagination">
-            <div @click="pagination.page > 1 ? pagination.page-- : ''">
-                <p>Previous page</p>
+            <div @click="pagination.page--" :class="{
+                invisible: pagination.page === 1
+            }">
+                <font-awesome-icon icon="caret-left"/>
             </div>
 
             <div>
-                <p>{{ pagination.page }}</p>
+                <p>{{ pagination.page }} af {{ Math.ceil(pagination.total / pagination.perPage) }}</p>
             </div>
 
-            <div @click="pagination.page < pagination.total / pagination.perPage ? pagination.page++ : ''">
-                <p>Next page</p>
+            <div @click="pagination.page++" :class="{
+                invisible: pagination.page >= pagination.total / pagination.perPage
+            }">
+                <font-awesome-icon icon="caret-right"/>
             </div>
         </section>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.invisible {
+  visibility: hidden;
+}
+
 .pagination {
-    align-items: center;
+  align-items: center;
   display: flex;
   gap: 1rem;
   justify-content: center;
+  padding: var(--default-padding);
+
+  div:first-child,
+  div:last-child {
+    border-radius: var(--border-radius);
+    cursor: pointer;
     padding: var(--default-padding);
 
-    div {
-        cursor: pointer;
+    &:hover {
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
     }
+  }
 }
 
 h2 {
