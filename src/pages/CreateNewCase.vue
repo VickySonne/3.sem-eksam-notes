@@ -71,6 +71,10 @@ const getCurrentDateTimeString = () => {
 }
 
 const createCase = () => {
+    if (!selectedCustomer.value) {
+        return alert("Du skal som minimum vælge en kunde for at oprette en sag.")
+    }
+
     database.from('cases').insert({
         created_by: 1,
         customer: selectedCustomer.value.id,
