@@ -393,11 +393,9 @@ const removeProduct = (product) => {
                         <div class="form-input">
                             <label for="">Tags</label>
 
-                            <!--                            <CustomSelect :multiple="true">-->
-                            <!--                                <CustomSelectItem value="0">Vælg tags</CustomSelectItem>-->
-                            <!--                                <CustomSelectItem value="1">Tag 1</CustomSelectItem>-->
-                            <!--                                <CustomSelectItem value="2">Tag 2</CustomSelectItem>-->
-                            <!--                            </CustomSelect>-->
+                            <div class="form-input-placeholder">
+                                <p>Kommer Snart</p>
+                            </div>
                         </div>
 
                         <div class="flex-wrapper">
@@ -503,6 +501,13 @@ const removeProduct = (product) => {
 </template>
 
 <style lang="scss" scoped>
+.form-input-placeholder {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding-left: 1rem;
+}
+
 .selected-tasks {
     li {
         margin-block: 1rem;
