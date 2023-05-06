@@ -12,6 +12,13 @@ import router from "@/router";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
+const props = defineProps({
+    id: {
+        type: String,
+        default: null
+    }
+})
+
 const {data: statusOptions} = await database
     .from('statuses')
     .select('id, name')
@@ -42,8 +49,36 @@ const deposit = ref(0)
 const currentTaskCategory = ref(taskOptions[0].id)
 
 // const tags = ref([])
+const showPayeeOptions = ref(false)
+const selectedPayee = ref(null)
+
+const selectedProducts = ref([])
 const selectedTasks = ref([])
-// const products = ref([])
+
+if (props.id) {
+    console.log("Edit case with id: " + props.id)
+
+    // using var here to expand the scope of caseInfo
+    var {data: caseInfo} = await database.from('cases')
+        .select('*, customers(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
+        .eq('id', props.id)
+        .single()
+
+
+    selectedCustomer.value = caseInfo.customers
+
+    description.value = caseInfo.description
+    price.value = caseInfo.negotiated_price
+    pickupDate.value = new Date(caseInfo.pickup)
+
+    // destructured to prevent reactivity
+    selectedTasks.value = [...caseInfo.tasks]
+    selectedProducts.value = [...caseInfo.products]
+
+    // These two are not implemented yet
+    responsibleEmployee.value = caseInfo.responsible_employee
+    status.value = caseInfo.status
+}
 
 const parseDate = (event) => {
     const newDate = new Date(event.target.value);
@@ -70,12 +105,12 @@ const getCurrentDateTimeString = () => {
     return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
-const createCase = () => {
+const createCase = async () => {
     if (!selectedCustomer.value) {
         return alert("Du skal som minimum vælge en kunde for at oprette en sag.")
     }
 
-    database.from('cases').insert({
+    const caseData = {
         created_by: 1,
         customer: selectedCustomer.value.id,
         payee: payee.value.id,
@@ -85,24 +120,52 @@ const createCase = () => {
         status: status.value.id,
         negotiated_price: price.value,
         deposit: deposit.value,
-    }).select().single().then(async data => {
-        await database.from("cases_tasks").insert(selectedTasks.value.map(task => {
-            return {
-                case_id: data.data.id,
-                task_id: task.id,
-            }
-        }))
+    }
 
-        await database.from("cases_products").insert(selectedProducts.value.map(product => {
-            return {
-                case_id: data.data.id,
-                product_id: product.id,
-                count: product.count
-            }
-        }))
+    if (props.id) {
+        const newTasks = selectedTasks.value.filter(task => !caseInfo.tasks.some(t => t.id === task.id))
+        const removedTasks = caseInfo.tasks.filter(task => !selectedTasks.value.some(t => t.id === task.id))
 
-        await router.push({path: '/case/' + data.data.id})
-    })
+        if (newTasks.length > 0) {
+            await database.from("cases_tasks").insert(newTasks.map(task => {
+                console.log(task)
+                return {
+                    case_id: props.id,
+                    task_id: task.id,
+                }
+            }))
+        }
+
+        if (removedTasks.length > 0) {
+            await database.from("cases_tasks")
+                .delete()
+                .eq('case_id', props.id)
+                .in('task_id', removedTasks.map(task => task.id))
+        }
+
+        database.from('cases').update(caseData).eq('id', props.id).then(() => {
+            router.push({path: '/case/' + props.id})
+        })
+    } else {
+        database.from('cases').insert(caseData).select().single().then(async data => {
+            await database.from("cases_tasks").insert(selectedTasks.value.map(task => {
+                return {
+                    case_id: data.data.id,
+                    task_id: task.id,
+                }
+            }))
+
+            await database.from("cases_products").insert(selectedProducts.value.map(product => {
+                return {
+                    case_id: data.data.id,
+                    product_id: product.id,
+                    count: product.count
+                }
+            }))
+
+            await router.push({path: '/case/' + data.data.id})
+        })
+    }
 }
 
 const updateEmployee = (event) => {
@@ -148,16 +211,10 @@ const createCustomTask = () => {
         name: customTaskRef.value,
         one_off: true,
     }).select().single().then(data => {
-        console.log(data.data)
         selectedTasks.value.push(data.data)
         toggleCustomTask()
     })
 }
-
-const showPayeeOptions = ref(false)
-const selectedPayee = ref(null)
-
-const selectedProducts = ref([])
 
 const addProduct = (product) => {
     if (selectedProducts.value.some(p => p.id === product.id)) {
@@ -373,7 +430,7 @@ const removeProduct = (product) => {
 
                             <CustomSelect :callback="updateEmployee">
                                 <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id"
-                                                  :key="employee.id">
+                                                  :key="employee.id" :selected="responsibleEmployee.id === employee.id">
                                     {{ employee.name }}
                                 </CustomSelectItem>
                             </CustomSelect>
@@ -383,8 +440,8 @@ const removeProduct = (product) => {
                             <label for="">Status</label>
 
                             <CustomSelect :callback="updateStatus">
-                                <CustomSelectItem v-for="status in statusOptions" :value="status.id"
-                                                  :key="status.id">
+                                <CustomSelectItem v-for="option in statusOptions" :value="option.id"
+                                                  :key="option.id" :selected="status.id === option.id">
                                     {{ status.name }}
                                 </CustomSelectItem>
                             </CustomSelect>
@@ -493,7 +550,7 @@ const removeProduct = (product) => {
 
             <div class="create-task" @click="createCase()">
                 <font-awesome-icon icon="plus"/>
-                <p>Opret Sag</p>
+                <p>{{ id ?  'Gem' : 'Opret' }} Sag</p>
             </div>
 
         </aside>

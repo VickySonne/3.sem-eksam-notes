@@ -6,6 +6,7 @@ import BackButton from "@/components/shared/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {onMounted, onUpdated, ref} from "vue";
 import supabase from "../database.js";
+import router from "@/router";
 
 const props = defineProps(['id'])
 
@@ -83,6 +84,10 @@ const toggleTaskCompletion = async (task) => {
 
 const creationDate = new Date(createdAt)
 const pickupDate = new Date(pickup)
+
+const editCase = () => {
+    router.push({path: '/case/' + props.id + '/edit'})
+}
 </script>
 
 
@@ -104,7 +109,7 @@ const pickupDate = new Date(pickup)
                 <section>
                     <div class="title-bar">
                         <h3>Detajler</h3>
-<!--                        <p>Ret detaljer</p>-->
+                        <p @click="editCase">Ret sag</p>
                     </div>
 
                     <div class="section-bg two-columns">

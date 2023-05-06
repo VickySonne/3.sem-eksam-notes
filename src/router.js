@@ -9,6 +9,7 @@ const routes = [
   { path: '/', name: 'MainTaskOverview', component: MainTaskOverview },
   { path: '/case', name: 'MainCreateNew', component: MainCreateNew },
   { path: '/case/:id', name: 'MainTaskDisplay', component: MainTaskDisplay, props: true },
+  { path: '/case/:id/edit', name: 'MainTaskEdit', component: MainCreateNew, props: true },
   { path: '/fake-route', name: 'ComingSoon', component: ComingSoon, props: true },
 
 ]
