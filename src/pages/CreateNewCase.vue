@@ -66,7 +66,7 @@ if (props.id) {
         .single()
 
 
-    selectedCustomer.value = caseInfo.customers
+    selectedCustomer.value = caseInfo.customer
 
     description.value = caseInfo.description
     price.value = caseInfo.negotiated_price
