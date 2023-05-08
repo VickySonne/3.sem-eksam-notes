@@ -89,22 +89,7 @@ const parseDate = (event) => {
     }
 }
 
-const getCurrentDateTimeString = () => {
-    const toPaddedString = (number) => {
-        return number.toString().padStart(2, '0')
-    }
-
-    const now = new Date()
-
-    const year = now.getFullYear()
-
-    const month = toPaddedString(now.getMonth() + 1)
-    const day = toPaddedString(now.getDate())
-    const hours = toPaddedString(now.getHours())
-    const minutes = toPaddedString(now.getMinutes())
-
-    return `${year}-${month}-${day}T${hours}:${minutes}`
-}
+const dateTimeRef = ref(new Date().toISOString().slice(0, 16))
 
 const createCase = async () => {
     if (!selectedCustomer.value) {
@@ -459,7 +444,7 @@ const removeProduct = (product) => {
                         <div class="flex-wrapper">
                             <div class="form-input">
                                 <label for="">Afhentning</label>
-                                <input @change="parseDate" :value="getCurrentDateTimeString()" class="input-field"
+                                <input @change="parseDate" v-model="dateTimeRef" class="input-field"
                                        type="datetime-local">
                             </div>
 
