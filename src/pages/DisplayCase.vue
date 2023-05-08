@@ -268,7 +268,7 @@ const editCase = () => {
                         </div>
 
                         <div class="send-msg">
-                            <input type="search" placeholder="Send en besked..." v-model="textMessagingRef">
+                            <input type="text" placeholder="Send en besked..." v-model="textMessagingRef">
                             <font-awesome-icon icon="paper-plane" @click="sendTextMessage()"/>
                         </div>
                     </div>

@@ -79,8 +79,8 @@ const searchFilteredCases = () => {
             <div class="search-bar">
                 <div class="search-field">
                     <font-awesome-icon icon="magnifying-glass"/>
-                    <input type="search" placeholder="Søg..." v-model="searchRef">
-                    <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button"
+                    <input type="text" placeholder="Søg..." v-model="searchRef">
+                    <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button hidden-chrome"
                                        @click="searchRef = ''"/>
                 </div>
 

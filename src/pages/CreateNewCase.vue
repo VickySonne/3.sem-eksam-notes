@@ -255,7 +255,7 @@ const removeProduct = (product) => {
                     <div v-if="!selectedCustomer" class="search-bar">
                         <div class="search-field">
                             <font-awesome-icon icon="magnifying-glass"/>
-                            <input type="search" placeholder="Find kunde..." v-model="customerSearchRef">
+                            <input type="text" placeholder="Find kunde..." v-model="customerSearchRef">
                             <font-awesome-icon icon="times" :class="{invisible: !customerSearchRef.length}" class="close-button" @click="customerSearchRef = ''"/>
                         </div>
 
@@ -322,7 +322,7 @@ const removeProduct = (product) => {
                         <div class="search-bar">
                             <div class="search-field">
                                 <font-awesome-icon icon="magnifying-glass"/>
-                                <input type="search" placeholder="Find kunde..." v-model="payeeSearchRef">
+                                <input type="text" placeholder="Find kunde..." v-model="payeeSearchRef">
                                 <font-awesome-icon icon="times" :class="{invisible: !payeeSearchRef.length}" class="close-button" @click="payeeSearchRef = ''"/>
                             </div>
 

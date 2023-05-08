@@ -38,7 +38,7 @@ const searchRef = ref("")
         <div class="search-product">
             <div class="search-bar">
                 <font-awesome-icon icon="magnifying-glass"/>
-                <input type="search" placeholder="Søg på varer..." v-model="searchRef">
+                <input type="text" placeholder="Søg på varer..." v-model="searchRef">
                 <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
             </div>
 
