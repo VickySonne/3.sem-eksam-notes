@@ -22,7 +22,7 @@ import AppSidebar from "@/components/layout/AppSidebar.vue";
 <style scoped>
 main {
     flex-grow: 1;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 1rem;
 }
 
