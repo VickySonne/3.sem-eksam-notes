@@ -13,7 +13,7 @@ import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 const fetchData = () => {
     return database
         .from('cases')
-        .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
+        .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*)')
         .order('created_at', {ascending: false})
 }
 
@@ -70,7 +70,7 @@ const searchFilteredCases = () => {
         const searchAbleProperties = {
             responsible_employee: c.responsible_employee?.name,
             status: c.status?.name,
-            customers: c.customers?.name,
+            customer: c.customer?.name,
             tasks: c.tasks.map(t => t.name),
             tags: c.tags.map(t => t.name),
             description: c.description,

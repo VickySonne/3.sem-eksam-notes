@@ -9,7 +9,7 @@ const props = defineProps(['data']);
 const {
     status,
     responsible_employee: responsibleEmployee,
-    customers,
+    customer,
     tasks,
     tags,
     description,
@@ -35,8 +35,8 @@ const expandedDescription = ref(false);
 
         <td>{{ new Intl.DateTimeFormat('da-DK').format(pickupDate) }}</td>
 
-        <td v-if="customers">
-            {{ customers.name }}
+        <td v-if="customer">
+            {{ customer.name }}
         </td>
 
         <td v-else>

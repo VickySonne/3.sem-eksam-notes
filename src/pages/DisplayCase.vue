@@ -44,7 +44,7 @@ onUpdated(() => {
 
 const {data: workCase} = await database
     .from('cases')
-    .select('*, customers(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), cases_tasks(*), files(*), notes(*), messages(*)')
+    .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), cases_tasks(*), files(*), notes(*), messages(*)')
     .eq('id', props.id)
     .limit(1)
     .single()
@@ -62,7 +62,7 @@ const {
     cases_tasks: casesTasks,
     files,
     notes,
-    customers,
+    customer: customers,
     created_at: createdAt,
     pickup,
 } = workCase
