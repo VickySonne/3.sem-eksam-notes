@@ -65,7 +65,7 @@ const toggleDropdown = () => {
     padding: var(--default-padding);
 
     &:hover {
-      background-color: var(--bg-primary);
+      background-color: var(--muted);
       border-radius: var(--border-radius);
       color: var(--text-secondary);
       cursor: pointer;
@@ -139,7 +139,7 @@ header {
 
       &.active,
       &:hover {
-        background-color: var(--bg-primary);
+        background-color: var(--muted);
         border-radius: var(--border-radius);
         cursor: pointer;
 

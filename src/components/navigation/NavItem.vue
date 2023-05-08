@@ -76,7 +76,7 @@ p {
 
   &.active,
   &:hover {
-    background-color: var(--bg-primary);
+    background-color: var(--muted);
     color: var(--text-secondary);
     cursor: pointer;
   }

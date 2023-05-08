@@ -201,7 +201,7 @@ const searchRef = ref("")
 
 .add-product {
   cursor: pointer;
-  background-color: #1E293B;
+  background-color: var(--muted);
   color: white;
   padding: 1rem;
 

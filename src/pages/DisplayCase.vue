@@ -238,7 +238,7 @@ const editCase = () => {
                     </div>
 
                     <div class="kunde-container">
-                        <p class="first-flex">{{ customers.name }}<span>regular customers</span></p>
+                        <p class="first-flex">{{ customers.name }}</p>
                         <p>{{ customers.address }}</p>
                         <p>{{ customers.zipcode }} {{ customers.city }}</p>
                         <p>{{ customers.phone }}</p>
@@ -307,7 +307,7 @@ const editCase = () => {
         padding: var(--default-padding);
 
         &.selected {
-            background-color: var(--bg-primary);
+            background-color: var(--muted);
             color: var(--text-secondary);
         }
 

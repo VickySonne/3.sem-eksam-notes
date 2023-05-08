@@ -273,7 +273,7 @@ const removeProduct = (product) => {
                              }"
                              :key="customer.id">
                             <div class="customer-info">
-                                <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ customer.name }}</p>
                                 <p>{{ customer.phone }}</p>
                             </div>
 
@@ -297,7 +297,7 @@ const removeProduct = (product) => {
                     }">
                         <div>
                             <div class="customer-info">
-                                <p>{{ selectedCustomer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ selectedCustomer.name }}</p>
                                 <p>{{ selectedCustomer.phone }}</p>
                             </div>
 
@@ -341,7 +341,7 @@ const removeProduct = (product) => {
                              @click="selectedPayee = customer"
                              :key="customer.id">
                             <div class="customer-info">
-                                <p>{{ customer.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ customer.name }}</p>
                                 <p>{{ customer.phone }}</p>
                             </div>
 
@@ -359,7 +359,7 @@ const removeProduct = (product) => {
                     <div v-if="selectedPayee" class="selected-customer" @click="selectedPayee = null">
                         <div>
                             <div class="customer-info">
-                                <p>{{ selectedPayee.name }} <span class="customer-group">Kundegruppe</span></p>
+                                <p>{{ selectedPayee.name }}</p>
                                 <p>{{ selectedPayee.phone }}</p>
                             </div>
 
@@ -631,7 +631,7 @@ const removeProduct = (product) => {
     padding: var(--default-padding);
 
     &.selected {
-      background-color: var(--bg-primary);
+      background-color: var(--muted);
       color: var(--text-secondary);
     }
 
@@ -757,7 +757,7 @@ h3 {
     width: 100%;
 
     &:hover {
-      background-color: var(--bg-primary);
+      background-color: var(--muted);
       color: var(--text-secondary);
       cursor: pointer;
     }
@@ -777,7 +777,7 @@ h3 {
     width: 100%;
 
     &:hover {
-      background-color: var(--bg-primary);
+      background-color: var(--muted);
       color: var(--text-secondary);
       cursor: pointer;
     }
@@ -857,7 +857,7 @@ h3 {
       padding: var(--default-padding);
 
       &.selected {
-        background-color: var(--bg-primary);
+        background-color: var(--muted);
         color: var(--text-secondary);
       }
     }
