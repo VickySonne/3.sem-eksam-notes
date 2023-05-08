@@ -126,9 +126,9 @@ tr {
 
 .tag {
   background-color: #e5e7eb;
-    display: inline-block;
   padding: 0.5rem;
   margin: 0.25rem;
+    width: fit-content;
   border-radius: var(--border-radius);
 }
 </style>
