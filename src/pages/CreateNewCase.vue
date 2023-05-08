@@ -39,7 +39,6 @@ const customerSearchRef = ref("")
 const payeeSearchRef = ref("")
 
 const selectedCustomer = ref(null)
-const payee = ref(customerOptions[0])
 const description = ref("")
 const responsibleEmployee = ref(employeeOptions[0])
 const pickupDate = ref(new Date())
@@ -61,12 +60,17 @@ if (props.id) {
 
     // using var here to expand the scope of caseInfo
     var {data: caseInfo} = await database.from('cases')
-        .select('*, customer(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
+        .select('*, customer(*), payee(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
         .eq('id', props.id)
         .single()
 
 
     selectedCustomer.value = caseInfo.customer
+    selectedPayee.value = caseInfo.payee
+
+    if (caseInfo.payee) {
+        showPayeeOptions.value = true
+    }
 
     description.value = caseInfo.description
     price.value = caseInfo.negotiated_price
@@ -99,7 +103,7 @@ const createCase = async () => {
     const caseData = {
         created_by: responsibleEmployee.value.id,
         customer: selectedCustomer.value.id,
-        payee: payee.value.id,
+        payee: selectedPayee.value.id,
         description: description.value,
         responsible_employee: responsibleEmployee.value.id,
         pickup: pickupDate.value,
