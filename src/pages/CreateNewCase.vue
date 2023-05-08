@@ -231,7 +231,7 @@ const removeProduct = (product) => {
             <div class="main-content">
                 <section class="customer">
                     <div class="customer-header">
-                        <h3>Kunde</h3>
+                        <h3>Kunde <small>(påkrævet)</small></h3>
 
                         <p v-if="selectedCustomer && !showPayeeOptions" @click="showPayeeOptions = true">Anden
                             betaler</p>
@@ -690,6 +690,12 @@ const removeProduct = (product) => {
 h3 {
   font-weight: 700;
   font-size: 1.125rem;
+
+    small {
+        font-weight: 400;
+        font-size: 0.75rem;
+        opacity: 0.65;
+    }
 }
 
 .search-bar-container {
