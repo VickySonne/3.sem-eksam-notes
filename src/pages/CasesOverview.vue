@@ -20,6 +20,7 @@ const fetchData = () => {
 const {data} = await fetchData()
 const dataRef = ref(data)
 const searchRef = ref("")
+const status = ref(null)
 
 const pagination = ref({
     page: 1,
@@ -47,12 +48,25 @@ watch(pagination, async () => {
     dataRef.value = data
 }, {deep: true})
 
+watch(status, () => {
+    pagination.value.page = 1
+    pagination.value.dataLength = searchFilteredCases().length
+}, {deep: true})
+
 const {data: statusOptions} = await database
     .from('statuses')
     .select('id, name')
 
 const searchFilteredCases = () => {
-    return dataRef.value.filter(c => {
+    let data
+
+    if (status.value === null || status.value === 0) {
+        data = dataRef.value
+    } else {
+        data = dataRef.value.filter(c => c.status.id.toString() === status.value)
+    }
+
+    return data.filter(c => {
         const searchAbleProperties = {
             responsible_employee: c.responsible_employee?.name,
             status: c.status?.name,
@@ -69,6 +83,10 @@ const searchFilteredCases = () => {
         return recursiveObjectSearch(searchAbleProperties, searchRef.value)
     })
 }
+
+
+const updateStatusRef = (event) => status.value = event.target.value
+
 </script>
 
 <template>
@@ -85,7 +103,7 @@ const searchFilteredCases = () => {
                 </div>
 
 
-                <CustomSelect>
+                <CustomSelect :callback="updateStatusRef">
                     <CustomSelectItem value="0">Sorter efter status</CustomSelectItem>
                     <CustomSelectItem v-for="status in statusOptions" :key="status.id" :value="status.id">{{
                         status.name
