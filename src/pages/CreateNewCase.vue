@@ -442,7 +442,7 @@ const removeProduct = (product) => {
                             <CustomSelect :callback="updateStatus">
                                 <CustomSelectItem v-for="option in statusOptions" :value="option.id"
                                                   :key="option.id" :selected="status.id === option.id">
-                                    {{ status.name }}
+                                    {{ option.name }}
                                 </CustomSelectItem>
                             </CustomSelect>
                         </div>
