@@ -60,7 +60,7 @@ const {data: statusOptions} = await database
 const searchFilteredCases = () => {
     let data
 
-    if (status.value === null || status.value === 0) {
+    if (status.value === null || status.value === "0") {
         data = dataRef.value
     } else {
         data = dataRef.value.filter(c => c.status.id.toString() === status.value)
