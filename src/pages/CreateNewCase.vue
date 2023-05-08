@@ -550,7 +550,7 @@ const removeProduct = (product) => {
             </div>
 
             <div class="create-task" @click="createCase()">
-                <font-awesome-icon icon="plus"/>
+                <font-awesome-icon icon="plus" v-if="!id"/>
                 <p>{{ id ?  'Gem' : 'Opret' }} Sag</p>
             </div>
 
