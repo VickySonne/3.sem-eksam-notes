@@ -61,7 +61,7 @@ if (props.id) {
 
     // using var here to expand the scope of caseInfo
     var {data: caseInfo} = await database.from('cases')
-        .select('*, customers(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
+        .select('*, customer(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
         .eq('id', props.id)
         .single()
 
