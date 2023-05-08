@@ -11,6 +11,7 @@ import database from "@/database";
 import router from "@/router";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
+import formatPrice from "../utilities/formatPrice";
 
 const props = defineProps({
     id: {
@@ -466,7 +467,7 @@ const removeProduct = (product) => {
                                 <label for="">Aftalt Pris (internt)</label>
 
                                 <div class="price-input">
-                                    <input v-model="price" class="input-field" type="number" placeholder="Indtast pris">
+                                    <input v-model="price" class="input-field" onchange="formatPrice()" type="number" placeholder="Indtast pris">
                                     <p>kr.</p>
                                 </div>
                             </div>
@@ -514,7 +515,7 @@ const removeProduct = (product) => {
 
                     <p v-if="price">
                         <span>Pris: </span>
-                        {{ price }} kr.
+                        {{ formatPrice(price) }}
                     </p>
 
                     <p v-if="description">

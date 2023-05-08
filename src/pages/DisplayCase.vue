@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {onMounted, onUpdated, ref} from "vue";
 import supabase from "../database.js";
 import router from "@/router";
+import formatPrice from "../utilities/formatPrice";
 
 const props = defineProps(['id'])
 
@@ -131,7 +132,7 @@ const editCase = () => {
 
                             <p v-if="negotiatedPrice">
                                 <span>Aftalt pris:</span>
-                                {{ negotiatedPrice }} kr.
+                                {{ formatPrice(negotiatedPrice) }}
                             </p>
 
                             <p>
