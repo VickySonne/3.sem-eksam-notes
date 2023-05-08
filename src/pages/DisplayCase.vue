@@ -243,7 +243,7 @@ const editCase = () => {
                         <p>{{ customers.zipcode }} {{ customers.city }}</p>
                         <p>{{ customers.phone }}</p>
                         <p>{{ customers.email }}</p>
-                        <p>Kundeenhed stelnummer: 123456789</p>
+                        <p>Kundeenhed: 123456789</p>
                         <button class="signature">Tilføj signatur</button>
                     </div>
                 </section>
