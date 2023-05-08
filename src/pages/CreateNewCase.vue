@@ -410,7 +410,7 @@ const removeProduct = (product) => {
                 <section class="details">
                     <h3>Detaljer</h3>
 
-                    <form class="grid-wrapper section-bg">
+                    <div class="grid-wrapper section-bg">
                         <div class="form-input">
                             <label for="">Ansvarlig</label>
 
@@ -463,7 +463,7 @@ const removeProduct = (product) => {
                             <textarea v-model="description" class="input-field" name="" id="" cols="30"
                                       rows="10" placeholder="Indtast evt. beskrivelse af sagen..."></textarea>
                         </div>
-                    </form>
+                    </div>
                 </section>
             </div>
         </div>
