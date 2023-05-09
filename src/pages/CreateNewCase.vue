@@ -532,7 +532,7 @@ const decrementProduct = (product) => {
                                 <label for="">Aftalt Pris (internt)</label>
 
                                 <div class="price-input">
-                                    <input v-model="price" class="input-field" onchange="formatPrice()" type="number"
+                                    <input v-model="price" class="input-field" type="number"
                                            placeholder="Indtast pris">
                                     <p>kr.</p>
                                 </div>
