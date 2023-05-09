@@ -298,7 +298,8 @@ const decrementProduct = (product) => {
 
 <template>
     <div class="header">
-        <BackButton>Tilbage til sagsstyring</BackButton>
+        <BackButton v-if="!id">Tilbage til sagsstyring</BackButton>
+        <BackButton v-else :destination="'/case/' + id">Tilbage til sag</BackButton>
     </div>
 
     <div class="main-layout">
