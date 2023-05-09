@@ -1,5 +1,5 @@
 <script setup>
-// import ProductOverview from '../components/ProductOverview.vue';
+import ProductOverview from '../components/ProductOverview.vue';
 // import TodoListeComp from '../components/TodoListeComp.vue';
 import database from '../database.js';
 import BackButton from "@/components/shared/BackButton.vue";
@@ -50,7 +50,7 @@ onUpdated(() => {
 
 const {data: workCase} = await database
     .from('cases')
-    .select('*, customer(*), created_by(*), responsible_employee(*), status(*), tags(*), tasks(*), cases_tasks(*), files(*), notes(*), messages(*)')
+    .select('*, customer(*), created_by(*), responsible_employee(*), products(*), cases_products(*), status(*), tags(*), tasks(*), cases_tasks(*), files(*), notes(*), messages(*)')
     .eq('id', props.id)
     .limit(1)
     .single()
@@ -72,6 +72,15 @@ const {
     created_at: createdAt,
     pickup,
 } = workCase
+
+const products = workCase.products.map(product => {
+        const casesProduct = workCase.cases_products.find(casesProduct => casesProduct.product_id === product.id)
+
+        return {
+            ...product,
+            count: casesProduct.count
+        }
+    })
 
 tasks.map(task => {
     task.completed = casesTasks.find(t => t.task_id === task.id).completed
@@ -254,7 +263,7 @@ const updateStatus = async (event) => {
                     </div>
                 </section>
 
-<!--                <ProductOverview/>-->
+                <ProductOverview :selected-products="products"/>
             </div>
 
             <div class="content-right">

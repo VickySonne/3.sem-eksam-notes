@@ -7,27 +7,32 @@ import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 const props = defineProps({
     products: {
         type: Array,
-        required: true
+        required: false,
+        default: []
     },
     selectedProducts: {
         type: Array,
-        required: true
+        required: false,
     },
     addProduct: {
         type: Function,
-        required: true
+        required: false,
+        default: () => {},
     },
     removeProduct: {
         type: Function,
-        required: true
+        required: false,
+        default: () => {},
     },
     incrementProduct: {
         type: Function,
-        required: true
+        required: false,
+        default: () => {},
     },
     decrementProduct: {
         type: Function,
-        required: true
+        required: false,
+        default: () => {},
     }
 })
 
@@ -43,7 +48,7 @@ const searchRef = ref("")
     <div>
         <h3>Varer</h3>
 
-        <div class="search-product">
+        <div v-if="products.length" class="search-product">
             <div class="search-bar">
                 <font-awesome-icon icon="magnifying-glass"/>
                 <input type="text" placeholder="Søg på varer..." v-model="searchRef">
@@ -89,15 +94,15 @@ const searchRef = ref("")
                     <td class="product-count">
                         <span>{{ product.count }}</span>
 
-                        <div @click="decrementProduct(product)">
+                        <div v-if="products.length" @click="decrementProduct(product)">
                             <font-awesome-icon icon="caret-down"/>
                         </div>
 
-                        <div @click="incrementProduct(product)">
+                        <div v-if="products.length" @click="incrementProduct(product)">
                             <font-awesome-icon icon="caret-up"/>
                         </div>
 
-                        <div @click="removeProduct(product)">
+                        <div v-if="products.length" @click="removeProduct(product)">
                             <font-awesome-icon icon="times"/>
                         </div>
                     </td>
