@@ -294,6 +294,14 @@ const decrementProduct = (product) => {
         return p
     }).filter(p => p.count > 0)
 }
+
+const deleteCase = () => {
+    if (confirm("Er du sikker på du vil slette denne sag?")) {
+        database.from("cases").delete().eq('id', props.id).then(() => {
+            router.push({path: '/'})
+        })
+    }
+}
 </script>
 
 <template>
@@ -618,11 +626,14 @@ const decrementProduct = (product) => {
                 </div>
             </div>
 
-            <div class="create-task" @click="createCase()">
-                <font-awesome-icon icon="plus" v-if="!id"/>
-                <p>{{ id ? 'Gem' : 'Opret' }} Sag</p>
-            </div>
+            <div class="case-status-buttons">
+                <p @click="deleteCase">Slet sag</p>
 
+                <div class="create-task" @click="createCase()">
+                    <font-awesome-icon icon="plus" v-if="!id"/>
+                    <p>{{ id ? 'Gem' : 'Opret' }} Sag</p>
+                </div>
+            </div>
         </aside>
     </div>
 </template>
@@ -633,6 +644,20 @@ const decrementProduct = (product) => {
   display: flex;
   height: 100%;
   padding-left: 1rem;
+}
+
+.case-status-buttons {
+    align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  & > p {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .selected-tasks {
