@@ -117,7 +117,7 @@ const createCase = async () => {
     const caseData = {
         created_by: responsibleEmployee.value.id,
         customer: selectedCustomer.value.id,
-        payee: selectedPayee.value.id,
+        payee: selectedPayee.value?.id,
         description: description.value,
         responsible_employee: responsibleEmployee.value.id,
         pickup: pickupDate.value,
