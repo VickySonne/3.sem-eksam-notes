@@ -627,7 +627,9 @@ const deleteCase = () => {
             </div>
 
             <div class="case-status-buttons">
-                <p @click="deleteCase">Slet sag</p>
+                <p v-if="id" @click="deleteCase">Slet sag</p>
+<!--                needed for flex-->
+                <p v-else></p>
 
                 <div class="create-task" @click="createCase()">
                     <font-awesome-icon icon="plus" v-if="!id"/>
