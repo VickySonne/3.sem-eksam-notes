@@ -15,6 +15,10 @@ const props = defineProps(['id'])
 
 const textMessagingRef = ref("")
 
+const {data: statusOptions} = await database
+    .from('statuses')
+    .select('id, name')
+
 const sendTextMessage = async () => {
     const message = textMessagingRef.value
     textMessagingRef.value = ""
@@ -92,28 +96,15 @@ const editCase = () => {
     router.push({path: '/case/' + props.id + '/edit'})
 }
 
-const handleAction = async (event) => {
-    const action = event.target.value
-    let path
+const updateStatus = async (event) => {
+    const statusId = event.target.value
 
-    switch (action) {
-        case "edit":
-            path = "/case/" + props.id + "/edit"
-            break
-        case "delete":
-            if (confirm("Er du sikker på at du vil slette denne sag?")) {
-                await database.from("cases").delete().eq("id", props.id)
-                path = "/"
-            }
+    await database
+        .from('cases')
+        .update({status: statusId})
+        .eq('id', props.id)
 
-            break
-        default:
-            break
-    }
-
-    if (path) {
-        router.push({path: path})
-    }
+    router.go()
 }
 </script>
 
@@ -129,10 +120,15 @@ const handleAction = async (event) => {
                 <p>Print</p>
                 <p>Gem</p>
                 <div class="divider"></div>
-                <CustomSelect :callback="handleAction">
-                    <CustomSelectItem>Vælg handling</CustomSelectItem>
-                    <CustomSelectItem value="edit">Ret sag</CustomSelectItem>
-                    <CustomSelectItem value="delete">Slet sag</CustomSelectItem>
+<!--                <CustomSelect :callback="handleAction">-->
+<!--                    <CustomSelectItem>Vælg handling</CustomSelectItem>-->
+<!--                    <CustomSelectItem value="edit">Ret sag</CustomSelectItem>-->
+<!--                    <CustomSelectItem value="delete">Slet sag</CustomSelectItem>-->
+<!--                </CustomSelect>-->
+
+                <CustomSelect :callback="updateStatus">
+                    <CustomSelectItem>Opdater status</CustomSelectItem>
+                    <CustomSelectItem v-for="status in statusOptions" :key="status.id" :value="status.id">{{ status.name }}</CustomSelectItem>
                 </CustomSelect>
             </div>
         </div>
