@@ -78,7 +78,18 @@ if (props.id) {
 
     // destructured to prevent reactivity
     selectedTasks.value = [...caseInfo.tasks]
-    selectedProducts.value = [...caseInfo.products]
+
+    selectedProducts.value = caseInfo.products.reduce((acc, product) => {
+        const existingProduct = acc.find(p => p.id === product.id)
+
+        if (existingProduct) {
+            existingProduct.count++
+        } else {
+            acc.push({...product, count: 1})
+        }
+
+        return acc
+    }, [])
 
     // These two are not implemented yet
     responsibleEmployee.value = caseInfo.responsible_employee
