@@ -91,7 +91,6 @@ if (props.id) {
         return acc
     }, [])
 
-    // These two are not implemented yet
     responsibleEmployee.value = caseInfo.responsible_employee
     status.value = caseInfo.status
 }
@@ -104,7 +103,13 @@ const parseDate = (event) => {
     }
 }
 
-const dateTimeRef = ref(new Date().toISOString().slice(0, 16))
+const dateTimeRef = ref(null)
+
+if (props.id) {
+    dateTimeRef.value = new Date(caseInfo.pickup).toISOString().slice(0, 16)
+} else {
+    dateTimeRef.value = new Date().toISOString().slice(0, 16)
+}
 
 const createCase = async () => {
     if (!selectedCustomer.value) {
