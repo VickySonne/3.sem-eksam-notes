@@ -8,6 +8,8 @@ import {onMounted, onUpdated, ref} from "vue";
 import supabase from "../database.js";
 import router from "@/router";
 import formatPrice from "../utilities/formatPrice";
+import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
+import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 
 const props = defineProps(['id'])
 
@@ -89,6 +91,30 @@ const pickupDate = new Date(pickup)
 const editCase = () => {
     router.push({path: '/case/' + props.id + '/edit'})
 }
+
+const handleAction = async (event) => {
+    const action = event.target.value
+    let path
+
+    switch (action) {
+        case "edit":
+            path = "/case/" + props.id + "/edit"
+            break
+        case "delete":
+            if (confirm("Er du sikker på at du vil slette denne sag?")) {
+                await database.from("cases").delete().eq("id", props.id)
+                path = "/"
+            }
+
+            break
+        default:
+            break
+    }
+
+    if (path) {
+        router.push({path: path})
+    }
+}
 </script>
 
 
@@ -98,10 +124,16 @@ const editCase = () => {
             <BackButton>Tilbage til sagsstyring</BackButton>
 
             <div class="tertiary-menu">
+                <p @click="editCase">Ret sag</p>
                 <p>Kontakt</p>
                 <p>Print</p>
                 <p>Gem</p>
-                <div class="action-btn">Handling</div>
+                <div class="divider"></div>
+                <CustomSelect :callback="handleAction">
+                    <CustomSelectItem>Vælg handling</CustomSelectItem>
+                    <CustomSelectItem value="edit">Ret sag</CustomSelectItem>
+                    <CustomSelectItem value="delete">Slet sag</CustomSelectItem>
+                </CustomSelect>
             </div>
         </div>
 
@@ -110,7 +142,6 @@ const editCase = () => {
                 <section>
                     <div class="title-bar">
                         <h3>Detajler</h3>
-                        <p @click="editCase">Ret sag</p>
                     </div>
 
                     <div class="section-bg two-columns">
@@ -348,7 +379,7 @@ h3 {
 }
 
 .menu-bar {
-  align-items: center;
+  align-items: stretch;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -357,6 +388,13 @@ h3 {
     align-items: center;
     display: flex;
     gap: 1rem;
+
+      .divider {
+          background-color: var(--muted);
+          height: 50%;
+          margin-right: -1rem;
+          width: 3px;
+      }
 
     p {
       cursor: pointer;
