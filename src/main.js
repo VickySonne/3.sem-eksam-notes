@@ -29,7 +29,7 @@ import {
     faPeopleArrows,
     faTimes,
     faCaretLeft,
-    faCaretRight
+    faCaretRight, faCaretDown, faCaretUp
 } from '@fortawesome/free-solid-svg-icons'
 
 import './assets/reset.css'
@@ -62,6 +62,8 @@ library.add([
     faTimes,
     faCaretLeft,
     faCaretRight,
+    faCaretDown,
+    faCaretUp
 ])
 
 app.component('font-awesome-icon', FontAwesomeIcon)

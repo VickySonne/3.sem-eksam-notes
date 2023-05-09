@@ -58,12 +58,20 @@ const selectedTasks = ref([])
 if (props.id) {
     console.log("Edit case with id: " + props.id)
 
-    // using var here to expand the scope of caseInfo
+    // using var here to expand the scope of caseInfo and productsWithCount
     var {data: caseInfo} = await database.from('cases')
-        .select('*, customer(*), payee(*), responsible_employee(*), status(*), tags(*), tasks!cases_tasks(*), products!cases_products(*)')
+        .select('*, customer(*), payee(*), responsible_employee(*), status(*), tags(*), tasks(*), products(*), cases_products(*)')
         .eq('id', props.id)
         .single()
 
+    var productsWithCount = caseInfo.products.map(product => {
+        const casesProduct = caseInfo.cases_products.find(casesProduct => casesProduct.product_id === product.id)
+
+        return {
+            ...product,
+            count: casesProduct.count
+        }
+    })
 
     selectedCustomer.value = caseInfo.customer
     selectedPayee.value = caseInfo.payee
@@ -79,17 +87,7 @@ if (props.id) {
     // destructured to prevent reactivity
     selectedTasks.value = [...caseInfo.tasks]
 
-    selectedProducts.value = caseInfo.products.reduce((acc, product) => {
-        const existingProduct = acc.find(p => p.id === product.id)
-
-        if (existingProduct) {
-            existingProduct.count++
-        } else {
-            acc.push({...product, count: 1})
-        }
-
-        return acc
-    }, [])
+    selectedProducts.value = productsWithCount
 
     responsibleEmployee.value = caseInfo.responsible_employee
     status.value = caseInfo.status
@@ -134,7 +132,6 @@ const createCase = async () => {
 
         if (newTasks.length > 0) {
             await database.from("cases_tasks").insert(newTasks.map(task => {
-                console.log(task)
                 return {
                     case_id: props.id,
                     task_id: task.id,
@@ -147,6 +144,44 @@ const createCase = async () => {
                 .delete()
                 .eq('case_id', props.id)
                 .in('task_id', removedTasks.map(task => task.id))
+        }
+
+        const newProducts = selectedProducts.value.filter(product => !caseInfo.products.some(p => p.id === product.id))
+        const removedProducts = caseInfo.products.filter(product => !selectedProducts.value.some(p => p.id === product.id))
+        const updatedProducts = selectedProducts.value.filter(product => {
+            const caseProduct = productsWithCount.find(p => p.id === product.id)
+
+            return caseProduct.count !== product.count
+        })
+
+        console.log(updatedProducts)
+
+        if (newProducts.length > 0) {
+            await database.from("cases_products").insert(newProducts.map(product => {
+                return {
+                    case_id: props.id,
+                    product_id: product.id,
+                    count: product.count
+                }
+            }))
+        }
+
+        if (removedProducts.length > 0) {
+            await database.from("cases_products")
+                .delete()
+                .eq('case_id', props.id)
+                .in('product_id', removedProducts.map(product => product.id))
+        }
+
+        if (updatedProducts.length > 0) {
+            for (const product of updatedProducts) {
+                await database.from("cases_products")
+                    .update({
+                        count: product.count
+                    })
+                    .eq('case_id', props.id)
+                    .eq('product_id', product.id)
+            }
         }
 
         database.from('cases').update(caseData).eq('id', props.id).then(() => {
@@ -239,6 +274,26 @@ const addProduct = (product) => {
 const removeProduct = (product) => {
     selectedProducts.value = selectedProducts.value.filter(p => p.id !== product.id)
 }
+
+const incrementProduct = (product) => {
+    selectedProducts.value = selectedProducts.value.map(p => {
+        if (p.id === product.id) {
+            return {...p, count: p.count + 1}
+        }
+
+        return p
+    })
+}
+
+const decrementProduct = (product) => {
+    selectedProducts.value = selectedProducts.value.map(p => {
+        if (p.id === product.id) {
+            return {...p, count: p.count - 1}
+        }
+
+        return p
+    }).filter(p => p.count > 0)
+}
 </script>
 
 <template>
@@ -261,14 +316,16 @@ const removeProduct = (product) => {
                         <div class="search-field">
                             <font-awesome-icon icon="magnifying-glass"/>
                             <input type="text" placeholder="Find kunde..." v-model="customerSearchRef">
-                            <font-awesome-icon icon="times" :class="{invisible: !customerSearchRef.length}" class="close-button" @click="customerSearchRef = ''"/>
+                            <font-awesome-icon icon="times" :class="{invisible: !customerSearchRef.length}"
+                                               class="close-button" @click="customerSearchRef = ''"/>
                         </div>
 
                         <p @click="comingSoonDialogue">Opret Ny Kunde</p>
                     </div>
 
                     <div v-if="!selectedCustomer && customerSearchRef.length" class="customer-list">
-                        <div @click="comingSoonDialogue" v-if="!customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef)).length">
+                        <div @click="comingSoonDialogue"
+                             v-if="!customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef)).length">
                             <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
                         </div>
 
@@ -328,7 +385,8 @@ const removeProduct = (product) => {
                             <div class="search-field">
                                 <font-awesome-icon icon="magnifying-glass"/>
                                 <input type="text" placeholder="Find kunde..." v-model="payeeSearchRef">
-                                <font-awesome-icon icon="times" :class="{invisible: !payeeSearchRef.length}" class="close-button" @click="payeeSearchRef = ''"/>
+                                <font-awesome-icon icon="times" :class="{invisible: !payeeSearchRef.length}"
+                                                   class="close-button" @click="payeeSearchRef = ''"/>
                             </div>
 
                             <p @click="comingSoonDialogue">Opret Ny Kunde</p>
@@ -338,7 +396,8 @@ const removeProduct = (product) => {
                     </div>
 
                     <div v-if="!selectedPayee && payeeSearchRef.length" class="customer-list">
-                        <div @click="comingSoonDialogue" v-if="!customerOptions.filter(c => recursiveObjectSearch(c, payeeSearchRef)).length">
+                        <div @click="comingSoonDialogue"
+                             v-if="!customerOptions.filter(c => recursiveObjectSearch(c, payeeSearchRef)).length">
                             <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
                         </div>
 
@@ -424,7 +483,8 @@ const removeProduct = (product) => {
 
                 <section>
                     <ProductOverview :add-product="addProduct" :remove-product="removeProduct"
-                                     :selected-products="selectedProducts" :products="productOptions"/>
+                                     :selected-products="selectedProducts" :products="productOptions"
+                                     :increment-product="incrementProduct" :decrement-product="decrementProduct"/>
                 </section>
 
                 <section class="details">
@@ -472,7 +532,8 @@ const removeProduct = (product) => {
                                 <label for="">Aftalt Pris (internt)</label>
 
                                 <div class="price-input">
-                                    <input v-model="price" class="input-field" onchange="formatPrice()" type="number" placeholder="Indtast pris">
+                                    <input v-model="price" class="input-field" onchange="formatPrice()" type="number"
+                                           placeholder="Indtast pris">
                                     <p>kr.</p>
                                 </div>
                             </div>
@@ -547,7 +608,9 @@ const removeProduct = (product) => {
                             <li v-for="product in selectedProducts" :key="product.id">
                                 &nbsp;&nbsp;- {{ product.name }}
                                 <span v-if="product.count > 1"
-                                      @click="selectedProducts = selectedProducts.filter(p => p.id !== product.id)">{{ product.count }} stk.</span>
+                                      @click="selectedProducts = selectedProducts.filter(p => p.id !== product.id)">{{
+                                    product.count
+                                    }} stk.</span>
                             </li>
                         </ul>
                     </div>
@@ -556,7 +619,7 @@ const removeProduct = (product) => {
 
             <div class="create-task" @click="createCase()">
                 <font-awesome-icon icon="plus" v-if="!id"/>
-                <p>{{ id ?  'Gem' : 'Opret' }} Sag</p>
+                <p>{{ id ? 'Gem' : 'Opret' }} Sag</p>
             </div>
 
         </aside>
@@ -565,26 +628,27 @@ const removeProduct = (product) => {
 
 <style lang="scss" scoped>
 .form-input-placeholder {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    padding-left: 1rem;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-left: 1rem;
 }
 
 .selected-tasks {
-    li {
-        margin-block: 1rem;
-    }
-    span {
-        cursor: pointer;
-        margin-left: 0.5rem;
-        font-size: 0.75rem;
-        opacity: 0.65;
+  li {
+    margin-block: 1rem;
+  }
 
-        &:hover {
-            opacity: 1;
-        }
+  span {
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    opacity: 0.65;
+
+    &:hover {
+      opacity: 1;
     }
+  }
 }
 
 .customer-header {
@@ -711,34 +775,18 @@ h3 {
   font-weight: 700;
   font-size: 1.125rem;
 
-    small {
-        font-weight: 400;
-        font-size: 0.75rem;
-        opacity: 0.65;
-    }
+  small {
+    font-weight: 400;
+    font-size: 0.75rem;
+    opacity: 0.65;
+  }
 }
 
 .search-bar-container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 1rem;
-
-    & > p {
-        cursor: pointer;
-        font-weight: 700;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
-.search-bar {
   align-items: center;
   display: flex;
-  gap: 1rem;
-    margin-bottom: 1rem;
+  justify-content: space-between;
+  padding-right: 1rem;
 
   & > p {
     cursor: pointer;
@@ -748,9 +796,26 @@ h3 {
       text-decoration: underline;
     }
   }
-    svg:last-child {
-        cursor: pointer;
+}
+
+.search-bar {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  & > p {
+    cursor: pointer;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: underline;
     }
+  }
+
+  svg:last-child {
+    cursor: pointer;
+  }
 }
 
 .customer-list {
@@ -809,23 +874,23 @@ h3 {
 
 
 .custom-task-input {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 
-    input {
-        background-color: rgb(245 245 245);
-        border-radius: var(--border-radius);
-        padding: var(--default-padding);
-    }
+  input {
+    background-color: rgb(245 245 245);
+    border-radius: var(--border-radius);
+    padding: var(--default-padding);
+  }
 
-    button {
-        background-color: var(--bg-primary);
-        color: var(--text-secondary);
-        cursor: pointer;
-        padding: var(--default-padding);
-    }
+  button {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--default-padding);
+  }
 }
 
 .search-field {

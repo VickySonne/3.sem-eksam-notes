@@ -20,6 +20,14 @@ const props = defineProps({
     removeProduct: {
         type: Function,
         required: true
+    },
+    incrementProduct: {
+        type: Function,
+        required: true
+    },
+    decrementProduct: {
+        type: Function,
+        required: true
     }
 })
 
@@ -75,9 +83,25 @@ const searchRef = ref("")
                 </thead>
 
                 <tbody>
-                <tr v-for="product in selectedProducts" :key="product.id" @click="removeProduct(product)">
+                <tr v-for="product in selectedProducts" :key="product.id">
                     <td>{{ product.name }}</td>
-                    <td>{{ product.count }}</td>
+
+                    <td class="product-count">
+                        <span>{{ product.count }}</span>
+
+                        <div @click="decrementProduct(product)">
+                            <font-awesome-icon icon="caret-down"/>
+                        </div>
+
+                        <div @click="incrementProduct(product)">
+                            <font-awesome-icon icon="caret-up"/>
+                        </div>
+
+                        <div @click="removeProduct(product)">
+                            <font-awesome-icon icon="times"/>
+                        </div>
+                    </td>
+
                     <td>{{ product.sell_price }}</td>
                     <td>{{ product.sell_price * product.count }}</td>
                 </tr>
@@ -95,6 +119,21 @@ const searchRef = ref("")
 <style lang="scss" scoped>
 .invisible {
     visibility: hidden;
+}
+
+.product-count {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+
+    & > div {
+        cursor: pointer;
+    }
+
+    span {
+        font-family: monospace;
+        font-size: 1rem;
+    }
 }
 
 .total-container {
