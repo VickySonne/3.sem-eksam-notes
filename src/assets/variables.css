@@ -35,6 +35,11 @@
     --default-gap: 1rem;
     --large-gap: 4rem;
 
+
+    /* media queries */
+    --tablet-query: 800px;
+    --desktop-query: 1200px;
+
     /* temporary */
     --muted: rgb(75 85 99);
 }
