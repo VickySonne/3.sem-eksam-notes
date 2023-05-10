@@ -1018,7 +1018,7 @@ h3 {
 
   input {
     width: 100%;
-    -moz-appearance: textfield;
+    appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
