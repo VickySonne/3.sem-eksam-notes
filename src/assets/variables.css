@@ -12,12 +12,20 @@
     --CTA-secondary-hover:pink;
 
     --CTA-tertiary:grey;
-    --CTA-tertiary-hover:
+    --CTA-tertiary-hover:white;
 
 
 
+
+    /* For menu, row & section bacgrounds, søgebare */
     --bg-primary: #1E293B;
     --bg-secondary: #E5E7EB;
+    --bg-tertiary:lightgrey;
+
+    /* opgaver (& tags for now) */
+    --task-light:;
+    --task-dark:;
+
 
     --border-radius: 0.125rem;
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
