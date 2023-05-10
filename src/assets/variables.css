@@ -18,9 +18,9 @@
 
 
     /* For menu, row & section bacgrounds, søgebare */
-    --bg-primary: #1E293B;
-    --bg-secondary: #E5E7EB;
-    --bg-tertiary:lightgrey;
+    --bg-dark: #1E293B;
+    --bg-medium: grey;
+    --bg-light:lightgrey;
 
     /* opgaver (& tags for now) */
     --task-light:lightgrey;
