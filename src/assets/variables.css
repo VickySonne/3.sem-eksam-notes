@@ -23,8 +23,8 @@
     --bg-tertiary:lightgrey;
 
     /* opgaver (& tags for now) */
-    --task-light:;
-    --task-dark:;
+    --task-light:lightgrey;
+    --task-dark:lightgrey;
 
 
     --border-radius: 0.125rem;
