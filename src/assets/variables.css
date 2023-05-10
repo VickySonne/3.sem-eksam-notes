@@ -1,18 +1,18 @@
 :root {
-    --text-primary: #212121;
-    --text-secondary: #FAFAFA;
+    --text-primary: rgb(2 6 23);
+    --text-secondary: rgb(15 23 42);
 
-    --title-primary:red;
-    --title-secondary: blue;
+    --title-primary: rgb(2 6 23);
+    --title-secondary: rgb(15 23 42);
 
-    --CTA-primary:green;
-    --CTA-primary-hover:yellow;
+    --CTA-primary: rgb(2 6 23);
+    --CTA-primary-hover: rgb(15 23 42);
 
-    --CTA-secondary:orange;
-    --CTA-secondary-hover:pink;
+    --CTA-secondary:rgb(30 41 59);
+    --CTA-secondary-hover: rgb(51 65 85);
 
-    --CTA-tertiary:grey;
-    --CTA-tertiary-hover:
+    --CTA-tertiary: rgb(71 85 105);
+    --CTA-tertiary-hover: rgb(100 116 139);
 
 
 
