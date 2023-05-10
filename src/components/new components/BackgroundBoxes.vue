@@ -6,6 +6,8 @@
 
 <style lang="scss" scoped>
     div{
-        --bg-secondary: #E5E7EB;
+        background-color: var(--bg-medium);
+        border-radius: var(--border-radius);
+        padding: var(--default-padding);
     }
 </style>
