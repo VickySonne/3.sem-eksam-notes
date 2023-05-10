@@ -9,6 +9,9 @@ import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, watch} from "vue";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
+// Test Import
+import CreateNewCaseButton from '../components/new components/CreateNewCaseButton.vue';
+
 
 const fetchData = () => {
     return database
@@ -114,10 +117,11 @@ const updateStatusRef = (event) => status.value = event.target.value
                 <p @click="comingSoonDialogue">Avanceret søgning</p>
             </div>
 
-            <div class="create-new-task" @click="router.push({ path: '/case' })">
+          <CreateNewCaseButton/>
+            <!-- <div class="create-new-task" @click="router.push({ path: '/case' })">
                 <font-awesome-icon icon="plus"/>
                 <p>Opret Ny Sag</p>
-            </div>
+            </div> -->
         </section>
 
         <section>
@@ -258,20 +262,20 @@ th:last-child {
   }
 }
 
-.create-new-task {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  border-radius: var(--border-radius);
-  background-color: var(--bg-primary);
-  color: var(--bg-secondary);
-  padding: var(--default-padding);
-  cursor: pointer;
-}
+// .create-new-task {
+//   align-items: center;
+//   display: flex;
+//   gap: 1rem;
+//   border-radius: var(--border-radius);
+//   background-color: var(--bg-primary);
+//   color: var(--bg-secondary);
+//   padding: var(--default-padding);
+//   cursor: pointer;
+// }
 
-.create-new-task:hover {
-  background-color: rgb(71 85 105);
-}
+// .create-new-task:hover {
+//   background-color: rgb(71 85 105);
+// }
 
 table {
   width: 100%;
