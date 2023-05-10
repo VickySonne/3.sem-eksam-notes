@@ -8,5 +8,6 @@
     div{
         background-color: var(--bg-medium);
         border-radius: var(--border-radius);
+        padding: var(--default-padding);
     }
 </style>
