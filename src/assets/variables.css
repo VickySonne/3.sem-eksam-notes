@@ -2,6 +2,20 @@
     --text-primary: #212121;
     --text-secondary: #FAFAFA;
 
+    --title-primary:red;
+    --title-secondary: blue;
+
+    --CTA-primary:green;
+    --CTA-primary-hover:yellow;
+
+    --CTA-secondary:orange;
+    --CTA-secondary-hover:pink;
+
+    --CTA-tertiary:grey;
+    --CTA-tertiary-hover:
+
+
+
     --bg-primary: #1E293B;
     --bg-secondary: #E5E7EB;
 
