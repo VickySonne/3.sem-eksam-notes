@@ -1,4 +1,4 @@
-<script>
+<script setup>
     import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 </script>
 
