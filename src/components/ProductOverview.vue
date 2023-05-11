@@ -6,6 +6,7 @@ import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 // New components import
 import NoProductFound from "./new components/NoProductFound.vue";
+import AddProduct from "./new components/AddProduct.vue"
 
 const props = defineProps({
     products: {
@@ -58,8 +59,9 @@ const searchRef = ref("")
                 <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button" @click="searchRef = ''"/>
             </div>
 
-            <button class="add-product" @click="comingSoonDialogue">Tilføj ny vare</button>
-            <p @click="comingSoonDialogue">Tilføj kundeenhed</p>
+            <AddProduct/>
+            <!-- <button class="add-product" @click="comingSoonDialogue">Tilføj ny vare</button>
+            <p @click="comingSoonDialogue">Tilføj kundeenhed</p> -->
         </div>
 
         <div v-if="searchRef.length" class="product-container">
@@ -247,16 +249,16 @@ const searchRef = ref("")
     }
 }
 
-.add-product {
-  cursor: pointer;
-  background-color: var(--muted);
-  color: white;
-  padding: 1rem;
+// .add-product {
+//   cursor: pointer;
+//   background-color: var(--muted);
+//   color: white;
+//   padding: 1rem;
 
-    &:hover {
-        background-color: rgb(71 85 105);
-    }
-}
+//     &:hover {
+//         background-color: rgb(71 85 105);
+//     }
+// }
 
 table {
   width: 100%;
