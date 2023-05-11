@@ -4,6 +4,7 @@
     const props = defineProps(['columns']);
 </script>
 
+<!-- Lavede det så det virkede da der ikke var noget eksisterende JS til det -->
 <template>
   <thead>
     <tr>

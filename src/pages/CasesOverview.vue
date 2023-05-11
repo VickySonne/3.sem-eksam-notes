@@ -1,5 +1,5 @@
 <script setup>
-import TaskOverviewComp from '../components/CaseOverviewCaseRow.vue';
+import CaseOverviewCaseRow from '../components/CaseOverviewCaseRow.vue';
 import database from '../database.js';
 import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -13,6 +13,7 @@ import SearchBar from '../components/new components/SearchBar.vue';
 // Test Import
 import CreateNewCaseButton from '../components/new components/CreateNewCaseButton.vue';
 import TableHeader from '../components/new components/TableHeader.vue';
+import TableBody from '../components/new components/TableBody.vue';
 
 
 const fetchData = () => {
@@ -163,6 +164,12 @@ const updateStatusRef = (event) => status.value = event.target.value
                         id: 10
                       }
                       ]"/>
+
+                <TableBody>
+                    <CaseOverviewCaseRow v-for="workcase in pagination.getPaginatedResults()"
+                                  :data="workcase" :key="workcase.id"/>
+                </TableBody>
+                
                 <!-- <tr>
                     <th>Oprettet</th>
                     <th>Status</th>
@@ -177,10 +184,10 @@ const updateStatusRef = (event) => status.value = event.target.value
                 </tr> -->
                 <!-- </thead> -->
 
-                <tbody>
+                <!-- <tbody>
                 <TaskOverviewComp v-for="workcase in pagination.getPaginatedResults()"
                                   :data="workcase" :key="workcase.id"/>
-                </tbody>
+                </tbody> -->
             </table>
         </section>
 
