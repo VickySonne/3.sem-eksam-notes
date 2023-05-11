@@ -7,6 +7,9 @@ import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 // New components import
 import NoProductFound from "./new components/NoProductFound.vue";
 import AddProduct from "./new components/AddProduct.vue"
+import TableHeader from '../components/new components/TableHeader.vue';
+import TableBody from '../components/new components/TableBody.vue';
+import ProductOverviewProductRow from "./new components/ProductOverviewProductRow.vue";
 
 const props = defineProps({
     products: {
@@ -84,16 +87,35 @@ const searchRef = ref("")
             </div>
 
             <table v-if="selectedProducts.length">
-                <thead>
+                <TableHeader :columns="[
+                      { title: 'Navn',
+                        id: 1
+                      },
+                      { title: 'Antal',
+                        id: 2
+                      },
+                      { title: 'Stk. Pris',
+                        id: 3
+                      },
+                      { title: 'Total',
+                        id: 4
+                      }
+                      ]"/>
+                <!-- <thead>
                 <tr>
                     <th>Navn</th>
                     <th>Antal</th>
                     <th>Stk. pris</th>
                     <th>Total</th>
                 </tr>
-                </thead>
+                </thead> -->
+               
 
-                <tbody>
+                <TableBody>
+                    <ProductOverviewProductRow v-for="product in selectedProducts" :data="product" :key="product.id"/>
+                </TableBody>
+
+                <!-- <tbody>
                 <tr v-for="product in selectedProducts" :key="product.id">
                     <td>{{ product.name }}</td>
 
@@ -116,7 +138,7 @@ const searchRef = ref("")
                     <td>{{ product.sell_price }}</td>
                     <td>{{ product.sell_price * product.count }}</td>
                 </tr>
-                </tbody>
+                </tbody> -->
             </table>
 
             <div v-if="selectedProducts.length" class="total-container">

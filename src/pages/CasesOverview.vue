@@ -1,5 +1,5 @@
 <script setup>
-import TaskOverviewComp from '../components/CaseOverviewCaseRow.vue';
+import CaseOverviewCaseRow from '../components/CaseOverviewCaseRow.vue';
 import database from '../database.js';
 import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -12,6 +12,8 @@ import SearchBar from '../components/new components/SearchBar.vue';
 
 // Test Import
 import CreateNewCaseButton from '../components/new components/CreateNewCaseButton.vue';
+import TableHeader from '../components/new components/TableHeader.vue';
+import TableBody from '../components/new components/TableBody.vue';
 
 
 const fetchData = () => {
@@ -105,7 +107,7 @@ const updateStatusRef = (event) => status.value = event.target.value
                     <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button hidden-chrome"
                                        @click="searchRef = ''"/>
                 </div> -->
-                <SearchBar />
+                <SearchBar :placeholder="'Søg...'"/>
 
 
                 <CustomSelect :callback="updateStatusRef">
@@ -128,8 +130,47 @@ const updateStatusRef = (event) => status.value = event.target.value
 
         <section>
             <table>
-                <thead>
-                <tr>
+                <!-- <thead> -->
+                  <TableHeader 
+                    :columns="[
+                      { title: 'Oprettet',
+                        id: 1
+                      },
+                      { title: 'Status',
+                        id: 2
+                      },
+                      { title: 'Ansvarlig',
+                        id: 3
+                      },
+                      { title: 'Afhentes',
+                        id: 4
+                      },
+                      { title: 'Kunde',
+                        id: 5
+                      },
+                      { title: 'Opgaver',
+                        id: 6
+                      },
+                      { title: 'Beskrivelse',
+                        id: 7
+                      },
+                      { title: 'Tags',
+                        id: 8
+                      },
+                      { title: 'Pris',
+                        id: 9
+                      },
+                      { title: 'Handlinger',
+                        id: 10
+                      }
+                      ]"/>
+
+                <TableBody>
+                    <CaseOverviewCaseRow v-for="workcase in pagination.getPaginatedResults()"
+                                  :data="workcase" :key="workcase.id"/>
+                </TableBody>
+                
+                <!-- <tr>
                     <th>Oprettet</th>
                     <th>Status</th>
                     <th>Ansvarlig</th>
@@ -140,13 +181,13 @@ const updateStatusRef = (event) => status.value = event.target.value
                     <th>Tags</th>
                     <th>Pris</th>
                     <th>Handlinger</th>
-                </tr>
-                </thead>
+                </tr> -->
+                <!-- </thead> -->
 
-                <tbody>
+                <!-- <tbody>
                 <TaskOverviewComp v-for="workcase in pagination.getPaginatedResults()"
                                   :data="workcase" :key="workcase.id"/>
-                </tbody>
+                </tbody> -->
             </table>
         </section>
 
