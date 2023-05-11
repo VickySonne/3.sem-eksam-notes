@@ -13,6 +13,9 @@ import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 import formatPrice from "../utilities/formatPrice";
 
+// New components import
+import FoundNoCustomer from '../components/new components/FoundNoCustomer.vue';
+
 const props = defineProps({
     id: {
         type: String,
@@ -333,10 +336,12 @@ const deleteCase = () => {
                     </div>
 
                     <div v-if="!selectedCustomer && customerSearchRef.length" class="customer-list">
-                        <div @click="comingSoonDialogue"
+                      
+                      <FoundNoCustomer/>
+                        <!-- <div @click="comingSoonDialogue"
                              v-if="!customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef)).length">
-                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
-                        </div>
+                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p> 
+                        </div>-->
 
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef))"
                              @click="() => {
