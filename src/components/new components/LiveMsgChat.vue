@@ -25,7 +25,7 @@
         </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .messages-container {
     height: 24rem;
     overflow-y: scroll;
