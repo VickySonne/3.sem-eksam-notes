@@ -16,6 +16,7 @@ import formatPrice from "../utilities/formatPrice";
 // New components import
 import NoCustomerFound from '../components/new components/NoCustomerFound.vue';
 import NoSecondaryCustomerFound from '../components/new components/NoSecondaryCustomerFound.vue'
+import TaskList from '../components/new components/TaskList.vue';
 
 const props = defineProps({
     id: {
@@ -454,7 +455,8 @@ const deleteCase = () => {
                     </div>
                 </section>
 
-                <section class="todos">
+                <TaskList/>
+                <!-- <section class="todos">
                     <div class="title-bar">
                         <h3>Opgaver</h3>
 
@@ -494,7 +496,7 @@ const deleteCase = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
 
                 <section>
                     <ProductOverview :add-product="addProduct" :remove-product="removeProduct"
@@ -947,41 +949,41 @@ h3 {
   border-radius: 0.125rem;
 }
 
-.todo-categories-list {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+// .todo-categories-list {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-bottom: 1rem;
 
-  .categories {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
+//   .categories {
+//     align-items: center;
+//     display: flex;
+//     gap: 1rem;
 
-    .category {
-      align-items: center;
-      background-color: #fff;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      display: flex;
-      gap: 2rem;
-      padding: var(--default-padding);
+//     .category {
+//       align-items: center;
+//       background-color: #fff;
+//       border-radius: var(--border-radius);
+//       cursor: pointer;
+//       display: flex;
+//       gap: 2rem;
+//       padding: var(--default-padding);
 
-      &.selected {
-        background-color: var(--muted);
-        color: var(--text-secondary);
-      }
-    }
-  }
-}
+//       &.selected {
+//         background-color: var(--muted);
+//         color: var(--text-secondary);
+//       }
+//     }
+//   }
+// }
 
-.create-custom-todo {
-  display: flex;
-  gap: 1rem;
-  background-color: white;
-  padding: 1rem;
-  border-radius: 0.125rem;
-  cursor: pointer;
-}
+// .create-custom-todo {
+//   display: flex;
+//   gap: 1rem;
+//   background-color: white;
+//   padding: 1rem;
+//   border-radius: 0.125rem;
+//   cursor: pointer;
+// }
 
 .grid-wrapper {
   display: grid;
