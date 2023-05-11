@@ -4,3 +4,8 @@
         </div>
 </template>
 
+<style>
+div:hover {
+    color: var(--bg-medium);
+}
+</style>
