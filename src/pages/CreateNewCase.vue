@@ -867,7 +867,7 @@ h3 {
     width: 100%;
 
     &:hover {
-      background-color: var(--muted);
+      background-color: var(--bg-dark);
       color: var(--text-secondary);
       cursor: pointer;
     }
