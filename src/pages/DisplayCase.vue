@@ -11,6 +11,9 @@ import formatPrice from "../utilities/formatPrice";
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 
+// New components import listing
+import LiveMsgChat from '../components/new components/LiveMsgChat.vue';
+
 const props = defineProps(['id'])
 
 const textMessagingRef = ref("")
@@ -285,6 +288,7 @@ const updateStatus = async (event) => {
                 </section>
 
                 <section>
+                    <LiveMsgChat/>
                     <h3>SMS-beskeder</h3>
                     <div class="sms-container">
                         <div id="messagesContainer" class="messages-container">
