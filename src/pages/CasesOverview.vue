@@ -8,6 +8,7 @@ import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, watch} from "vue";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
+import SearchBar from '../components/new components/SearchBar.vue';
 
 // Test Import
 import CreateNewCaseButton from '../components/new components/CreateNewCaseButton.vue';
@@ -98,12 +99,13 @@ const updateStatusRef = (event) => status.value = event.target.value
 
         <section class="tool-bar">
             <div class="search-bar">
-                <div class="search-field">
+                <!-- <div class="search-field">
                     <font-awesome-icon icon="magnifying-glass"/>
                     <input type="text" placeholder="Søg..." v-model="searchRef">
                     <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button hidden-chrome"
                                        @click="searchRef = ''"/>
-                </div>
+                </div> -->
+                <SearchBar />
 
 
                 <CustomSelect :callback="updateStatusRef">

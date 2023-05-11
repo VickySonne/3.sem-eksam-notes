@@ -5,7 +5,7 @@
 <template>
     <div>
         <font-awesome-icon icon="magnifying-glass"/>
-        <input type="text" :placeholder="{placeholder}" v-model="searchRef">
+        <input type="text" :placeholder="{placeholder}">
         <font-awesome-icon icon="times"/>
     </div>
 </template>
