@@ -1,6 +1,6 @@
-<template>
-    <div>
-        <font-awesome-icon icon="plus"/>
+<template> 
+    <div >
+        <font-awesome-icon icon="plus" />
         <p>Opret Ny Sag</p>
     </div>
 </template>

@@ -13,6 +13,10 @@ import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 import formatPrice from "../utilities/formatPrice";
 
+// New components import
+import NoCustomerFound from '../components/new components/NoCustomerFound.vue';
+import NoSecondaryCustomerFound from '../components/new components/NoSecondaryCustomerFound.vue'
+
 const props = defineProps({
     id: {
         type: String,
@@ -333,10 +337,11 @@ const deleteCase = () => {
                     </div>
 
                     <div v-if="!selectedCustomer && customerSearchRef.length" class="customer-list">
-                        <div @click="comingSoonDialogue"
+                      <NoCustomerFound/>
+                        <!-- <div @click="comingSoonDialogue"
                              v-if="!customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef)).length">
-                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
-                        </div>
+                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p> 
+                        </div>-->
 
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, customerSearchRef))"
                              @click="() => {
@@ -405,10 +410,11 @@ const deleteCase = () => {
                     </div>
 
                     <div v-if="!selectedPayee && payeeSearchRef.length" class="customer-list">
-                        <div @click="comingSoonDialogue"
+                      <NoSecondaryCustomerFound/>
+                        <!-- <div @click="comingSoonDialogue"
                              v-if="!customerOptions.filter(c => recursiveObjectSearch(c, payeeSearchRef)).length">
-                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p>
-                        </div>
+                            <p>Ingen kunder fundet. <span>Klik for at oprette en ny kunde.</span></p> 
+                        </div>-->
 
                         <div v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, payeeSearchRef))"
                              @click="selectedPayee = customer"
