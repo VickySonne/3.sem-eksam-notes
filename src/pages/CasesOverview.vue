@@ -107,7 +107,7 @@ const updateStatusRef = (event) => status.value = event.target.value
                     <font-awesome-icon icon="times" :class="{invisible: !searchRef.length}" class="close-button hidden-chrome"
                                        @click="searchRef = ''"/>
                 </div> -->
-                <SearchBar />
+                <SearchBar :placeholder="'Søg...'"/>
 
 
                 <CustomSelect :callback="updateStatusRef">

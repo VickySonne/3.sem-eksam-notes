@@ -1,11 +1,15 @@
 <script setup>
     import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+
+    import { defineProps } from 'vue';
+
+    const props = defineProps(['placeholder']);
 </script>
 
 <template>
     <div>
         <font-awesome-icon icon="magnifying-glass"/>
-        <input type="text" :placeholder="{placeholder}">
+        <input type="text" :placeholder="placeholder">
         <font-awesome-icon icon="times"/>
     </div>
 </template>
