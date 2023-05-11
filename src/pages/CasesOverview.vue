@@ -12,6 +12,7 @@ import SearchBar from '../components/new components/SearchBar.vue';
 
 // Test Import
 import CreateNewCaseButton from '../components/new components/CreateNewCaseButton.vue';
+import TableHeader from '../components/new components/TableHeader.vue';
 
 
 const fetchData = () => {
@@ -128,8 +129,41 @@ const updateStatusRef = (event) => status.value = event.target.value
 
         <section>
             <table>
-                <thead>
-                <tr>
+                <!-- <thead> -->
+                  <TableHeader 
+                    :columns="[
+                      { title: 'Oprettet',
+                        id: 1
+                      },
+                      { title: 'Status',
+                        id: 2
+                      },
+                      { title: 'Ansvarlig',
+                        id: 3
+                      },
+                      { title: 'Afhentes',
+                        id: 4
+                      },
+                      { title: 'Kunde',
+                        id: 5
+                      },
+                      { title: 'Opgaver',
+                        id: 6
+                      },
+                      { title: 'Beskrivelse',
+                        id: 7
+                      },
+                      { title: 'Tags',
+                        id: 8
+                      },
+                      { title: 'Pris',
+                        id: 9
+                      },
+                      { title: 'Handlinger',
+                        id: 10
+                      }
+                      ]"/>
+                <!-- <tr>
                     <th>Oprettet</th>
                     <th>Status</th>
                     <th>Ansvarlig</th>
@@ -140,8 +174,8 @@ const updateStatusRef = (event) => status.value = event.target.value
                     <th>Tags</th>
                     <th>Pris</th>
                     <th>Handlinger</th>
-                </tr>
-                </thead>
+                </tr> -->
+                <!-- </thead> -->
 
                 <tbody>
                 <TaskOverviewComp v-for="workcase in pagination.getPaginatedResults()"
