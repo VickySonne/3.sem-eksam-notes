@@ -6,12 +6,12 @@
 <style lang="scss" scoped>
 .add-product {
   cursor: pointer;
-  background-color: var(--CTA-tertiary);
+  background-color: var(--CTA-secondary);
   color: white;
   padding: 1rem;
 
     &:hover {
-        background-color: var(--CTA-tertiary-hover);
+        background-color: var(--CTA-secondary-hover);
     }
 }
 </style>
