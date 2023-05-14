@@ -1,0 +1,45 @@
+:root {
+    --text-primary: rgb(2 6 23);
+    --text-secondary: rgb(220, 223, 231);
+
+    --title-primary: rgb(2 6 23);
+    --title-secondary: rgb(15 23 42);
+
+    --CTA-primary: rgb(2 6 23);
+    --CTA-primary-hover: rgb(15 23 42);
+
+    --CTA-secondary:rgb(30 41 59);
+    --CTA-secondary-hover: rgb(51 65 85);
+
+    --CTA-tertiary: rgb(71 85 105);
+    --CTA-tertiary-hover: rgb(100 116 139);
+
+
+
+
+    /* For menu, row & section bacgrounds, søgebare */
+    --bg-dark: #1E293B;
+    --bg-medium: grey;
+    --bg-light:lightgrey;
+
+    /* opgaver (& tags for now) */
+    --task-light:lightgrey;
+    --task-dark:lightgrey;
+
+
+    --border-radius: 0.125rem;
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    --default-padding: 1rem;
+    --halv-padding: calc(var(--default-padding) / 2);
+    --default-gap: 1rem;
+    --large-gap: 4rem;
+
+
+    /* media queries */
+    --tablet-query: 800px;
+    --desktop-query: 1200px;
+
+    /* temporary */
+    --muted: rgb(75 85 99);
+}
