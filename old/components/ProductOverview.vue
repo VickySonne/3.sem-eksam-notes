@@ -2,7 +2,6 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 import {ref, toRefs} from "vue";
-import comingSoonDialogue from "@/utilities/comingSoonDialogue";
 
 // New components import
 import NoProductFound from "./new components/NoProductFound.vue";
@@ -15,7 +14,7 @@ const props = defineProps({
     products: {
         type: Array,
         required: false,
-        default: []
+        default: () => []
     },
     selectedProducts: {
         type: Array,

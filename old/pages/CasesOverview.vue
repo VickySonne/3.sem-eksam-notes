@@ -1,7 +1,6 @@
 <script setup>
 import CaseOverviewCaseRow from '../components/CaseOverviewCaseRow.vue';
 import database from '../database.js';
-import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";

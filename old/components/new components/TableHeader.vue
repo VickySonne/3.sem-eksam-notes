@@ -1,7 +1,7 @@
 <script setup>
     import { defineProps } from 'vue';
 
-    const props = defineProps(['columns']);
+    defineProps(['columns']);
 </script>
 
 <!-- Lavede det så det virkede da der ikke var noget eksisterende JS til det -->

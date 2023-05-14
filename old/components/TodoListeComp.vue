@@ -1,12 +1,12 @@
 <script setup>
-    const { data } = defineProps(['data']);
+defineProps(['data']);
 </script>
 
 <template>
         <div class="todos">
             <h5>Kategori</h5>
             <form>
-                <div v-for="task in data.tasks">
+                <div v-for="task in data.tasks" :key="task.id">
                     <input type="checkbox"><label>{{ task.name }}</label>
                 </div>
                 

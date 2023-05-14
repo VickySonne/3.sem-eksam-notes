@@ -1,6 +1,6 @@
 .loader:after {
     animation: loader 1.2s linear infinite;
-    border-color: var(--bg-primary) transparent;
+    border-color: var(--bg-dark) transparent;
     border-radius: 50%;
     border-style: solid;
     border-width: 0.325rem;
