@@ -23,7 +23,7 @@
     --bg-light:lightgrey;
 
     /* opgaver (& tags for now) */
-    --task-light:lightgrey;
+    --task-light:#e5e7eb;
     --task-dark:lightgrey;
 
 
@@ -31,14 +31,14 @@
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
     --default-padding: 1rem;
-    --halv-padding: calc(var(--default-padding) / 2);
+    --half-padding: calc(var(--default-padding) / 2);
     --default-gap: 1rem;
     --large-gap: 4rem;
 
 
     /* media queries */
-    --tablet-query: 800px;
-    --desktop-query: 1200px;
+    --tablet: 800px;
+    --desktop: 1200px;
 
     /* temporary */
     --muted: rgb(75 85 99);

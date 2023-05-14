@@ -16,6 +16,7 @@ import formatPrice from "../utilities/formatPrice";
 // New components import
 import NoCustomerFound from '../components/new components/NoCustomerFound.vue';
 import NoSecondaryCustomerFound from '../components/new components/NoSecondaryCustomerFound.vue'
+import DetailSectionCreate from '../components/new components/DetailSectionCreate.vue';
 
 const props = defineProps({
     id: {
@@ -502,7 +503,9 @@ const deleteCase = () => {
                                      :increment-product="incrementProduct" :decrement-product="decrementProduct"/>
                 </section>
 
-                <section class="details">
+                <DetailSectionCreate />
+
+                <!-- <section class="details">
                     <h3>Detaljer</h3>
 
                     <div class="grid-wrapper section-bg">
@@ -560,7 +563,7 @@ const deleteCase = () => {
                                       rows="10" placeholder="Indtast evt. beskrivelse af sagen..."></textarea>
                         </div>
                     </div>
-                </section>
+                </section> -->
             </div>
         </div>
 
