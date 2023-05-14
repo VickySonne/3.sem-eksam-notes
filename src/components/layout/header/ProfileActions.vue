@@ -12,7 +12,7 @@ const toggleDropdown = () => {
 
 <template>
     <section>
-        <NavItem icon="bell" disabled="true"/>
+        <NavItem icon="bell" :disabled=true />
 
         <div :class="{active: showDropdown}" @click="toggleDropdown">
             <font-awesome-icon icon="user" />

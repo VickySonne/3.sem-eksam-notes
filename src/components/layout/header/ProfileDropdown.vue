@@ -4,8 +4,8 @@ import NavItem from "@/components/layout/navigation/NavItem.vue";
 
 <template>
     <ul>
-        <NavItem icon="people-arrows" label="Skift bruger" />
-        <NavItem icon="arrow-right-from-bracket" label="Log ud" />
+        <NavItem icon="people-arrows" label="Skift bruger" disabled="true" />
+        <NavItem icon="arrow-right-from-bracket" label="Log ud" disabled="true"/>
     </ul>
 </template>
 
