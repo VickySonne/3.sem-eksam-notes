@@ -21,7 +21,7 @@ const expanded = ref(true);
 
               <hr />
 
-              <NavItem label="Skjul&nbsp;Sidebjælke" :icon="expanded ? 'arrow-left' : 'arrow-right'" :show-label="expanded" @click="() => expanded = !expanded" :is-disabled="true"/>
+              <NavItem label="Skjul&nbsp;Sidebjælke" :icon="expanded ? 'arrow-left' : 'arrow-right'" :show-label="expanded" @click="() => expanded = !expanded" :disabled=true />
           </NavSection>
         </nav>
     </aside>
