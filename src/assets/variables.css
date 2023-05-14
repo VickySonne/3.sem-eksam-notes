@@ -14,7 +14,8 @@
     --CTA-tertiary: rgb(71 85 105);
     --CTA-tertiary-hover: rgb(100 116 139);
 
-
+    --text-small: 0.875rem;
+    --text-heavy: 600;
 
 
     /* For menu, row & section bacgrounds, søgebare */
@@ -31,7 +32,7 @@
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
     --default-padding: 1rem;
-    --halv-padding: calc(var(--default-padding) / 2);
+    --half-padding: calc(var(--default-padding) / 2);
     --default-gap: 1rem;
     --large-gap: 4rem;
 
