@@ -9,7 +9,7 @@ import UpdateCase from "@/pages/cases/UpdateCase.vue";
 const routes = [
   { path: '/', name: 'CaseIndex', component: CaseIndex },
   { path: '/case', name: 'CreateCase', component: CreateCase },
-  { path: '/case/:id', name: 'ReadCase', component: ReadCase, props: true },
+  { path: '/case/:id', name: 'ReadCase', component: ReadCase },
   { path: '/case/:id/edit', name: 'UpdateCase', component: UpdateCase, props: true },
   { path: '/fake-route', name: 'ComingSoon', component: ComingSoon },
 
