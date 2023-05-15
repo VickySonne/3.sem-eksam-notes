@@ -2,22 +2,10 @@
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import CaseTask from "@/pages/cases/components/shared/CaseTask.vue";
-import router from "@/router";
-import supabase from "@/database";
+import taskReducer from "@/pages/cases/components/read/tasks/taskReducer";
 
-const { data } = await supabase.from("cases")
-    .select("id, tasks(id, name), cases_tasks(task_id, completed)")
-    .eq("id", router.currentRoute.value.params.id)
-    .single();
-
-const tasks = data.tasks.map(task => {
-    const caseTask = data.cases_tasks.find(caseTask => caseTask.task_id === task.id);
-
-    return {
-        ...task,
-        completed: caseTask.completed
-    }
-});
+const tasks = taskReducer.tasks
+taskReducer.fetchTasks()
 </script>
 
 <template>
