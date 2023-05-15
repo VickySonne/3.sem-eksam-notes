@@ -1,16 +1,17 @@
 import {createRouter, createWebHistory} from "vue-router";
 
-import MainTaskOverview from "./pages/CasesOverview.vue";
-import MainCreateNew from "./pages/CreateNewCase.vue";
-import MainTaskDisplay from "./pages/DisplayCase.vue";
-import ComingSoon from "@/components/shared/ComingSoon.vue";
+import CaseIndex from "@/pages/cases/CaseIndex.vue";
+import ComingSoon from "@/pages/ComingSoon.vue";
+import CreateCase from "@/pages/cases/CreateCase.vue";
+import ReadCase from "@/pages/cases/ReadCase.vue";
+import UpdateCase from "@/pages/cases/UpdateCase.vue";
 
 const routes = [
-  { path: '/', name: 'MainTaskOverview', component: MainTaskOverview },
-  { path: '/case', name: 'MainCreateNew', component: MainCreateNew },
-  { path: '/case/:id', name: 'MainTaskDisplay', component: MainTaskDisplay, props: true },
-  { path: '/case/:id/edit', name: 'MainTaskEdit', component: MainCreateNew, props: true },
-  { path: '/fake-route', name: 'ComingSoon', component: ComingSoon, props: true },
+  { path: '/', name: 'CaseIndex', component: CaseIndex },
+  { path: '/case', name: 'CreateCase', component: CreateCase },
+  { path: '/case/:id', name: 'ReadCase', component: ReadCase },
+  { path: '/case/:id/edit', name: 'UpdateCase', component: UpdateCase, props: true },
+  { path: '/fake-route', name: 'ComingSoon', component: ComingSoon },
 
 ]
 

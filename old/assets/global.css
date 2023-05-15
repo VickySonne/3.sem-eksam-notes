@@ -12,8 +12,3 @@ body,
 html {
     font-family: 'Lexend', sans-serif;
 }
-
-svg {
-    height: 18px !important;
-    width: 18px !important;
-}

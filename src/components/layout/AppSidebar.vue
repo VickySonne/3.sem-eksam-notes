@@ -1,88 +1,52 @@
 <script setup>
-import NavItem from "@/components/navigation/NavItem.vue";
 import {ref} from "vue";
 
-const topNavItems = [
-    {
-        text: "Overblik",
-        icon: "home",
-    },
-    {
-        text: "Sagsstyring",
-        icon: "tasks",
-        route: "/",
-    },
-    {
-        text: "Kasse",
-        icon: "cash-register",
-    },
-    {
-        text: "Kunder",
-        icon: "users",
-    },
-    {
-        text: "Varer",
-        icon: "barcode",
-    },
-    {
-        text: "Statestik",
-        icon: "chart-bar",
-    }
-];
+import NavItem from "@/components/layout/navigation/NavItem.vue";
+import NavSection from "@/components/layout/navigation/NavSection.vue";
+import topNavItems from "@/data/navigation/TopNavItems";
 
-const showLabels = ref(true)
-const toggleLabels = () => showLabels.value = !showLabels.value
+const expanded = ref(true);
 </script>
 
 <template>
-    <aside :class="{ 'expanded': showLabels }">
+    <aside :class="{ expanded: expanded }">
         <nav>
-            <ul>
-                <NavItem v-for="item in topNavItems" :label="item.text" :icon="item.icon" :route="item.route"
-                         :key="item.text" :show-label="showLabels"/>
-            </ul>
+          <NavSection>
+              <NavItem v-for="item in topNavItems" :route=item.route :label=item.label :icon=item.icon :show-label=expanded :key=item.text />
+          </NavSection>
 
-            <ul>
-                <NavItem label="Support" icon="life-ring" :show-label="showLabels"/>
-                <NavItem label="Indstillinger" icon="cogs" :show-label="showLabels"/>
+          <NavSection>
+              <NavItem label="Support" icon="life-ring" :show-label=expanded />
+              <NavItem label="Indstillinger" icon="cogs" :show-label=expanded />
 
-                <li class="separator"></li>
+              <hr />
 
-                <NavItem label="Skjul&nbsp;Sidebjælke" :icon="showLabels ? 'arrow-left' : 'arrow-right'"
-                         :show-label="showLabels"
-                         @click="toggleLabels" :is-disabled="true"/>
-            </ul>
+              <NavItem label="Skjul&nbsp;Sidebjælke" :icon="expanded ? 'arrow-left' : 'arrow-right'" :show-label="expanded" @click="() => expanded = !expanded" :disabled=true />
+          </NavSection>
         </nav>
     </aside>
 </template>
 
 <style lang="scss" scoped>
 aside {
-  background-color: var(--bg-secondary);
+  padding: var(--default-padding);
 
   &.expanded {
-    min-width: 16rem;
+    width: 16rem;
   }
-}
 
-nav {
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  height: 100%;
-  justify-content: space-between;
-  padding: 1rem;
-
-  ul {
-    display: grid;
-    gap: 0.5rem;
+  nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
-}
 
-.separator {
-  background-color: var(--bg-primary);
-  border-radius: var(--border-radius);
-  height: 4px;
-  opacity: 0.5;
+  hr {
+    background-color: var(--bg-medium);
+    border-radius: var(--border-radius);
+    height: 4px;
+    opacity: 0.5;
+  }
 }
 </style>

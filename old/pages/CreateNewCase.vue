@@ -36,7 +36,7 @@ const {data: customerOptions} = await database.from('customers').select('id, nam
 //
 // const {data: tagsOptions} = await database.from('tags').select('id, name')
 //
-const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)').eq('tasks.one_off', false)
+// const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)').eq('tasks.one_off', false)
 
 //
 const {data: productOptions} = await database.from('products').select('id, name, sell_price')
@@ -52,7 +52,7 @@ const status = ref(statusOptions[0])
 const price = ref(null)
 const deposit = ref(0)
 
-const currentTaskCategory = ref(taskOptions[0].id)
+// const currentTaskCategory = ref(taskOptions[0].id)
 
 // const tags = ref([])
 const showPayeeOptions = ref(false)
@@ -223,45 +223,45 @@ const updateStatus = (event) => {
     status.value = statusOptions.find(e => e.id === parseInt(event.target.value))
 }
 
-const switchCategory = (categoryId) => {
-    currentTaskCategory.value = categoryId
-}
+// const switchCategory = (categoryId) => {
+//     currentTaskCategory.value = categoryId
+// }
 
-const taskIsSelected = (task) => {
-    return selectedTasks.value.some(t => t.id === task.id)
-}
+// const taskIsSelected = (task) => {
+//     return selectedTasks.value.some(t => t.id === task.id)
+// }
 
-const toggleTask = (task) => {
-    if (taskIsSelected(task)) {
-        selectedTasks.value = selectedTasks.value.filter(t => t.id !== task.id)
-    } else {
-        selectedTasks.value.push(task)
-    }
-}
+// const toggleTask = (task) => {
+//     if (taskIsSelected(task)) {
+//         selectedTasks.value = selectedTasks.value.filter(t => t.id !== task.id)
+//     } else {
+//         selectedTasks.value.push(task)
+//     }
+// }
 
 
-const countSelectedTasksInCategory = (category) => {
-    return category.tasks.filter(task => taskIsSelected(task)).length
-}
+// const countSelectedTasksInCategory = (category) => {
+//     return category.tasks.filter(task => taskIsSelected(task)).length
+// }
 
-const showCustomTaskInput = ref(false)
+// const showCustomTaskInput = ref(false)
 
-const toggleCustomTask = () => {
-    customTaskRef.value = ""
-    showCustomTaskInput.value = !showCustomTaskInput.value
-}
+// const toggleCustomTask = () => {
+//     customTaskRef.value = ""
+//     showCustomTaskInput.value = !showCustomTaskInput.value
+// }
 
-const customTaskRef = ref("")
+// const customTaskRef = ref("")
 
-const createCustomTask = () => {
-    database.from("tasks").insert({
-        name: customTaskRef.value,
-        one_off: true,
-    }).select().single().then(data => {
-        selectedTasks.value.push(data.data)
-        toggleCustomTask()
-    })
-}
+// const createCustomTask = () => {
+//     database.from("tasks").insert({
+//         name: customTaskRef.value,
+//         one_off: true,
+//     }).select().single().then(data => {
+//         selectedTasks.value.push(data.data)
+//         toggleCustomTask()
+//     })
+// }
 
 const addProduct = (product) => {
     if (selectedProducts.value.some(p => p.id === product.id)) {

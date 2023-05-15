@@ -1,0 +1,3 @@
+<template>
+    <h1>Update Case</h1>
+</template>

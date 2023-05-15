@@ -1,13 +1,13 @@
-.loader {
+.loader:after {
     animation: loader 1.2s linear infinite;
-    aspect-ratio: 1;
     border-color: var(--bg-dark) transparent;
-    border-radius: 50% !important;
+    border-radius: 50%;
     border-style: solid;
-    border-width: 0.25rem;
+    border-width: 0.325rem;
+    content: "";
     display: block;
-    height: 1.5rem;
-    margin: 2rem auto;
+    height: 3rem;
+    width: 3rem;
 }
 
 @keyframes loader {

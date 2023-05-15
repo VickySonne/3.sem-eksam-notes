@@ -3,7 +3,7 @@
 
     import { defineProps } from 'vue';
 
-    const props = defineProps(['placeholder']);
+    defineProps(['placeholder']);
 </script>
 
 <template>
