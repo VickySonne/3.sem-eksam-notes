@@ -288,7 +288,7 @@ const updateStatus = async (event) => {
                 </section>
 
                 <section>
-                    <LiveMsgChat/>
+                    <!-- <LiveMsgChat/> -->
                     <h3>SMS-beskeder</h3>
                     <div class="sms-container">
                         <div id="messagesContainer" class="messages-container">

@@ -3,6 +3,7 @@ import router from "@/router";
 import {ref} from "vue";
 import CustomSelect from "@/components/shared/forms/CustomSelect.vue";
 import CustomSelectItem from "@/components/shared/forms/CustomSelectItem.vue";
+import TaskComponent from "./new components/TaskComponent.vue";
 
 const props = defineProps(['data']);
 
@@ -44,7 +45,8 @@ const expandedDescription = ref(false);
         </td>
 
         <td>
-            <p class="tag" v-for="task in tasks" :key="task.id">{{ task.name }}</p>
+            <TaskComponent v-for="task in tasks" :data="task" :key="task.id"/>
+            <!-- <p class="tag" v-for="task in tasks" :key="task.id">{{ task.name }}</p> -->
             <span v-if="!tasks.length">-</span>
         </td>
 
@@ -57,7 +59,8 @@ const expandedDescription = ref(false);
         </td>
 
         <td>
-            <p class="tag" v-for="tag in tags" :key="tag.id">{{ tag.name }}</p>
+            <TaskComponent v-for="tag in tags" :data="tag" :key="tag.id"/>
+            <!-- <p class="tag" v-for="tag in tags" :key="tag.id">{{ tag.name }}</p> -->
             <span v-if="!tags.length">-</span>
         </td>
 

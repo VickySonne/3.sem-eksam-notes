@@ -24,7 +24,7 @@
     --bg-light:lightgrey;
 
     /* opgaver (& tags for now) */
-    --task-light:lightgrey;
+    --task-light:#e5e7eb;
     --task-dark:lightgrey;
 
 
@@ -38,8 +38,8 @@
 
 
     /* media queries */
-    --tablet-query: 800px;
-    --desktop-query: 1200px;
+    --tablet: 800px;
+    --desktop: 1200px;
 
     /* temporary */
     --muted: rgb(75 85 99);
