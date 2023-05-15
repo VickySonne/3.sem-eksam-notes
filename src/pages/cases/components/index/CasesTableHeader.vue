@@ -3,12 +3,12 @@ const columns = [
     'Oprettet',
     'Status',
     'Ansvarlig',
-    'Afhentes',
     'Kunde',
+    'Tags',
     'Opgaver',
     'Beskrivelse',
-    'Tags',
     'Pris',
+    'Afhentes',
     'Handlinger'
 ]
 
@@ -26,7 +26,8 @@ const columns = [
 r
 <style lang="scss" scoped>
 th {
-  padding: var(--default-padding);
+  padding-block: var(--default-padding);
+  padding-inline: var(--half-padding);
   font-weight: var(--text-heavy);
 
     &:last-child {

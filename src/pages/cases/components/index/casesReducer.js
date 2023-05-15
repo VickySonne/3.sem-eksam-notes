@@ -5,8 +5,11 @@ const casesReducer = {
     cases: ref([]),
 
     fetchCases: async function () {
+        const queryString
+            = "id, created_at, status(name), responsible_employee(name), pickup, customer(name), tasks(name), description, tags(name), negotiated_price"
+
         const  { data } = await supabase.from("cases")
-            .select("id")
+            .select(queryString)
             .order("created_at", { ascending: false })
 
         this.cases.value = data
