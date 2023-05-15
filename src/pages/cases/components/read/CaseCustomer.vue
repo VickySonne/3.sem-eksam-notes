@@ -34,6 +34,11 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 ul {
     display: grid;
-    gap: var(--half-padding)
+    gap: var(--half-padding);
+
+    li:first-child {
+        font-weight: var(--text-heavy);
+        font-size: 20px;
+    }
 }
 </style>

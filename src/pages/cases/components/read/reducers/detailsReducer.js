@@ -2,24 +2,25 @@ import {ref} from "vue";
 import supabase from "@/database";
 import router from "@/router";
 
-const customerReducer = {
+
+const detailsReducer = {
     flush: function () {
-        this.customer.value = {}
+        this.details.value = {}
     },
 
-    customer: ref({}),
+    details: ref({}),
 
-    fetchCustomer: async function () {
+    fetchDetails: async function () {
         const id = router.currentRoute.value.params.id
-        const queryString = "id, customer(name, email, phone, address, city, zipcode)"
+        const queryString = "responsible_employee(name), status(name), pickup, negotiated_price, created_by(name), created_at, description"
 
         const { data } = await supabase.from("cases")
             .select(queryString)
             .eq("id", id)
             .single()
 
-        this.customer.value = data.customer
+        this.details.value = data
     }
 }
 
-export default customerReducer
+export default detailsReducer
