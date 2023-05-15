@@ -15,5 +15,3 @@ section {
   padding: var(--default-padding);
 }
 </style>
-<script setup>
-</script>
