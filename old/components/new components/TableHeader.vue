@@ -14,7 +14,7 @@
     </tr>
 </thead>
 </template>
-
+r
 <style lang="scss" scoped>
   th {
     padding: var(--default-padding);
