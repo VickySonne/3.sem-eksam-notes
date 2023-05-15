@@ -456,7 +456,7 @@ const deleteCase = () => {
                     </div>
                 </section>
 
-                <TaskList/>
+                <!-- <TaskList/> -->
                 <!-- <section class="todos">
                     <div class="title-bar">
                         <h3>Opgaver</h3>

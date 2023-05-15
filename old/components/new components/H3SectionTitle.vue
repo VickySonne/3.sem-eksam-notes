@@ -3,11 +3,11 @@
 </script>
 
 <template>
-    <h4>
+    <h3>
         <slot>
     
         </slot>
-    </h4>
+    </h3>
 </template>
 
 <style lang="scss" scoped>

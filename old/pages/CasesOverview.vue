@@ -120,11 +120,11 @@ const updateStatusRef = (event) => status.value = event.target.value
                 <p @click="comingSoonDialogue">Avanceret søgning</p>
             </div>
 
-          <CreateNewCaseButton/>
-            <!-- <div class="create-new-task" @click="router.push({ path: '/case' })">
+          <!-- <CreateNewCaseButton/> -->
+            <div class="create-new-task" @click="router.push({ path: '/case' })">
                 <font-awesome-icon icon="plus"/>
                 <p>Opret Ny Sag</p>
-            </div> -->
+            </div>
         </section>
 
         <section>
