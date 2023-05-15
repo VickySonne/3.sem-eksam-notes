@@ -10,6 +10,7 @@ import AppSidebar from "@/components/layout/AppSidebar.vue";
     <div class="app-content">
       <AppHeader/>
 
+      <!--suspense er Vue eget component-->
       <Suspense>
         <main>
           <router-view />
