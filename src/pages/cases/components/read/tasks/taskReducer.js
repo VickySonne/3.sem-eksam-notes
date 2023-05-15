@@ -3,23 +3,26 @@ import router from "@/router";
 import {ref} from "vue";
 
 const taskReducer = {
+    flush: function () {
+        this.tasks.value = [];
+    },
+
     tasks: ref([]),
 
-    fetchTasks: function () {
-        supabase.from("cases")
+    fetchTasks: async function () {
+        const { data } = await supabase.from("cases")
             .select("id, tasks(id, name), cases_tasks(task_id, completed)")
             .eq("id", router.currentRoute.value.params.id)
             .single()
-            .then(response => {
-                this.tasks.value = response.data.tasks.map(task => {
-                    const caseTask = response.data.cases_tasks.find(caseTask => caseTask.task_id === task.id);
 
-                    return {
-                        ...task,
-                        completed: caseTask.completed
-                    }
-                });
-            })
+        this.tasks.value = data.tasks.map(task => {
+            const caseTask = data.cases_tasks.find(caseTask => caseTask.task_id === task.id)
+
+            return {
+                ...task,
+                completed: caseTask.completed
+            }
+        })
     },
 
     toggleTaskCompletion: async (task) => {

@@ -3,6 +3,11 @@ import supabase from "@/database";
 import router from "@/router";
 
 const messagingReducer = {
+    flush: function () {
+        this.messages.value = []
+        this.message.value = null
+    },
+
     message: ref(null),
     messages: ref([]),
 

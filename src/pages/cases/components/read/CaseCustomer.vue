@@ -1,13 +1,20 @@
 <script setup>
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
-import supabase from "@/database";
-import router from "@/router";
+import customerReducer from "@/pages/cases/components/read/reducers/customerReducer";
+import {onUnmounted, ref} from "vue";
 
-const { data } = await supabase.from("cases")
-    .select("id, customer(name, email, phone, address, city, zipcode)")
-    .eq("id", router.currentRoute.value.params.id)
-    .single();
+const isLoading = ref(true)
+
+const customer = customerReducer.customer
+
+customerReducer.fetchCustomer().then(() => {
+    isLoading.value = false
+})
+
+onUnmounted(() => {
+    customerReducer.flush()
+})
 </script>
 
 <template>
@@ -17,8 +24,10 @@ const { data } = await supabase.from("cases")
         </template>
 
         <ul>
-            <li v-for="(value, key) in data.customer" :key="key">{{ value }}</li>
+            <li v-for="(value, key) in customer" :key="key">{{ value }}</li>
         </ul>
+
+        <div v-if="isLoading" class="loader"></div>
     </SectionContainer>
 </template>
 
