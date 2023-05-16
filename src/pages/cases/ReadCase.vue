@@ -6,6 +6,7 @@ import CaseMessaging from "@/pages/cases/components/read/CaseMessaging.vue";
 import CaseProducts from "@/pages/cases/components/read/CaseProducts.vue";
 import CaseTasks from "@/pages/cases/components/read/CaseTasks.vue";
 import BackButton from "@/components/layout/navigation/BackButton.vue";
+import HandleCaseDetails from "./components/handlecase/HandleCaseDetails.vue";
 </script>
 
 <template>
@@ -16,6 +17,7 @@ import BackButton from "@/components/layout/navigation/BackButton.vue";
             <CaseDetails />
             <CaseTasks />
             <CaseProducts />
+            <HandleCaseDetails/>
         </template>
 
         <template #right-column>

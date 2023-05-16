@@ -22,6 +22,7 @@
     --bg-dark: #1E293B;
     --bg-medium: grey;
     --bg-light:lightgrey;
+    --bg-white: white;
 
     /* opgaver (& tags for now) */
     --task-light:#e5e7eb;

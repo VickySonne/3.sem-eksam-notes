@@ -18,5 +18,6 @@ header {
   grid-template-columns: 1fr auto 1fr;
   gap: var(--default-padding);
   padding: var(--default-padding);
+  box-shadow: var(--shadow);
 }
 </style>

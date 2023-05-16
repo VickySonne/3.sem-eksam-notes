@@ -25,6 +25,7 @@ onUnmounted(() => {
 
         <div v-if="isLoading" class="loader"></div>
 
+        <!-- Lav dette til komponenter som også kan genbruges i summery-->
         <div v-if="!isLoading">
             <p><span>Ansvarlig:</span> {{ details.responsible_employee.name }}</p>
             <p><span>Status:</span> {{ details.status.name }}</p>
