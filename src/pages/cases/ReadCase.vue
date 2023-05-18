@@ -27,7 +27,6 @@ const caseNumber = router.currentRoute.value.params.id
             <CaseDetails />
             <CaseTasks />
             <CaseProducts />
-            <!-- <HandleCaseDetails/> -->
             <CaseFilesNotes />
         </template>
 
