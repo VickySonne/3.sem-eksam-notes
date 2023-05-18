@@ -14,7 +14,7 @@
 
 <template>
     <PageTitle title="Opret ny sag" />
-    <BackButton></BackButton>
+    <BackButton>Tilbage til oversigt</BackButton>
     <BaseGrid>
         <template #left-column>
             <HandleCaseCustomer></HandleCaseCustomer>
