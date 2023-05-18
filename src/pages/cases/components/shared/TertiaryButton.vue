@@ -12,14 +12,24 @@
 </script>
 
 <template>
-<p @click="callback">{{ text }}</p>
+    <div>
+        <p @click="callback">{{ text }}</p>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-p {
-cursor: pointer;
-&:hover{
-    text-decoration: underline;
-}
-}
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        p {
+        cursor: pointer;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    
 </style>

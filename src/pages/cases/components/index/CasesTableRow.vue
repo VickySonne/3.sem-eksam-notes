@@ -28,7 +28,7 @@ defineProps({
 tr {
   line-height: 1.5rem;
 
-  &:nth-child(even) {
+  &:nth-child(odd) {
     background-color: var(--bg-light);
   }
 
