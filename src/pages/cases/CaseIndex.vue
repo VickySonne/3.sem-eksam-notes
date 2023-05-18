@@ -7,6 +7,7 @@ import CustomSelect from "../../components/dropdowns/CustomSelect.vue";
 import CustomSelectItem from "../../components/dropdowns/CustomSelectItem.vue";
 import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
+import NoResult from "./components/index/NoResult.vue";
 </script>
 
 <template>
@@ -27,8 +28,9 @@ import PageTitle from "@/components/layout/PageTitle.vue";
       </ActionToolbar>
     </div>
     <div>
-      <CasesTable />
-      <CasesPagination />
+      <NoResult />
+      <!-- <CasesTable />
+      <CasesPagination /> -->
     </div>
   </div>
 </template>
