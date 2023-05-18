@@ -6,7 +6,7 @@ import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 <template>
     <SectionContainer>
         <template #header>
-            <SectionHeader title="Products" />
+            <SectionHeader title="Produkter" />
         </template>
 
 

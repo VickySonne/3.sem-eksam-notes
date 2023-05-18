@@ -15,7 +15,7 @@ import TextareaInput from './details/TextareaInput.vue';
 <template>
     <SectionContainer>
         <template #header>
-            <SectionHeader title="Details"></SectionHeader>
+            <SectionHeader title="Detaljer"></SectionHeader>
         </template>
 
         <div class="content">
