@@ -8,6 +8,7 @@ import CustomSelectItem from "../../components/dropdowns/CustomSelectItem.vue";
 import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import NoResult from "./components/index/NoResult.vue";
+import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
 </script>
 
 <template>
@@ -20,7 +21,8 @@ import NoResult from "./components/index/NoResult.vue";
           <CustomSelect>
             <CustomSelectItem></CustomSelectItem>
           </CustomSelect>
-          <p>Tertiary button here</p>
+
+          <TertiaryButton text="Advanceret søgning" :callback="() => {}"/>
         </template>
         <template #contentright>
           <PrimaryButton icon="plus">Opret Ny Sag</PrimaryButton>
