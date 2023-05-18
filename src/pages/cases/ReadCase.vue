@@ -10,6 +10,7 @@ import HandleCaseDetails from "./components/handlecase/HandleCaseDetails.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import router from "@/router";
 import ReadCaseMenu from "./components/read/ReadCaseMenu.vue";
+import CaseFilesNotes from "./components/read/CaseFilesNotes.vue";
 
 const caseNumber = router.currentRoute.value.params.id
 </script>
@@ -27,6 +28,7 @@ const caseNumber = router.currentRoute.value.params.id
             <CaseTasks />
             <CaseProducts />
             <HandleCaseDetails/>
+            <CaseFilesNotes />
         </template>
 
         <template #right-column>
