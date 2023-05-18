@@ -9,13 +9,17 @@ import BackButton from "@/components/layout/navigation/BackButton.vue";
 import HandleCaseDetails from "./components/handlecase/HandleCaseDetails.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import router from "@/router";
+import ReadCaseMenu from "./components/read/ReadCaseMenu.vue";
 
 const caseNumber = router.currentRoute.value.params.id
 </script>
 
 <template>
     <PageTitle :title="'Sag #' + caseNumber" />
-    <BackButton>Tilbage til oversigt</BackButton>
+    <header>
+        <BackButton>Tilbage til oversigt</BackButton>
+        <ReadCaseMenu />
+    </header>
 
     <BaseGrid>
         <template #left-column>
@@ -31,3 +35,15 @@ const caseNumber = router.currentRoute.value.params.id
         </template>
     </BaseGrid>
 </template>
+
+<style lang="scss" scoped>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    & > * {
+        padding: 0;
+    }
+}
+</style>
