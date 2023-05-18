@@ -6,11 +6,12 @@ import SearchInput from "../../components/inputs/SearchInput.vue";
 import CustomSelect from "../../components/dropdowns/CustomSelect.vue";
 import CustomSelectItem from "../../components/dropdowns/CustomSelectItem.vue";
 import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
+import PageTitle from "@/components/layout/PageTitle.vue";
 </script>
 
 <template>
   <div class="wrapper">
-    <div>Pagetitle here</div>
+    <PageTitle title="Sagstyrring" />
     <div>
       <ActionToolbar>
         <template #contentleft>
