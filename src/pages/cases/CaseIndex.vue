@@ -28,9 +28,9 @@ import NoResult from "./components/index/NoResult.vue";
       </ActionToolbar>
     </div>
     <div>
-      <NoResult />
-      <!-- <CasesTable />
-      <CasesPagination /> -->
+      <!-- <NoResult /> -->
+      <CasesTable />
+      <CasesPagination />
     </div>
   </div>
 </template>
