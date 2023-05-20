@@ -4,6 +4,10 @@ import database from "@/database";
 // const forceDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 const handleCaseReducer = {
+    flush: function () {
+        this.selectedTasks.value = []
+    },
+
     initialize: async function () {
         // these could, technically, be done in parallel
         // it was done this way to make it easier to deal with

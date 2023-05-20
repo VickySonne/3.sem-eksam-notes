@@ -11,12 +11,16 @@
     import TertiaryButton from '../../components/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
     import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
-    import {ref} from "vue";
+    import {onUnmounted, ref} from "vue";
 
     const isLoading = ref(true)
 
     handleCaseReducer.initialize().then(() => {
         isLoading.value = false
+    })
+
+    onUnmounted(() => {
+        handleCaseReducer.flush()
     })
 </script>
 
