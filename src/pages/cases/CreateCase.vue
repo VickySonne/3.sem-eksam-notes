@@ -11,34 +11,50 @@
     import TertiaryButton from '../../components/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
     import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+    import {ref} from "vue";
 
-    const workCase = handleCaseReducer.caseDetails
+    const isLoading = ref(true)
+
+    handleCaseReducer.initialize().then(() => {
+        isLoading.value = false
+    })
 </script>
 
 <template>
-    <PageTitle title="Opret ny sag" />
+    <div v-if="isLoading" class="loader-container">
+        <div class="loader"></div>
+    </div>
 
-    <BackButton>Tilbage til oversigt</BackButton>
+    <template v-if="!isLoading">
+        <PageTitle title="Opret ny sag" />
 
-    <BaseGrid>
-        <template #left-column>
-            <HandleCaseCustomer />
-            <HandleCaseTasks />
-            <HandleCaseProducts />
-            <HandleCaseDetails />
-        </template>
+        <BackButton>Tilbage til oversigt</BackButton>
 
-        <template #right-column>
-            <HandleCaseSummary />
+        <BaseGrid>
+            <template #left-column>
+                <HandleCaseCustomer />
+                <HandleCaseTasks />
+                <HandleCaseProducts />
+                <HandleCaseDetails />
+            </template>
 
-            <HandleCaseActions>
-                <TertiaryButton text="Annuler" />
-                <PrimaryButton title="Opret Sag" />
-            </HandleCaseActions>
-        </template>
-    </BaseGrid>
+            <template #right-column>
+                <HandleCaseSummary />
+
+                <HandleCaseActions>
+                    <TertiaryButton text="Annuler" />
+                    <PrimaryButton title="Opret Sag" />
+                </HandleCaseActions>
+            </template>
+        </BaseGrid>
+    </template>
 </template>
 
 <style lang="scss" scoped>
-
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 </style>
