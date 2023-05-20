@@ -21,6 +21,8 @@ const handleCaseReducer = {
         this.tagsOptions.value = tagsOptions
         this.taskOptions.value = taskOptions
         this.productOptions.value = productOptions
+
+        this.selectedTaskOption.value = taskOptions[0].id
     },
 
     caseDetails: ref({
@@ -43,6 +45,8 @@ const handleCaseReducer = {
     tagsOptions: ref([]),
     taskOptions: ref([]),
     productOptions: ref([]),
+
+    selectedTaskOption: ref(null),
 
 }
 
