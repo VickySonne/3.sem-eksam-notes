@@ -17,6 +17,8 @@ defineProps({
 
 <style lang="scss" scoped>
 header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: var(--default-padding);
 
   h2 {
