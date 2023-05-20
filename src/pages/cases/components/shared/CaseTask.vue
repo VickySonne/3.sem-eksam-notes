@@ -1,16 +1,19 @@
 <script setup>
-import taskReducer from "@/pages/cases/components/read/tasks/taskReducer";
-
 defineProps({
     task: {
         type: Object,
         required: true,
     },
+    callback: {
+        type: Function,
+        required: false,
+        default: () => {}
+    }
 })
 </script>
 
 <template>
-    <article :class="{selected: task.completed}" @click="taskReducer.toggleTaskCompletion(task)">
+    <article :class="{selected: task.completed}" @click="callback">
         <div>
             <font-awesome-icon icon="check"/>
         </div>

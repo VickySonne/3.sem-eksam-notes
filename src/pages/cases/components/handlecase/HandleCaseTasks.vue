@@ -3,7 +3,6 @@ import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import CustomTaskInput from "@/pages/cases/components/handlecase/CustomTaskInput.vue";
 import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
-import TaskComponent from "../../../../../old/components/new components/TaskComponent.vue";
 import CaseTask from "@/pages/cases/components/shared/CaseTask.vue";
 
 
