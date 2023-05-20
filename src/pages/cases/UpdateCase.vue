@@ -3,7 +3,7 @@
     import BaseGrid from '../../components/layout/BaseGrid.vue';
     import BackButton from '../../components/layout/navigation/BackButton.vue';
     import HandleCaseCustomer from '../cases/components/handlecase/HandleCaseCustomers.vue';
-    import HandleCaseTasks from '../cases/components/handlecase/HandleCaseTasks.vue';
+    import HandleCaseTasks from './components/handlecase/tasks/HandleCaseTasks.vue';
     import HandleCaseProducts from '../cases/components/handlecase/HandleCaseProducts.vue';
     import HandleCaseDetails from './components/handlecase/HandleCaseDetails.vue';
     import HandleCaseSummary from './components/handlecase/HandleCaseSummary.vue';
