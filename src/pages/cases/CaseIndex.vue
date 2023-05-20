@@ -9,6 +9,7 @@ import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 // import NoResult from "./components/index/NoResult.vue";
 import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
+import router from "@/router";
 </script>
 
 <template>
@@ -28,7 +29,7 @@ import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
         </template>
 
         <template #contentright>
-          <PrimaryButton title="Opret Ny Sag">
+          <PrimaryButton title="Opret Ny Sag" :callback="() => router.push({ path: '/case/' })">
               <font-awesome-icon icon="plus" />
           </PrimaryButton>
         </template>

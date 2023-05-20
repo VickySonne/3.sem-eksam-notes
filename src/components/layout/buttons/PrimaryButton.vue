@@ -3,21 +3,25 @@
         title: {
             type: String,
             required: true
+        },
+        callback: {
+            type: Function,
+            required: true
         }
     })
 </script>
 
 <template>
-    <div>
+    <button @click="callback">
         <!-- expects an icon -->
         <slot></slot>
 
-        <p>{{ title }}</p>
-    </div>
+        {{ title }}
+    </button>
 </template>
 
 <style lang="scss" scoped>
-div {
+button {
   align-items: center;
   display: flex;
   gap: var(--default-gap);
@@ -28,7 +32,7 @@ div {
   cursor: pointer;
 }
 
-div:hover {
+button:hover {
   background-color: var(--CTA-primary-hover);
 }
 
