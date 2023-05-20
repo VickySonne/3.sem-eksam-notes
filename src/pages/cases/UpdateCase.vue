@@ -8,7 +8,7 @@
     import HandleCaseDetails from './components/handlecase/HandleCaseDetails.vue';
     import HandleCaseSummary from './components/handlecase/HandleCaseSummary.vue';
     import HandleCaseActions from './components/handlecase/HandleCaseActions.vue';
-    import TertiaryButton from './components/shared/TertiaryButton.vue';
+    import TertiaryButton from '../../components/layout/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/layout/buttons/PrimaryButton.vue';
 </script>
 

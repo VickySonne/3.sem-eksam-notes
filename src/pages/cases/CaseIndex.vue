@@ -8,7 +8,7 @@ import CustomSelectItem from "../../components/dropdowns/CustomSelectItem.vue";
 import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 // import NoResult from "./components/index/NoResult.vue";
-import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
+import TertiaryButton from "@/components/layout/buttons/TertiaryButton.vue";
 import router from "@/router";
 </script>
 
