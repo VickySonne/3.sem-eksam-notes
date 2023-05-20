@@ -6,7 +6,8 @@
         },
         callback: {
             type: Function,
-            required: true
+            required: false,
+            default: () => {}
         },
     })
 </script>
