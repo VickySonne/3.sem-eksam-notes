@@ -10,23 +10,30 @@
     import HandleCaseActions from './components/handlecase/HandleCaseActions.vue';
     import TertiaryButton from '../../components/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
+    import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+
+    const workCase = handleCaseReducer.caseDetails
 </script>
 
 <template>
     <PageTitle title="Opret ny sag" />
+
     <BackButton>Tilbage til oversigt</BackButton>
+
     <BaseGrid>
         <template #left-column>
-            <HandleCaseCustomer></HandleCaseCustomer>
-            <HandleCaseTasks></HandleCaseTasks>
-            <HandleCaseProducts></HandleCaseProducts>
-            <HandleCaseDetails></HandleCaseDetails>
+            <HandleCaseCustomer />
+            <HandleCaseTasks />
+            <HandleCaseProducts />
+            <HandleCaseDetails />
         </template>
+
         <template #right-column>
-            <HandleCaseSummary></HandleCaseSummary>
+            <HandleCaseSummary />
+
             <HandleCaseActions>
-                <TertiaryButton text="Annuler"/>
-                <PrimaryButton title="Opret Sag"></PrimaryButton>
+                <TertiaryButton text="Annuler" />
+                <PrimaryButton title="Opret Sag" />
             </HandleCaseActions>
         </template>
     </BaseGrid>
