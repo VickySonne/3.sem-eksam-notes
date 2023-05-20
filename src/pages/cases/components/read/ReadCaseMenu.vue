@@ -1,7 +1,7 @@
 <script setup>
-import CustomSelectItem from '@/components/dropdowns/CustomSelectItem.vue';
-import CustomSelect from '@/components/dropdowns/CustomSelect.vue';
-import TertiaryButton from '@/components/layout/buttons/TertiaryButton.vue';
+import CustomSelectItem from '@/components/inputs/dropdowns/CustomSelectItem.vue';
+import CustomSelect from '@/components/inputs/dropdowns/CustomSelect.vue';
+import TertiaryButton from '@/components/buttons/TertiaryButton.vue';
 </script>
 
 <template>

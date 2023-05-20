@@ -1,7 +1,7 @@
 <script setup>
 import router from "@/router";
-import CustomSelectItem from "../../../../components/dropdowns/CustomSelectItem.vue";
-import CustomSelect from "../../../../components/dropdowns/CustomSelect.vue";
+import CustomSelectItem from "../../../../components/inputs/dropdowns/CustomSelectItem.vue";
+import CustomSelect from "../../../../components/inputs/dropdowns/CustomSelect.vue";
 import CasesDescription from "./CasesDescription.vue";
 import SingleTag from "./SingleTag.vue";
 import SingleTask from "./SingleTask.vue";

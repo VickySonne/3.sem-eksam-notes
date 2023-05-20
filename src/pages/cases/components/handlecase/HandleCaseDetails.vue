@@ -3,8 +3,8 @@ import SectionContainer from '../../../../components/layout/section/SectionConta
 import SectionHeader from '../../../../components/layout/section/SectionHeader.vue';
 import DetailsInput from './details/DetailsInput.vue';
 import InputLabel from './details/InputLabel.vue';
-import CustomSelect from '../../../../components/dropdowns/CustomSelect.vue';
-import CustomSelectItem from '../../../../components/dropdowns/CustomSelectItem.vue';
+import CustomSelect from '../../../../components/inputs/dropdowns/CustomSelect.vue';
+import CustomSelectItem from '../../../../components/inputs/dropdowns/CustomSelectItem.vue';
 import DateInput from './details/DateInput.vue';
 import PriceInput from './details/PriceInput.vue';
 import TextareaInput from './details/TextareaInput.vue';

@@ -3,12 +3,12 @@ import CasesTable from "@/pages/cases/components/index/CasesTable.vue";
 import CasesPagination from "@/pages/cases/components/index/CasesPagination.vue";
 import ActionToolbar from "./components/shared/ActionToolbar.vue";
 import SearchInput from "../../components/inputs/SearchInput.vue";
-import CustomSelect from "../../components/dropdowns/CustomSelect.vue";
-import CustomSelectItem from "../../components/dropdowns/CustomSelectItem.vue";
-import PrimaryButton from "../../components/layout/buttons/PrimaryButton.vue";
+import CustomSelect from "../../components/inputs/dropdowns/CustomSelect.vue";
+import CustomSelectItem from "../../components/inputs/dropdowns/CustomSelectItem.vue";
+import PrimaryButton from "../../components/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 // import NoResult from "./components/index/NoResult.vue";
-import TertiaryButton from "@/components/layout/buttons/TertiaryButton.vue";
+import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
 import router from "@/router";
 </script>
 
