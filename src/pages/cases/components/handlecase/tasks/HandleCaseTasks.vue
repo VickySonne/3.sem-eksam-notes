@@ -1,9 +1,9 @@
 <script setup>
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
-import CustomTaskInput from "@/pages/cases/components/handlecase/CustomTaskInput.vue";
-import TaskSelectionHeader from "@/pages/cases/components/handlecase/TaskSelectionHeader.vue";
-import TaskSelectionGrid from "@/pages/cases/components/handlecase/TaskSelectionGrid.vue";
+import CustomTaskInput from "@/pages/cases/components/handlecase/tasks/CustomTaskInput.vue";
+import TaskSelectionHeader from "@/pages/cases/components/handlecase/tasks/TaskSelectionHeader.vue";
+import TaskSelectionGrid from "@/pages/cases/components/handlecase/tasks/TaskSelectionGrid.vue";
 </script>
 
 <template>
