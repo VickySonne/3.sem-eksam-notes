@@ -25,6 +25,8 @@ const handleCaseReducer = {
 
     caseDetails: ref({
         selectedCustomer: null,
+        selectedTags: [],
+        selectedTasks: [],
         description: "",
         responsibleEmployee: null,
         pickupDate: new Date(),
@@ -33,12 +35,15 @@ const handleCaseReducer = {
         deposit: 0,
     }),
 
+    selectedTasks: ref([]),
+
     statusOptions: ref([]),
     employeeOptions: ref([]),
     customerOptions: ref([]),
     tagsOptions: ref([]),
     taskOptions: ref([]),
     productOptions: ref([]),
+
 }
 
 export default handleCaseReducer
