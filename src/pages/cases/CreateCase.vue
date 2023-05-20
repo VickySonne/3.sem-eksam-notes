@@ -26,7 +26,7 @@
             <HandleCaseSummary></HandleCaseSummary>
             <HandleCaseActions>
                 <TertiaryButton text="Annuler"/>
-                <PrimaryButton icon="plus">Opret Sag</PrimaryButton>
+                <PrimaryButton title="Opret Sag"></PrimaryButton>
             </HandleCaseActions>
         </template>
     </BaseGrid>
