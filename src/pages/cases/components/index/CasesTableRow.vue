@@ -1,5 +1,10 @@
 <script setup>
 import router from "@/router";
+import CustomSelectItem from "../../../../components/dropdowns/CustomSelectItem.vue";
+import CustomSelect from "../../../../components/dropdowns/CustomSelect.vue";
+import CasesDescription from "./CasesDescription.vue";
+import SingleTag from "./SingleTag.vue";
+import SingleTask from "./SingleTask.vue";
 
 defineProps({
   workCase: {
@@ -15,12 +20,20 @@ defineProps({
     <td>{{ workCase.status.name }}</td>
     <td>{{ workCase.responsible_employee.name }}</td>
       <td>{{ workCase.customer.name }}</td>
-      <td>{{ workCase.tags.length ? workCase.tags.map(tag => tag.name).join(', ') : "-" }}</td>
-      <td>{{ workCase.tasks.length ? workCase.tasks.map(task => task.name).join(', ') : "-" }}</td>
+      <!-- <td>{{ workCase.tags.length ? workCase.tags.map(tag => tag.name).join(', ') : "-" }}</td> -->
+      <SingleTag></SingleTag>
+      <!-- <td>{{ workCase.tasks.length ? workCase.tasks.map(task => task.name).join(', ') : "-" }}</td> -->
+      <SingleTask></SingleTask>
       <td>{{ workCase.description ? workCase.description : "-" }}</td>
-      <td>{{ workCase.negotiated_price ? workCase.negotiated_price : "-" }}</td>
+      <!-- <td>{{ workCase.negotiated_price ? workCase.negotiated_price : "-" }}</td> -->
+      <CasesDescription></CasesDescription>
       <td>{{ new Date(workCase.pickup).toLocaleDateString() }}</td>
-      <td>STUFF</td>
+      <!-- <td>STUFF</td> -->
+      <td>
+        <CustomSelect>
+          <CustomSelectItem></CustomSelectItem>
+        </CustomSelect>
+      </td>
   </tr>
 </template>
 
