@@ -1,11 +1,11 @@
 <script setup>
-    const props = defineProps(['data']);
+    // const props = defineProps(['data']);
 </script>
 
 <template>
-    <div>
-        <p>{{ data.name }}</p>
-    </div>
+    <td>
+<!--       {{ data.name }}-->
+    </td>
 </template>
 
 <style lang="scss" scoped>

@@ -25,7 +25,9 @@ import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
           <TertiaryButton text="Advanceret søgning" :callback="() => {}"/>
         </template>
         <template #contentright>
-          <PrimaryButton icon="plus">Opret Ny Sag</PrimaryButton>
+          <PrimaryButton title="Opret Ny Sag">
+              <font-awesome-icon icon="plus" />
+          </PrimaryButton>
         </template>
       </ActionToolbar>
     </div>

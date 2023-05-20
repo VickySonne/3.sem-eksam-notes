@@ -1,11 +1,11 @@
 <script setup>
-    const props = defineProps(['data']);
+    // const props = defineProps(['data']);
 </script>
 <!-- Jeg tænker det er det samme som Task component, dog med den tilføjede funktion at der kan skiftes farve på baggrundsfarven -->
 <template>
-    <div>
-        <p>{{ data.name }}</p>
-    </div>
+    <td>
+<!--        {{ data.name }} -->
+    </td>
 </template>
 
 <style lang="scss" scoped>

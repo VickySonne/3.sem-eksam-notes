@@ -1,12 +1,18 @@
 <script setup>
-
+    defineProps({
+        title: {
+            type: String,
+            required: true
+        }
+    })
 </script>
 
-<!-- Kan ikke få iconet til at kunne sendes ind som et prop -->
-<template> 
-    <div >
-        <font-awesome-icon icon="plus" />
+<template>
+    <div>
+        <!-- expects an icon -->
         <slot></slot>
+
+        <p>{{ title }}</p>
     </div>
 </template>
 
