@@ -5,6 +5,7 @@ import SearchInput from "../../../../components/inputs/SearchInput.vue";
 import TertiaryButton from "../../../../components/buttons/TertiaryButton.vue";
 import ActionToolbar from "../shared/ActionToolbar.vue";
 import NoCustomer from "../handlecase/customers/NoCustomer.vue";
+import ChosenCustomer from "./customers/ChosenCustomer.vue";
 </script>
 
 <template>
@@ -22,10 +23,10 @@ import NoCustomer from "../handlecase/customers/NoCustomer.vue";
             <!-- action toolbar skjules når kunde er valgt -->
         </ActionToolbar>
 
-        <div>
-            <CaseCustomer />
+        <SectionContainer>
+            <ChosenCustomer />
             <NoCustomer text="Ingen kunde fundet. Klik for at oprette nye kunde."></NoCustomer>
-        </div>
+        </SectionContainer>
     </div>
 
     <!-- denne div vises kun når anden betaler er valgt -->
@@ -43,10 +44,10 @@ import NoCustomer from "../handlecase/customers/NoCustomer.vue";
             </template>
         </ActionToolbar>
 
-        <div>
-            <CaseCustomer />
+        <SectionContainer>
+            <ChosenCustomer />
             <NoCustomer text="Ingen kunde fundet. Klik for at oprette nye kunde."></NoCustomer>
-        </div>
+        </SectionContainer>
     </div>
 </template>
 

@@ -21,7 +21,6 @@ defineProps({
         background-color: var(--bg-white);
         border-radius: var(--border-radius);
         padding: var(--default-padding);
-        width: 100%;
 
         p:hover {
             text-decoration: underline;
