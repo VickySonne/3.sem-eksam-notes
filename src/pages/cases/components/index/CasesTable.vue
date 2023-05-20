@@ -2,7 +2,7 @@
 import casesReducer from "@/pages/cases/components/index/casesReducer";
 import CaseTableRow from "@/pages/cases/components/index/CasesTableRow.vue";
 import CasesTableHeader from "@/pages/cases/components/index/CasesTableHeader.vue";
-import caseIndexDataColumns from "@/data/cases/index/indexDataColumns";
+import caseIndexDataColumns from "@/data/cases/index/caseIndexDataColumns";
 
 
 const workCases = casesReducer.cases

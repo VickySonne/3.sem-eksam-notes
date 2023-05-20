@@ -1,4 +1,4 @@
-const indexDataColumns = [
+const caseIndexDataColumns = [
     'Oprettet',
     'Status',
     'Ansvarlig',
@@ -11,4 +11,4 @@ const indexDataColumns = [
     'Handlinger'
 ]
 
-export default indexDataColumns
+export default caseIndexDataColumns
