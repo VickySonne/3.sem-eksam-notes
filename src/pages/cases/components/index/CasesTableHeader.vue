@@ -16,7 +16,7 @@ defineProps({
     </tr>
     </thead>
 </template>
-r
+
 <style lang="scss" scoped>
 th {
   padding-block: var(--default-padding);
