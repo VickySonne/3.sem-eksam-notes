@@ -14,16 +14,19 @@ import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
 <template>
   <div class="wrapper">
     <PageTitle title="Sagstyrring" />
+
     <div>
       <ActionToolbar>
         <template #contentleft>
           <SearchInput placeholder="Søg..." />
+
           <CustomSelect>
             <CustomSelectItem></CustomSelectItem>
           </CustomSelect>
 
           <TertiaryButton text="Advanceret søgning" :callback="() => {}"/>
         </template>
+
         <template #contentright>
           <PrimaryButton title="Opret Ny Sag">
               <font-awesome-icon icon="plus" />
@@ -31,6 +34,7 @@ import TertiaryButton from "@/pages/cases/components/shared/TertiaryButton.vue";
         </template>
       </ActionToolbar>
     </div>
+
     <div>
       <!-- <NoResult /> -->
       <CasesTable />
