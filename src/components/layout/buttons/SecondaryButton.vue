@@ -1,17 +1,28 @@
 <script setup>
-
+defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    callback: {
+        type: Function,
+        required: false,
+        default: () => {}
+    }
+})
 </script>
 
-<!-- Kan ikke få iconet til at kunne sendes ind som et prop -->
-<template> 
-    <div >
-        <font-awesome-icon icon="plus" />
+<template>
+    <button @click="callback">
+        <!-- expects an icon -->
         <slot></slot>
-    </div>
+
+        {{ title }}
+    </button>
 </template>
 
 <style lang="scss" scoped>
-div {
+button {
   align-items: center;
   display: flex;
   gap: var(--default-gap);
@@ -22,8 +33,7 @@ div {
   cursor: pointer;
 }
 
-div:hover {
+button:hover {
   background-color: var(--CTA-secondary-hover);
 }
-
 </style>
