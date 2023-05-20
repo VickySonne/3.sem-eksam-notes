@@ -2,6 +2,8 @@
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+import CaseInfo from "../read/details/CaseInfo.vue";
+import CaseInfoList from "../read/details/CaseInfoList.vue";
 </script>
 
 <template>
@@ -10,9 +12,31 @@ import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseRed
             <SectionHeader title="Opsummering" />
         </template>
 
-        <!-- stuff goes here -->
-        <ul>
-            <li v-for="task in handleCaseReducer.selectedTasks.value" :key="task.id">{{ task.name }}</li>
-        </ul>
+        <div>
+            <CaseInfo label="Status:"></CaseInfo>
+            <CaseInfo label="Ansvarlig:"></CaseInfo>
+            <CaseInfo label="Afhentning d."></CaseInfo>
+            <CaseInfo label="Aftalt pris:"></CaseInfo>
+            <CaseInfo label="Beskrivelse:"></CaseInfo>
+            <CaseInfo label="Opgaver:">
+                <ul>
+                    <CaseInfoList/>
+                </ul>
+            </CaseInfo>
+            <CaseInfo label="Produkter:">
+                <ul>
+                    <CaseInfoList stk="2"/>
+                </ul>
+            </CaseInfo>
+        </div>
+        
     </SectionContainer>
 </template>
+
+<style lang="scss" scoped>
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: var(--default-gap);
+    }
+</style>
