@@ -4,7 +4,6 @@ import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import SearchInput from "../../../../components/inputs/SearchInput.vue";
 import TertiaryButton from "../../../../components/buttons/TertiaryButton.vue";
 import ActionToolbar from "../shared/ActionToolbar.vue";
-import CaseCustomer from "../../components/read/CaseCustomer.vue";
 import NoCustomer from "../handlecase/customers/NoCustomer.vue";
 </script>
 
