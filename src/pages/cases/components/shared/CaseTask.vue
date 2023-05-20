@@ -2,7 +2,12 @@
 defineProps({
     task: {
         type: Object,
-        required: true,
+        required: true
+    },
+    selected: {
+        type: Boolean,
+        required: false,
+        default: false
     },
     callback: {
         type: Function,
@@ -13,7 +18,7 @@ defineProps({
 </script>
 
 <template>
-    <article :class="{selected: task.completed}" @click="callback">
+    <article :class="{selected: selected}" @click="callback">
         <div>
             <font-awesome-icon icon="check"/>
         </div>

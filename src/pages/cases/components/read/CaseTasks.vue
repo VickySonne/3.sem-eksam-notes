@@ -26,7 +26,7 @@ onUnmounted(() => {
         <div v-if="isLoading" class="loader"></div>
 
         <div>
-            <CaseTask v-for="task in tasks" :task=task :key=task.id :callback="() => taskReducer.toggleTaskCompletion(task)"/>
+            <CaseTask v-for="task in tasks" :task=task :selected="task.completed" :key=task.id :callback="() => taskReducer.toggleTaskCompletion(task)"/>
         </div>
     </SectionContainer>
 </template>
