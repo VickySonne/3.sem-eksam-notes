@@ -1,17 +1,10 @@
 <script setup>
-const columns = [
-    'Oprettet',
-    'Status',
-    'Ansvarlig',
-    'Kunde',
-    'Tags',
-    'Opgaver',
-    'Beskrivelse',
-    'Pris',
-    'Afhentes',
-    'Handlinger'
-]
-
+defineProps({
+    columns: {
+        type: Array,
+        required: true
+    }
+})
 </script>
 
 <template>
