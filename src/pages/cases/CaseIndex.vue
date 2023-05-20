@@ -25,7 +25,7 @@ import router from "@/router";
             <CustomSelectItem></CustomSelectItem>
           </CustomSelect>
 
-          <TertiaryButton text="Advanceret søgning" :callback="() => {}"/>
+          <TertiaryButton text="Advanceret søgning" :callback="() => {}" :emphasised="true"/>
         </template>
 
         <template #contentright>

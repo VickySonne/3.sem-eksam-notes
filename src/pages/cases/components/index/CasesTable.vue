@@ -20,7 +20,7 @@ casesReducer.fetchCases()
 </template>
 
 <style lang="scss" scoped>
-table {
-  width: 100%;
-}
+  table {
+    width: 100%;
+  }
 </style>

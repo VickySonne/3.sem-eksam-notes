@@ -9,12 +9,17 @@
             required: false,
             default: () => {}
         },
+        emphasised: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
     })
 </script>
 
 <template>
     <div>
-        <p @click="callback">{{ text }}</p>
+        <p @click="callback" :class="emphasised ? 'emphasised' : ''">{{ text }}</p>
     </div>
 </template>
 
@@ -30,6 +35,10 @@
             &:hover{
                 text-decoration: underline;
             }
+        }
+
+        .emphasised{
+            font-weight: var(--text-heavy);
         }
     }
     
