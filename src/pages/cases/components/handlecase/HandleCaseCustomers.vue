@@ -6,45 +6,59 @@ import TertiaryButton from "../../../../components/buttons/TertiaryButton.vue";
 import ActionToolbar from "../shared/ActionToolbar.vue";
 import NoCustomer from "../handlecase/customers/NoCustomer.vue";
 import ChosenCustomer from "./customers/ChosenCustomer.vue";
+import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
+
+const customer = handleCaseReducer.selectedCustomer
+const customerSearch = handleCaseReducer.customerSearch
+const customerOptions = handleCaseReducer.customerOptions
+
+const hasSecondaryPayee = handleCaseReducer.hasSecondaryPayee
+const secondaryPayee = handleCaseReducer.secondaryPayee
+const secondaryPayeeSearch = handleCaseReducer.secondaryPayeeSearch
+
+const filteredCustomers = () => {
+    console.log(recursiveObjectSearch(customerOptions.value, customerSearch.value))
+    return recursiveObjectSearch(customerOptions.value, customerSearch.value)
+}
+
 </script>
 
 <template>
     <div>
         <SectionHeader title="Kunder"> 
-            <TertiaryButton text="Anden betaler"></TertiaryButton>
-            <!-- tertiary button vises kun når kunde er valgt -->
+            <TertiaryButton v-if="customer" text="Anden betaler"></TertiaryButton>
         </SectionHeader>
 
-        <ActionToolbar>
+        <ActionToolbar v-if="!customer">
             <template #contentleft>
                 <SearchInput placeholder="Find kunde..."></SearchInput>
-                <TertiaryButton text="Opret ny kunde" emphasised="true"></TertiaryButton>
+                <TertiaryButton text="Opret ny kunde" :emphasised="true" :callback="filteredCustomers"></TertiaryButton>
             </template>
-            <!-- action toolbar skjules når kunde er valgt -->
         </ActionToolbar>
 
-        <SectionContainer>
+        <SectionContainer v-if="customerSearch.length">
             <ChosenCustomer />
-            <NoCustomer text="Ingen kunde fundet. Klik for at oprette nye kunde."></NoCustomer>
+            <NoCustomer v-if="!customerOptions.filter(c => recursiveObjectSearch(c, customerSearch)).length" text="Ingen kunde fundet. Klik for at oprette nye kunde."></NoCustomer>
         </SectionContainer>
     </div>
 
     <!-- denne div vises kun når anden betaler er valgt -->
-    <div>
+    <div v-if="hasSecondaryPayee">
         <SectionHeader title="Anden betaler" />
         
         <!-- action toolbar skjules når anden betaler er indtastet -->
-        <ActionToolbar>
+        <ActionToolbar v-if="!secondaryPayee">
             <template #contentleft>
                 <SearchInput placeholder="Find kunde..."></SearchInput>
-                <TertiaryButton text="Opret ny kunde" emphasised="true"></TertiaryButton>
+                <TertiaryButton text="Opret ny kunde" :emphasised="true"></TertiaryButton>
             </template>
             <template #contentright>
-                <TertiaryButton text="Luk"></TertiaryButton>
+                <TertiaryButton text="Luk" :callback="() => secondaryPayee = !secondaryPayee"></TertiaryButton>
             </template>
         </ActionToolbar>
 
-        <SectionContainer>
+        <SectionContainer v-if="secondaryPayeeSearch">
             <ChosenCustomer />
             <NoCustomer text="Ingen kunde fundet. Klik for at oprette nye kunde."></NoCustomer>
         </SectionContainer>

@@ -1,7 +1,12 @@
 <script setup>
     import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-    
-    defineProps(['placeholder']);
+
+    defineProps({
+        placeholder: {
+            type: String,
+            default: 'Søg'
+        },
+    })
 </script>
 
 <template>

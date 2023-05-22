@@ -14,12 +14,13 @@
 </template>
 
 <style lang="scss" scoped>
-    div{
+    div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-bottom: var(--default-padding);
 
-        :first-child{
+        &:first-child {
             display: flex;
             flex-direction: row;
             gap: var(--default-gap);

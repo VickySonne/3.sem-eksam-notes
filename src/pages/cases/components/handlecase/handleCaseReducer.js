@@ -29,19 +29,6 @@ const handleCaseReducer = {
         this.selectedTaskOption.value = taskOptions[0].id
     },
 
-    caseDetails: ref({
-        selectedCustomer: null,
-        selectedTags: [],
-        selectedTasks: [],
-        description: "",
-        responsibleEmployee: null,
-        pickupDate: new Date(),
-        status: null,
-        price: null,
-        deposit: 0,
-    }),
-
-    selectedTasks: ref([]),
 
     statusOptions: ref([]),
     employeeOptions: ref([]),
@@ -50,8 +37,17 @@ const handleCaseReducer = {
     taskOptions: ref([]),
     productOptions: ref([]),
 
-    selectedTaskOption: ref(null),
 
+    selectedTasks: ref([]),
+    selectedTaskOption: ref(null),
+    selectedCustomer: ref(null),
+    secondaryPayee: ref(null),
+
+
+    hasSecondaryPayee: ref(false),
+
+    customerSearch: ref(""),
+    secondaryPayeeSearch: ref(null),
 }
 
 export default handleCaseReducer
