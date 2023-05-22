@@ -5,9 +5,7 @@ import ActionToolbar from "../shared/ActionToolbar.vue";
 import SearchInput from "../../../../components/inputs/SearchInput.vue";
 import TertiaryButton from "../../../../components/buttons/TertiaryButton.vue";
 import SecondaryButton from "../../../../components/buttons/SecondaryButton.vue";
-import CasesTableHeader from "../index/CasesTableHeader.vue";
 import ProductTable from "../handlecase/products/ProductTable.vue";
-import ProductRow from "../handlecase/products/ProductRow.vue";
 
 </script>
 
@@ -18,10 +16,12 @@ import ProductRow from "../handlecase/products/ProductRow.vue";
 
             <ActionToolbar>
                 <template #contentleft>
-                    <SearchInput placeholder="Find varer..."/>
+                    <SearchInput placeholder="Find varer..." search-callback="() => {}"/>
+
                     <SecondaryButton title="Opret ny vare">
                         <font-awesome-icon icon="plus" />
                     </SecondaryButton>
+
                     <TertiaryButton text="Tilføj kundeenhed"/>
                 </template>
             </ActionToolbar>
