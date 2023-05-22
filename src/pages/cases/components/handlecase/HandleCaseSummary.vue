@@ -1,7 +1,6 @@
 <script setup>
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
-import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
 import CaseInfo from "../read/details/CaseInfo.vue";
 import CaseInfoList from "../read/details/CaseInfoList.vue";
 </script>
@@ -20,12 +19,12 @@ import CaseInfoList from "../read/details/CaseInfoList.vue";
             <CaseInfo label="Beskrivelse:"></CaseInfo>
             <CaseInfo label="Opgaver:">
                 <ul>
-                    <CaseInfoList/>
+                    <CaseInfoList content="test"/>
                 </ul>
             </CaseInfo>
             <CaseInfo label="Produkter:">
                 <ul>
-                    <CaseInfoList stk="2"/>
+                    <CaseInfoList content="test" count="2"/>
                 </ul>
             </CaseInfo>
         </div>

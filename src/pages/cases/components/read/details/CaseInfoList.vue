@@ -4,7 +4,7 @@
         type: String,
         required: true
     },
-    stk: {
+    count: {
         type: String,
         required: false,
     }
@@ -12,7 +12,7 @@
 </script>
 
 <template>
-    <li>- {{ content }}test <span> {{ stk }} (not required)</span></li>
+    <li>- {{ content }} <span>{{ count }}</span></li>
 </template>
 
 <style lang="scss" scoped>
