@@ -7,7 +7,6 @@ import CustomSelect from "../../components/inputs/dropdowns/CustomSelect.vue";
 import CustomSelectItem from "../../components/inputs/dropdowns/CustomSelectItem.vue";
 import PrimaryButton from "../../components/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
-// import NoResult from "./components/index/NoResult.vue";
 import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
 import router from "@/router";
 </script>
@@ -19,7 +18,7 @@ import router from "@/router";
     <div>
       <ActionToolbar>
         <template #contentleft>
-          <SearchInput placeholder="Søg..." />
+          <SearchInput placeholder="Søg..." :search-callback="() => {}"/>
 
           <CustomSelect>
             <CustomSelectItem></CustomSelectItem>
