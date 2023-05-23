@@ -8,7 +8,19 @@ import CustomSelectItem from '../../../../components/inputs/dropdowns/CustomSele
 import DateInput from './details/DateInput.vue';
 import PriceInput from './details/PriceInput.vue';
 import TextareaInput from './details/TextareaInput.vue';
+import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
 
+const employeeOptions = handleCaseReducer.employeeOptions
+const statusOptions = handleCaseReducer.statusOptions
+const selectedDate = handleCaseReducer.selectedDate
+
+const setSelectedEmployee = (event) => {
+    handleCaseReducer.selectedEmployee.value = employeeOptions.value.find(employee => employee.id === parseInt(event.target.value))
+}
+
+const setSelectedStatus = (event) => {
+    handleCaseReducer.selectedStatus.value = statusOptions.value.find(status => status.id === parseInt(event.target.value))
+}
 
 </script>
 
@@ -24,8 +36,10 @@ import TextareaInput from './details/TextareaInput.vue';
                     <InputLabel>Ansvarlige</InputLabel>
                 </template>
 
-                <CustomSelect>
-                    <CustomSelectItem></CustomSelectItem>
+                <CustomSelect :callback="setSelectedEmployee">
+                    <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id" :key="employee.id">
+                        {{ employee.name }}
+                    </CustomSelectItem>
                 </CustomSelect>
             </DetailsInput>
 
@@ -34,8 +48,10 @@ import TextareaInput from './details/TextareaInput.vue';
                     <InputLabel>Status</InputLabel>
                 </template>
 
-                <CustomSelect>
-                    <CustomSelectItem></CustomSelectItem>
+                <CustomSelect :callback="setSelectedStatus">
+                    <CustomSelectItem v-for="status in statusOptions" :value="status.id" :key="status.id">
+                        {{ status.name }}
+                    </CustomSelectItem>
                 </CustomSelect>
             </DetailsInput>
 
@@ -54,7 +70,7 @@ import TextareaInput from './details/TextareaInput.vue';
                     <InputLabel>Afhenting</InputLabel>
                 </template>
 
-                <DateInput/>
+                <DateInput :value="selectedDate" :callback="(event) => handleCaseReducer.parseDate(event)"/>
             </DetailsInput>
 
             <DetailsInput>

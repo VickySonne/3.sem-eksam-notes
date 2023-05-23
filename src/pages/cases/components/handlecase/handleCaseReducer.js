@@ -27,6 +27,23 @@ const handleCaseReducer = {
         this.productOptions.value = productOptions
 
         this.selectedTaskOption.value = taskOptions[0].id
+
+        this.selectedEmployee.value = employeeOptions[0]
+        this.selectedStatus.value = statusOptions[0]
+
+
+        this.parseDate({target: {value: new Date()}})
+    },
+
+    parseDate: function (event) {
+        const currentDate = new Date(event.target.value);
+        const timezoneOffset = currentDate.getTimezoneOffset();
+        const offsetMilliseconds = timezoneOffset * 60 * 1000;
+
+        // why does this have to be subtracted? I genuinely don't know
+        const newDate = new Date(currentDate.getTime() - offsetMilliseconds);
+
+        this.selectedDate.value = newDate.toISOString().substring(0, 16)
     },
 
 
@@ -37,11 +54,13 @@ const handleCaseReducer = {
     taskOptions: ref([]),
     productOptions: ref([]),
 
-
+    selectedEmployee: ref(null),
+    selectedStatus: ref(null),
     selectedTasks: ref([]),
     selectedTaskOption: ref(null),
     selectedCustomer: ref(null),
     secondaryPayee: ref(null),
+    selectedDate: ref(null),
 
 
     hasSecondaryPayee: ref(false),
