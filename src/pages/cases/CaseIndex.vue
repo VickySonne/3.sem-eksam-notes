@@ -37,7 +37,6 @@ import router from "@/router";
     </div>
 
     <div>
-      <!-- <NoResult /> -->
       <CasesTable />
       <CasesPagination />
     </div>
