@@ -1,10 +1,19 @@
-<Script setup>
-
-</Script>
+<script setup>
+defineProps({
+    value: {
+        type: String,
+        required: true
+    },
+    callback: {
+        type: Function,
+        required: true
+    }
+})
+</script>
 
 <template>
-    <textarea name="" id="" cols="30"
-            rows="10" placeholder="Indtast beskrivelse af her..."></textarea>
+    <textarea :value="value" name="" id="" cols="30"
+            rows="10" placeholder="Indtast beskrivelse af her..." @input="callback($event)"></textarea>
 </template>
 
 <style lang="scss" scoped>
@@ -14,5 +23,4 @@
         padding: var(--default-padding);
         width: 100%;
     }
-    
 </style>
