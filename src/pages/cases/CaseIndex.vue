@@ -9,6 +9,14 @@ import PrimaryButton from "../../components/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
 import router from "@/router";
+import casesReducer from "@/pages/cases/components/index/casesReducer";
+import {ref} from "vue";
+
+const isLoading = ref(true)
+
+casesReducer.fetchCases().then(() => {
+    isLoading.value = false
+})
 </script>
 
 <template>
@@ -35,7 +43,9 @@ import router from "@/router";
       </ActionToolbar>
     </div>
 
-    <div>
+    <div v-if="isLoading" class="loader" />
+
+    <div v-if="!isLoading">
       <CasesTable />
       <CasesPagination />
     </div>

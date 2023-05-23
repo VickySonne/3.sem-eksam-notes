@@ -5,9 +5,7 @@ import CasesTableHeader from "@/pages/cases/components/index/CasesTableHeader.vu
 import caseIndexDataColumns from "@/data/cases/index/caseIndexDataColumns";
 import NoResult from "@/pages/cases/components/index/NoResult.vue";
 
-
 const workCases = casesReducer.cases
-casesReducer.fetchCases()
 </script>
 
 <template>
