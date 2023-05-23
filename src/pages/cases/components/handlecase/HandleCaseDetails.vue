@@ -14,6 +14,7 @@ const employeeOptions = handleCaseReducer.employeeOptions
 const statusOptions = handleCaseReducer.statusOptions
 const selectedDate = handleCaseReducer.selectedDate
 const negotiatedPrice = handleCaseReducer.negotiatedPrice
+const description = handleCaseReducer.description
 
 const setSelectedEmployee = (event) => {
     handleCaseReducer.selectedEmployee.value = employeeOptions.value.find(employee => employee.id === parseInt(event.target.value))
@@ -87,7 +88,7 @@ const setSelectedStatus = (event) => {
                     <InputLabel>Beskrivelse</InputLabel>
                 </template>
 
-                <TextareaInput/>
+                <TextareaInput :value="description" :callback="(event) => description = event.target.value"/>
             </DetailsInput>
         </div>
 

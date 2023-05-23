@@ -13,6 +13,7 @@ const handleCaseReducer = {
         this.secondaryPayee.value = null
         this.selectedDate.value = null
         this.negotiatedPrice.value = ""
+        this.description.value = ""
         this.hasSecondaryPayee.value = false
     },
 
@@ -70,6 +71,7 @@ const handleCaseReducer = {
     secondaryPayee: ref(null),
     selectedDate: ref(null),
     negotiatedPrice: ref(""),
+    description: ref(""),
 
     hasSecondaryPayee: ref(false),
 
