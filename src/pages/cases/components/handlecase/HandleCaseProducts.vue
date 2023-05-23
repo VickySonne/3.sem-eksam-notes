@@ -16,7 +16,7 @@ import ProductTable from "../handlecase/products/ProductTable.vue";
 
             <ActionToolbar>
                 <template #contentleft>
-                    <SearchInput placeholder="Find varer..." search-callback="() => {}"/>
+                    <SearchInput placeholder="Find varer..." :search-callback="() => {}"/>
 
                     <SecondaryButton title="Opret ny vare">
                         <font-awesome-icon icon="plus" />
