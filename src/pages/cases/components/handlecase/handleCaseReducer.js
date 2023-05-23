@@ -6,6 +6,14 @@ import database from "@/database";
 const handleCaseReducer = {
     flush: function () {
         this.selectedTasks.value = []
+        this.selectedTaskOption.value = this.taskOptions.value[0].id
+        this.selectedEmployee.value = this.employeeOptions.value[0]
+        this.selectedStatus.value = this.statusOptions.value[0]
+        this.selectedCustomer.value = this.customerOptions.value[0]
+        this.secondaryPayee.value = null
+        this.selectedDate.value = null
+        this.negotiatedPrice.value = ""
+        this.hasSecondaryPayee.value = false
     },
 
     initialize: async function () {
