@@ -23,7 +23,7 @@ div {
     text-decoration: underline;
     cursor: pointer;
     background-color: var(--bg-dark);
-    color: var(--text-light);
+    color: var(--text-secondary);
   }
 }
 </style>
