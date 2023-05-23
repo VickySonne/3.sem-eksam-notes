@@ -1,12 +1,12 @@
 <script setup>
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import messagingReducer from "@/pages/cases/components/read/messaging/messagingReducer";
+import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
-const messageRef = messagingReducer.message;
+const messageRef = readCaseReducer.message;
 
 const handleKeydown = (event) => {
     if (event.key === "Enter") {
-        messagingReducer.sendMessage()
+        readCaseReducer.sendMessage()
     }
 }
 </script>

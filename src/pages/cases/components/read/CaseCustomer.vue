@@ -1,20 +1,10 @@
 <script setup>
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
-import customerReducer from "@/pages/cases/components/read/reducers/customerReducer";
-import {onUnmounted, ref} from "vue";
+import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
-const isLoading = ref(true)
 
-const customer = customerReducer.customer
-
-customerReducer.fetchCustomer().then(() => {
-    isLoading.value = false
-})
-
-onUnmounted(() => {
-    customerReducer.flush()
-})
+const customer = readCaseReducer.customer
 </script>
 
 <template>
@@ -26,8 +16,6 @@ onUnmounted(() => {
         <ul>
             <li v-for="(value, key) in customer" :key="key">{{ value }}</li>
         </ul>
-
-        <div v-if="isLoading" class="loader"></div>
     </SectionContainer>
 </template>
 

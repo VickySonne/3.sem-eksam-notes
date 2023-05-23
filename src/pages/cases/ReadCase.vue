@@ -6,35 +6,47 @@ import CaseMessaging from "@/pages/cases/components/read/CaseMessaging.vue";
 import CaseProducts from "@/pages/cases/components/read/CaseProducts.vue";
 import CaseTasks from "@/pages/cases/components/read/CaseTasks.vue";
 import BackButton from "@/components/layout/navigation/BackButton.vue";
-import HandleCaseDetails from "./components/handlecase/HandleCaseDetails.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import router from "@/router";
 import ReadCaseMenu from "./components/read/ReadCaseMenu.vue";
 import CaseFilesNotes from "./components/read/CaseFilesNotes.vue";
+import {ref} from "vue";
+import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
 const caseNumber = router.currentRoute.value.params.id
+
+const isLoading = ref(true)
+
+readCaseReducer.initialize().then(() => {
+    isLoading.value = false
+})
 </script>
 
 <template>
-    <PageTitle :title="'Sag #' + caseNumber" />
-    <header>
-        <BackButton>Tilbage til oversigt</BackButton>
-        <ReadCaseMenu />
-    </header>
+    <div v-if="isLoading" class="loader"></div>
 
-    <BaseGrid>
-        <template #left-column>
-            <CaseDetails />
-            <CaseTasks />
-            <CaseProducts />
-            <CaseFilesNotes />
-        </template>
+    <template v-if="!isLoading">
+        <PageTitle :title="'Sag #' + caseNumber" />
 
-        <template #right-column>
-            <CaseCustomer />
-            <CaseMessaging />
-        </template>
-    </BaseGrid>
+        <header>
+            <BackButton>Tilbage til oversigt</BackButton>
+            <ReadCaseMenu />
+        </header>
+
+        <BaseGrid>
+            <template #left-column>
+                <CaseDetails />
+                <CaseTasks />
+                <CaseProducts />
+                <CaseFilesNotes />
+            </template>
+
+            <template #right-column>
+                <CaseCustomer />
+                <CaseMessaging />
+            </template>
+        </BaseGrid>
+    </template>
 </template>
 
 <style lang="scss" scoped>

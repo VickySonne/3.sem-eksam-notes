@@ -1,16 +1,11 @@
 <script setup>
 import TextMessage from "@/pages/cases/components/read/messaging/TextMessage.vue";
-import messagingReducer from "@/pages/cases/components/read/messaging/messagingReducer";
-import {onBeforeUnmount, ref} from "vue";
+import {onBeforeUnmount} from "vue";
+import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
-const isLoading = ref(true)
-const messages = messagingReducer.messages;
+const messages = readCaseReducer.messages;
 
-messagingReducer.fetchMessages().then(() => {
-    isLoading.value = false
-})
-
-const messageSubscription = messagingReducer.subscribeToMessages()
+const messageSubscription = readCaseReducer.subscribeToMessages()
 
 onBeforeUnmount(() => {
     messageSubscription.unsubscribe();
@@ -18,13 +13,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div v-if="isLoading" class="loader"></div>
-
-    <div v-if="!messages.length && !isLoading">
+    <div v-if="!messages.length">
         <h3>Ingen beskeder fundet.</h3>
     </div>
 
-    <ul v-if="messages.length && !isLoading">
+    <ul v-if="messages.length">
         <TextMessage v-for="message in messages" :message=message :key="message.id" />
     </ul>
 </template>

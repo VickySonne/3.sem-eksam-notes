@@ -1,21 +1,10 @@
 <script setup>
 import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
-import detailsReducer from "@/pages/cases/components/read/reducers/detailsReducer.js"
-import { onUnmounted, ref } from "vue";
 import CaseInfo from "./details/CaseInfo.vue";
+import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
-const isLoading = ref(true)
-
-const details = detailsReducer.details
-
-detailsReducer.fetchDetails().then(() => {
-    isLoading.value = false
-})
-
-onUnmounted(() => {
-    detailsReducer.flush()
-})
+const details = readCaseReducer.details
 </script>
 
 <template>
@@ -24,10 +13,8 @@ onUnmounted(() => {
             <SectionHeader title="Detaljer" />
         </template>
 
-        <div v-if="isLoading" class="loader"></div>
-
         <!-- Lav dette til komponenter som også kan genbruges i summery-->
-        <div v-if="!isLoading">
+        <div>
             <!-- <p><span>Ansvarlig:</span> {{ details.responsible_employee.name }}</p>
             <p><span>Status:</span> {{ details.status.name }}</p>
             <p><span>Afhentningstidspunkt:</span> {{ new Date(details.pickup).toLocaleDateString() }}</p>
