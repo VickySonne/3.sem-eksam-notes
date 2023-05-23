@@ -10,8 +10,7 @@
  
  <style lang="scss" scoped>
     div{
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: var(--default-gap);
     }
  </style>

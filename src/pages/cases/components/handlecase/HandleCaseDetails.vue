@@ -18,92 +18,82 @@ import TextareaInput from './details/TextareaInput.vue';
             <SectionHeader title="Detaljer"></SectionHeader>
         </template>
 
-        <div class="content">
-            <div class="flex-row">
-                <DetailsInput class="half-width">
-                    <template #label>
-                        <InputLabel>Ansvarlige</InputLabel>
-                    </template>
+        <div>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Ansvarlige</InputLabel>
+                </template>
 
-                    <CustomSelect>
-                        <CustomSelectItem></CustomSelectItem>
-                    </CustomSelect>
-                </DetailsInput>
+                <CustomSelect>
+                    <CustomSelectItem></CustomSelectItem>
+                </CustomSelect>
+            </DetailsInput>
 
-                <DetailsInput class="half-width">
-                    <template #label>
-                        <InputLabel>Status</InputLabel>
-                    </template>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Status</InputLabel>
+                </template>
 
-                    <CustomSelect>
-                        <CustomSelectItem></CustomSelectItem>
-                    </CustomSelect>
-                </DetailsInput>
-            </div>
+                <CustomSelect>
+                    <CustomSelectItem></CustomSelectItem>
+                </CustomSelect>
+            </DetailsInput>
 
-            <div class="flex-row">
-                <div class="half-width">
-                    <DetailsInput>
-                        <template #label>
-                            <InputLabel>Tags</InputLabel>
-                        </template>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Tags</InputLabel>
+                </template>
 
-                        <CustomSelect>
-                            <CustomSelectItem></CustomSelectItem>
-                        </CustomSelect>
-                    </DetailsInput>
-                </div>
-                
-                <div class="flex-row">
-                    <DetailsInput class="half-width">
-                        <template #label>
-                            <InputLabel>Afhenting</InputLabel>
-                        </template>
+                <CustomSelect>
+                    <CustomSelectItem></CustomSelectItem>
+                </CustomSelect>
+            </DetailsInput>
 
-                        <DateInput />
-                    </DetailsInput>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Afhenting</InputLabel>
+                </template>
 
-                    <DetailsInput class="half-width">
-                        <template #label>
-                            <InputLabel>Pris (Intern)</InputLabel>
-                        </template>
+                <DateInput/>
+            </DetailsInput>
 
-                        <PriceInput />
-                    </DetailsInput>
-                </div>
-            </div>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Pris (Intern)</InputLabel>
+                </template>
 
-            <div>
-                <DetailsInput>
-                    <template #label>
-                        <InputLabel>Beskrivelse</InputLabel>
-                    </template>
+                <PriceInput/>
+            </DetailsInput>
 
-                    <TextareaInput />
-                </DetailsInput>
-            </div>
+            <DetailsInput>
+                <template #label>
+                    <InputLabel>Beskrivelse</InputLabel>
+                </template>
+
+                <TextareaInput/>
+            </DetailsInput>
         </div>
-        
+
     </SectionContainer>
 </template>
 
 <style lang="scss" scoped>
-    .content{
-        display: flex;
-        flex-direction: column;
-        gap: var(--default-gap);
-    }
+section > div {
+  display: grid;
+  gap: var(--default-padding);
+  grid-template-columns: repeat(4, 1fr);
 
-    @media only screen and (min-width: 1200px){
-        .flex-row{
-            display: flex;
-            flex-direction: row;
-            gap: var(--default-gap);
-        }
+  & > div {
+    grid-column: span 2;
+  }
 
-        .half-width{
-            width: 50%
-        }
-    }
-    
+  :nth-child(4),
+  :nth-child(5) {
+    grid-column: span 1;
+  }
+
+  :last-child {
+    grid-column: span 4;
+  }
+}
 </style>
