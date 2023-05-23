@@ -3,6 +3,20 @@ import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import CaseInfo from "../read/details/CaseInfo.vue";
 import CaseInfoList from "../read/details/CaseInfoList.vue";
+import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+import {ref} from "vue";
+
+const summary = ref({
+    status: handleCaseReducer.selectedStatus,
+    responsibleEmployee: handleCaseReducer.selectedEmployee,
+    pickupDate: handleCaseReducer.selectedDate,
+    customer: handleCaseReducer.selectedCustomer,
+    negotiatedPrice: handleCaseReducer.negotiatedPrice,
+    description: handleCaseReducer.description,
+    tasks: handleCaseReducer.selectedTasks,
+    secondaryPayee: handleCaseReducer.secondaryPayee,
+})
+
 </script>
 
 <template>
@@ -12,16 +26,21 @@ import CaseInfoList from "../read/details/CaseInfoList.vue";
         </template>
 
         <div>
-            <CaseInfo label="Status:"></CaseInfo>
-            <CaseInfo label="Ansvarlig:"></CaseInfo>
-            <CaseInfo label="Afhentning d."></CaseInfo>
-            <CaseInfo label="Aftalt pris:"></CaseInfo>
-            <CaseInfo label="Beskrivelse:"></CaseInfo>
+            <CaseInfo v-if="summary.status" label="Status:">{{ summary.status.name }}</CaseInfo>
+            <CaseInfo v-if="summary.responsibleEmployee" label="Ansvarlig:">{{ summary.responsibleEmployee.name }}</CaseInfo>
+            <CaseInfo v-if="summary.customer" label="Kunde:">{{ summary.customer.name }}</CaseInfo>
+            <CaseInfo v-if="summary.secondaryPayee" label="Anden betaler:">{{ summary.secondaryPayee.name }}</CaseInfo>
+
+            <CaseInfo v-if="summary.pickupDate" label="Afhentning d.">{{ summary.pickupDate }}</CaseInfo>
+            <CaseInfo v-if="summary.negotiatedPrice" label="Aftalt pris:">{{ summary.negotiatedPrice }}</CaseInfo>
+            <CaseInfo v-if="summary.description" label="Beskrivelse:">{{ summary.description }}</CaseInfo>
+
             <CaseInfo label="Opgaver:">
                 <ul>
-                    <CaseInfoList content="test"/>
+                    <CaseInfoList v-for="task in summary.tasks" :content="task.name" :key="task.id"/>
                 </ul>
             </CaseInfo>
+
             <CaseInfo label="Produkter:">
                 <ul>
                     <CaseInfoList content="test" count="2"/>
@@ -33,9 +52,8 @@ import CaseInfoList from "../read/details/CaseInfoList.vue";
 </template>
 
 <style lang="scss" scoped>
-    div{
-        display: flex;
-        flex-direction: column;
-        gap: var(--default-gap);
+    div {
+        display: grid;
+        gap: var(--half-padding);
     }
 </style>
