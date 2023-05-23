@@ -3,17 +3,21 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {ref, watch} from "vue";
 
 const props = defineProps({
-    placeholder: {
+    value: {
         type: String,
-        default: 'Søg'
+        required: true
     },
     searchCallback: {
         type: Function,
         required: true
-    }
+    },
+    placeholder: {
+        type: String,
+        default: 'Søg'
+    },
 })
 
-const searchRef = ref(null);
+const searchRef = ref(props.value);
 
 watch(searchRef, (value) => {
     props.searchCallback(value);

@@ -23,7 +23,7 @@ const handleCaseReducer = {
         // because components await the data before rendering
         const {data: statusOptions} = await database.from('statuses').select('id, name')
         const {data: employeeOptions} = await database.from('employees').select('id, name')
-        const {data: customerOptions} = await database.from('customers').select('id, name')
+        const {data: customerOptions} = await database.from('customers').select('id, name, phone, address, city, zipcode')
         const {data: tagsOptions} = await database.from('tags').select('id, name')
         const {data: taskOptions} = await database.from('task_categories').select('id, name, tasks(*)').eq('tasks.one_off', false)
         const {data: productOptions} = await database.from('products').select('id, name, sell_price')
@@ -76,7 +76,7 @@ const handleCaseReducer = {
     hasSecondaryPayee: ref(false),
 
     customerSearch: ref(""),
-    secondaryPayeeSearch: ref(null),
+    secondaryPayeeSearch: ref(""),
 }
 
 export default handleCaseReducer

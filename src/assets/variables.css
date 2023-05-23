@@ -44,4 +44,6 @@
 
     /* temporary */
     --muted: rgb(75 85 99);
+
+    --bg-danger: maroon;
 }

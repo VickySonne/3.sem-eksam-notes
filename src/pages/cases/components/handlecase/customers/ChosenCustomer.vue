@@ -1,35 +1,53 @@
 <script setup>
-    import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+defineProps({
+    customer: {
+        type: Object,
+        required: true
+    },
+    callback: {
+        type: Function,
+        required: true
+    },
+    destructiveCallback: {
+        type: Boolean,
+        required: false,
+        default: false
+    }
+})
 </script>
 
 <template>
-    <div class="wrapper">
+    <div @click="callback(customer)" :class="{
+        destructive: destructiveCallback
+    }">
         <ul>
-            <li>{{ name }}</li>
-            <li>{{ number }}</li>
-            <li>{{ adress }}</li>
-            <li>{{ zipcode }} {{ city }}</li>
+            <li>{{ customer.name }}</li>
+            <li>{{ customer.phone }}</li>
+            <li>{{ customer.adress }}</li>
+            <li>{{ customer.zipcode }} {{ customer.city }}</li>
         </ul>
 
-        <button>
-            <font-awesome-icon icon="times"/>
-        </button>
+        <slot></slot>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    div{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        background-color: var(--bg-white);
-        padding: var(--default-padding);
-        border-radius: var(--border-radius);
+.destructive:hover {
+    background-color: var(--bg-danger);
+}
 
-        button{
-            display: flex;
-            flex-direction: row;
-            gap: var(--default-gap);
-        }
+div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-white);
+    padding: var(--default-padding);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--bg-dark);
+        color: var(--text-secondary);
     }
+}
 </style>
