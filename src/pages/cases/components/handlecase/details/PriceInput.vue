@@ -1,12 +1,19 @@
 <script setup>
-    
-    const props = defineProps(['data']);
-
+defineProps({
+    value: {
+        type: String,
+        required: true,
+    },
+    callback: {
+        type: Function,
+        required: true,
+    }
+})
 </script>
 
 <template>
     <div>
-        <input type="number" placeholder="Indtast pris">
+        <input type="number" :value="value" @input="callback($event)" placeholder="Indtast pris">
         <p>kr.</p>
     </div>
 </template>

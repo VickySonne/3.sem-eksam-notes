@@ -13,6 +13,7 @@ import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseRed
 const employeeOptions = handleCaseReducer.employeeOptions
 const statusOptions = handleCaseReducer.statusOptions
 const selectedDate = handleCaseReducer.selectedDate
+const negotiatedPrice = handleCaseReducer.negotiatedPrice
 
 const setSelectedEmployee = (event) => {
     handleCaseReducer.selectedEmployee.value = employeeOptions.value.find(employee => employee.id === parseInt(event.target.value))
@@ -78,7 +79,7 @@ const setSelectedStatus = (event) => {
                     <InputLabel>Pris (Intern)</InputLabel>
                 </template>
 
-                <PriceInput/>
+                <PriceInput :value="negotiatedPrice" :callback="(event) => negotiatedPrice = event.target.value"/>
             </DetailsInput>
 
             <DetailsInput>

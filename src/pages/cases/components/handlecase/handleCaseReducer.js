@@ -61,7 +61,7 @@ const handleCaseReducer = {
     selectedCustomer: ref(null),
     secondaryPayee: ref(null),
     selectedDate: ref(null),
-
+    negotiatedPrice: ref(""),
 
     hasSecondaryPayee: ref(false),
 
