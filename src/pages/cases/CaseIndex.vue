@@ -17,6 +17,10 @@ const isLoading = ref(true)
 casesReducer.fetchCases().then(() => {
     isLoading.value = false
 })
+
+const updateSearch = (search) => {
+    casesReducer.updateSearch(search)
+}
 </script>
 
 <template>
@@ -26,7 +30,7 @@ casesReducer.fetchCases().then(() => {
     <div>
       <ActionToolbar>
         <template #contentleft>
-          <SearchInput placeholder="Søg..." :search-callback="() => {}"/>
+          <SearchInput placeholder="Søg..." :search-callback="updateSearch"/>
 
           <CustomSelect>
             <CustomSelectItem></CustomSelectItem>
