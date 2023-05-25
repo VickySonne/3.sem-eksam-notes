@@ -12,7 +12,8 @@ defineProps({
     callback: {
         type: Function,
         required: false,
-        default: () => {}
+        default: () => {
+        }
     }
 })
 </script>
@@ -20,7 +21,9 @@ defineProps({
 <template>
     <article :class="{selected: selected}" @click="callback">
         <div>
-            <font-awesome-icon icon="check"/>
+            <font-awesome-icon icon="check" :class="{
+                invisible: !selected,
+            }"/>
         </div>
 
         <p>{{ task.name }}</p>
@@ -28,6 +31,10 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
+.invisible {
+  visibility: hidden;
+}
+
 article {
   align-items: center;
   background-color: #fff;
