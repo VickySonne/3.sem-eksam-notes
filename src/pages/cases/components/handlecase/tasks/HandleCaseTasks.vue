@@ -19,12 +19,3 @@ import TaskSelectionGrid from "@/pages/cases/components/handlecase/tasks/TaskSel
         <TaskSelectionGrid />
     </SectionContainer>
 </template>
-
-<style lang="scss" scoped>
-hr {
-    background-color: #1E293B;
-    border-radius: var(--border-radius);
-    height: .25rem;
-    margin-block: var(--default-gap);
-}
-</style>

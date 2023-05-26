@@ -78,11 +78,4 @@ nav {
     gap: 0.5rem;
   }
 }
-
-.separator {
-  background-color: var(--bg-primary);
-  border-radius: var(--border-radius);
-  height: 4px;
-  opacity: 0.5;
-}
 </style>

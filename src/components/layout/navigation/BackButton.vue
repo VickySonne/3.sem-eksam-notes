@@ -2,17 +2,30 @@
 import router from "@/router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
-defineProps({
+const props = defineProps({
     destination: {
         type: String,
         required: false,
         default: '/',
+    },
+    requireConfirmation: {
+        type: Boolean,
+        required: false,
+        default: false,
     }
 })
+
+const navigate = () => {
+    if (props.requireConfirmation && !confirm('Er du sikker på du vil forlade siden?')) {
+        return;
+    }
+
+    router.push({ path: props.destination })
+}
 </script>
 
 <template>
-    <div @click="router.push({ path: destination })">
+    <div @click="navigate">
         <font-awesome-icon icon="arrow-left"/>
 
         <p>

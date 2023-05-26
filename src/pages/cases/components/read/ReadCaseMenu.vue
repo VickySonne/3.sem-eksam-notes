@@ -12,7 +12,7 @@ import router from "@/router";
     <TertiaryButton text="Print" :callback="() => {}"/>
     <TertiaryButton text="Gem" :callback="() => {}"/>
     <span></span>
-    <CustomSelect>
+    <CustomSelect :is-call-to-action="true">
         <CustomSelectItem>Opdater status</CustomSelectItem>
     </CustomSelect> 
 </div>

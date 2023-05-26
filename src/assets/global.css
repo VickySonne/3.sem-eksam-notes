@@ -17,3 +17,10 @@ svg {
     height: 18px !important;
     width: 18px !important;
 }
+
+hr {
+    background-color: var(--muted);
+    border-radius: var(--border-radius);
+    height: .25rem;
+    margin-block: var(--default-gap);
+}

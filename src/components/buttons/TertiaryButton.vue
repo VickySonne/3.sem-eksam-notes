@@ -13,13 +13,21 @@
             type: Boolean,
             required: false,
             default: false
+        },
+        danger: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     })
 </script>
 
 <template>
     <div>
-        <p @click="callback" :class="emphasised ? 'emphasised' : ''">{{ text }}</p>
+        <p @click="callback" :class="{
+            emphasised: emphasised,
+            danger: danger,
+        }">{{ text }}</p>
     </div>
 </template>
 
@@ -39,6 +47,10 @@
 
         .emphasised{
             font-weight: var(--text-heavy);
+        }
+
+        .danger:hover {
+            color: var(--text-danger);
         }
     }
     

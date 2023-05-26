@@ -27,11 +27,4 @@ const selectedProducts = handleCaseReducer.selectedProducts
     table {
         width: 100%;
     }
-
-    hr {
-        background-color: var(--bg-medium);
-        border-radius: var(--border-radius);
-        height: .25rem;
-        margin-block: var(--default-gap);
-    }
 </style>

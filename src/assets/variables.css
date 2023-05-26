@@ -5,10 +5,10 @@
     --title-primary: rgb(2 6 23);
     --title-secondary: rgb(15 23 42);
 
-    --CTA-primary: rgb(2 6 23);
+    --CTA-primary: rgb(29 78 216);
     --CTA-primary-hover: rgb(15 23 42);
 
-    --CTA-secondary:rgb(30 41 59);
+    --CTA-secondary: rgb(75 85 99);
     --CTA-secondary-hover: rgb(51 65 85);
 
     --CTA-tertiary: rgb(71 85 105);
@@ -41,6 +41,7 @@
     --muted: rgb(75 85 99);
 
     --bg-danger: maroon;
+    --text-danger: red;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -51,10 +52,10 @@
         /*--title-primary: rgb(2 6 23);*/
         /*--title-secondary: rgb(15 23 42);*/
 
-        --CTA-primary: rgb(30 41 59); /* done */
+        --CTA-primary: rgb(190 24 93); /* done */
         --CTA-primary-hover: rgb(51 65 85); /* done */
 
-        --CTA-secondary: rgb(30 41 59); /* done */
+        --CTA-secondary: rgb(51 65 85); /* done */
         --CTA-secondary-hover: rgb(51 65 85); /* done */
 
         /*--CTA-tertiary: rgb(71 85 105);*/

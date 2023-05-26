@@ -43,10 +43,7 @@ aside {
   }
 
   hr {
-    background-color: var(--bg-medium);
-    border-radius: var(--border-radius);
-    height: 4px;
-    opacity: 0.5;
+    margin-block: 0;
   }
 }
 </style>

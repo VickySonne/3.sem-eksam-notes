@@ -39,14 +39,13 @@ ul {
         align-items: center;
         background-color: var(--bg-white);
         border-radius: var(--border-radius);
-        color: var(--text-color);
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         padding: var(--default-padding);
 
         &.selected {
-            background-color: var(--bg-dark);
+            background-color: var(--muted);
             color: var(--text-secondary);
         }
     }

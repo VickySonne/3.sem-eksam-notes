@@ -38,7 +38,7 @@ const setSelectedStatus = (event) => {
                     <InputLabel>Ansvarlige</InputLabel>
                 </template>
 
-                <CustomSelect :callback="setSelectedEmployee">
+                <CustomSelect :callback="setSelectedEmployee" :is-dark="true">
                     <CustomSelectItem v-for="employee in employeeOptions" :value="employee.id" :key="employee.id">
                         {{ employee.name }}
                     </CustomSelectItem>
@@ -50,7 +50,7 @@ const setSelectedStatus = (event) => {
                     <InputLabel>Status</InputLabel>
                 </template>
 
-                <CustomSelect :callback="setSelectedStatus">
+                <CustomSelect :callback="setSelectedStatus" :is-dark="true">
                     <CustomSelectItem v-for="status in statusOptions" :value="status.id" :key="status.id">
                         {{ status.name }}
                     </CustomSelectItem>
@@ -62,7 +62,7 @@ const setSelectedStatus = (event) => {
                     <InputLabel>Tags</InputLabel>
                 </template>
 
-                <CustomSelect>
+                <CustomSelect :is-dark="true">
                     <CustomSelectItem></CustomSelectItem>
                 </CustomSelect>
             </DetailsInput>

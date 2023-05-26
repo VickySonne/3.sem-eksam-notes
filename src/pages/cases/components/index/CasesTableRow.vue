@@ -31,7 +31,7 @@ defineProps({
       <!-- <td>STUFF</td> -->
       <td @click.stop>
         <CustomSelect>
-          <CustomSelectItem></CustomSelectItem>
+          <CustomSelectItem>Toaster</CustomSelectItem>
         </CustomSelect>
       </td>
   </tr>

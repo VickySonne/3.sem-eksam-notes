@@ -11,6 +11,8 @@
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
     import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
     import {onUnmounted, ref} from "vue";
+    import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
+    import router from "@/router";
 
     const isLoading = ref(true)
 
@@ -21,6 +23,12 @@
     onUnmounted(() => {
         handleCaseReducer.flush()
     })
+
+    const cancelCreate = () => {
+        if (window.confirm('Er du sikker på du vil annullere?')) {
+            router.push('/')
+        }
+    }
 </script>
 
 <template>
@@ -31,7 +39,7 @@
     <template v-if="!isLoading">
         <PageTitle title="Opret ny sag" />
 
-        <BackButton>Tilbage til oversigt</BackButton>
+        <BackButton :require-confirmation="true">Tilbage til oversigt</BackButton>
 
         <BaseGrid>
             <template #left-column>
@@ -45,7 +53,7 @@
                 <HandleCaseSummary />
 
                 <HandleCaseActions>
-                    <div></div>
+                    <TertiaryButton text="Annuler" @click="cancelCreate" :danger="true"/>
                     <PrimaryButton title="Opret Sag" @click="() => handleCaseReducer.createCase()"/>
                 </HandleCaseActions>
             </template>

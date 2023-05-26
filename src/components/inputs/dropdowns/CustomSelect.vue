@@ -11,12 +11,25 @@ defineProps({
         default: (event) => {
             console.log(event.target.value)
         }
+    },
+    isCallToAction: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    isDark: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 })
 </script>
 
 <template>
-    <div class="container">
+    <div class="container" :class="{
+        cta: isCallToAction,
+        'is-dark': isDark
+    }">
         <select @change="callback($event)" :multiple="multiple">
             <slot></slot>
         </select>
@@ -29,13 +42,24 @@ defineProps({
 
 <style lang="scss" scoped>
 .container {
-    background-color: var(--bg-white);
+    background-color: var(--CTA-secondary);
     border-radius: var(--border-radius);
+    color: var(--text-secondary);
     cursor: pointer;
     position: relative;
+
+    &.is-dark {
+        background-color: var(--bg-white);
+    }
+
+    &.cta {
+        background-color: var(--CTA-primary);
+        color: var(--text-secondary);
+    }
 }
 
 select {
+    color: var(--text-primary);
     padding: var(--default-padding);
     padding-right: 2.5rem;
     text-align: left;
