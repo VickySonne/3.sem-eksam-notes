@@ -47,7 +47,7 @@ const addProduct = (product) => {
                         <font-awesome-icon icon="plus"/>
                     </SecondaryButton>
 
-                    <TertiaryButton text="Tilføj kundeenhed"/>
+                    <TertiaryButton text="Tilføj kundeenhed" :emphasised="true"/>
                 </template>
             </ActionToolbar>
         </div>
