@@ -54,7 +54,7 @@ li {
 
         &.active,
         &:hover {
-            background-color: var(--muted);
+            background-color: var(--CTA-secondary);
             color: var(--text-secondary);
         }
     }
