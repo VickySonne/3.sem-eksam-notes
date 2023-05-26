@@ -13,7 +13,9 @@ defineProps({
             {{ message.contents }}
         </div>
 
-        {{ new Date(message.created_at).toLocaleString() }}
+        <span>
+            {{ new Date(message.created_at).toLocaleString() }}
+        </span>
     </li>
 </template>
 
@@ -25,11 +27,21 @@ li  {
   gap: var(--half-padding);
 
   div {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-white);
     border-radius: var(--border-radius);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     padding: var(--default-padding);
     width: fit-content;
   }
+
+    span {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    div {
+        color: var(--text-secondary);
+    }
 }
 </style>

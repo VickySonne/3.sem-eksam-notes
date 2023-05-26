@@ -21,7 +21,7 @@ const handleKeydown = (event) => {
 <style lang="scss" scoped>
 div {
     align-items: center;
-    background-color: var(--bg-medium);
+    background-color: var(--bg-white);
     border-radius: var(--border-radius);
     display: flex;
 
@@ -29,6 +29,10 @@ div {
         color: var(--text-secondary);
         padding: var(--default-padding);
         width: 100%;
+
+        &::placeholder {
+            color: var(--text-primary);
+        }
     }
 
     svg {
