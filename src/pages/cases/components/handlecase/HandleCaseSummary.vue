@@ -22,7 +22,7 @@ const selectedProducts = handleCaseReducer.selectedProducts
             <SectionHeader title="Opsummering" />
         </template>
 
-        <div>
+        <div class="summary-container">
             <CaseInfo v-if="caseStatus" label="Status:">{{ caseStatus.name }}</CaseInfo>
             <CaseInfo v-if="responsibleEmployee" label="Ansvarlig:">{{ responsibleEmployee.name }}</CaseInfo>
             <CaseInfo v-if="customer" label="Kunde:">{{ customer.name }}</CaseInfo>
@@ -49,8 +49,8 @@ const selectedProducts = handleCaseReducer.selectedProducts
 </template>
 
 <style lang="scss" scoped>
-    div {
-        display: grid;
-        gap: var(--half-padding);
-    }
+.summary-container {
+    display: grid;
+    gap: var(--half-padding);
+}
 </style>
