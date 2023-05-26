@@ -59,7 +59,6 @@ defineProps({
 }
 
 select {
-    color: var(--text-primary);
     padding: var(--default-padding);
     padding-right: 2.5rem;
     text-align: left;
