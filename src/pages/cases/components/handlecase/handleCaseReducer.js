@@ -35,7 +35,7 @@ const handleCaseReducer = {
             this.selectedCustomer.value = activeCase.customer
             this.secondaryPayee.value = activeCase.payee
             this.selectedDate.value = activeCase.pickup
-            this.negotiatedPrice.value = activeCase.negotiated_price
+            this.negotiatedPrice.value = activeCase.negotiated_price === null ? "" : activeCase.negotiated_price
             this.description.value = activeCase.description
             this.hasSecondaryPayee.value = activeCase.payee !== null
             // this.selectedProducts.value = activeCase.products
