@@ -45,7 +45,7 @@
 
     <template v-if="!isLoading">
         <PageTitle :title="'Opdater Sag #' + id" />
-        <BackButton>Tilbage til sag</BackButton>
+        <BackButton :destination="'/case/' + id" :require-confirmation="true">Tilbage til sag</BackButton>
         <BaseGrid>
             <template #left-column>
                 <HandleCaseCustomer></HandleCaseCustomer>
@@ -56,7 +56,7 @@
             <template #right-column>
                 <HandleCaseSummary></HandleCaseSummary>
                 <HandleCaseActions>
-                    <TertiaryButton text="Annuler" @click="cancelEdit"/>
+                    <TertiaryButton text="Annuler" @click="cancelEdit" :danger="true"/>
                     <PrimaryButton title="Gem Sag" @click="() => handleCaseReducer.updateCase()"></PrimaryButton>
                 </HandleCaseActions>
             </template>

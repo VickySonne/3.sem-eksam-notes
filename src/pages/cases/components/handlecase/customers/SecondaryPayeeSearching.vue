@@ -45,7 +45,7 @@ const cancelSecondaryPayee = () => {
             </template>
         </ActionToolbar>
 
-        <SectionContainer v-if="secondaryPayeeSearch.length">
+        <SectionContainer v-if="secondaryPayeeSearch.length || secondaryPayee">
             <div v-if="!secondaryPayee" class="customer-grid">
                 <ChosenCustomer v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, secondaryPayeeSearch))" :customer="customer" :callback="selectSecondaryPayee" :key="customer.id" />
             </div>

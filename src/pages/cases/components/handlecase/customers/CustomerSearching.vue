@@ -45,7 +45,7 @@ const addSecondaryPayee = () => {
             </template>
         </ActionToolbar>
 
-        <SectionContainer v-if="customerSearch.length">
+        <SectionContainer v-if="customerSearch.length || selectCustomer">
             <div v-if="!selectedCustomer" class="customer-grid">
                 <ChosenCustomer v-for="customer in customerOptions.filter(c => recursiveObjectSearch(c, customerSearch))" :customer="customer" :callback="selectCustomer" :key="customer.id" />
             </div>

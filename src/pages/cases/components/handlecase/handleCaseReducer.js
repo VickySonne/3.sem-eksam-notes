@@ -27,7 +27,7 @@ const handleCaseReducer = {
         if (caseNumber) {
             this.caseId = caseNumber
 
-            const query = "*, tasks(*), products(*), cases_products(*)"
+            const query = "*, tasks(*), products(*), cases_products(*), customer(*), payee(*)"
 
             const {data: activeCase} = await database.from('cases').select(query).eq('id', caseNumber).single()
 
