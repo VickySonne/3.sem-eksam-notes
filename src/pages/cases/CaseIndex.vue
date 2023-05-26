@@ -30,7 +30,7 @@ const updateSearch = (search) => {
     <div>
       <ActionToolbar>
         <template #contentleft>
-          <SearchInput placeholder="Søg..." :search-callback="updateSearch"/>
+          <SearchInput placeholder="Søg..." value="" :search-callback="updateSearch"/>
 
           <CustomSelect>
             <CustomSelectItem></CustomSelectItem>
