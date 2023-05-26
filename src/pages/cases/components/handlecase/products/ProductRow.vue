@@ -1,14 +1,19 @@
 <script setup>
 import ProductCounter from './ProductCounter.vue';
 
-defineProps(['data']);
+defineProps({
+    product: {
+        type: Object,
+        required: true
+    }
+});
 </script>
 
 <template>
     <tr>
         <td>{{ product.name }}</td>
 
-        <ProductCounter />
+        <ProductCounter :product="product"/>
 
         <td>{{ product.sell_price }}</td>
         <td>{{ product.sell_price * product.count }}</td>
@@ -16,10 +21,8 @@ defineProps(['data']);
 </template>
 
 <style lang="scss" scoped>
-th {
-  padding-block: var(--default-padding);
-  padding-inline: var(--half-padding);
-  font-weight: var(--text-heavy);
+td {
+    padding-block: var(--default-padding);
 
     &:last-child {
         text-align: right;

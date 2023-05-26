@@ -15,6 +15,11 @@ const handleCaseReducer = {
         this.negotiatedPrice.value = ""
         this.description.value = ""
         this.hasSecondaryPayee.value = false
+        this.selectedProducts.value = []
+
+        this.customerSearch.value = ""
+        this.secondaryPayeeSearch.value = ""
+        this.productSearch.value = ""
     },
 
     initialize: async function () {
@@ -72,11 +77,13 @@ const handleCaseReducer = {
     selectedDate: ref(null),
     negotiatedPrice: ref(""),
     description: ref(""),
+    selectedProducts: ref([]),
 
     hasSecondaryPayee: ref(false),
 
     customerSearch: ref(""),
     secondaryPayeeSearch: ref(""),
+    productSearch: ref(""),
 }
 
 export default handleCaseReducer

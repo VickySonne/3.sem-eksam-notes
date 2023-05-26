@@ -20,7 +20,6 @@ defineProps({
 <style lang="scss" scoped>
 th {
   padding-block: var(--default-padding);
-  padding-inline: var(--half-padding);
   font-weight: var(--text-heavy);
 
     &:last-child {
