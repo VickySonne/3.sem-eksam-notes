@@ -42,6 +42,9 @@
 
     --bg-danger: maroon;
     --text-danger: red;
+
+    --shadow-right: 1px 0 1px 0 rgba(0, 0, 0, 0.1);
+    --shadow-down: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -71,5 +74,8 @@
         /* opgaver (& tags for now) */
         --task-light:#e5e7eb;
         --task-dark:lightgrey;
+
+        --shadow-right: 1px 0 1px 0 rgba(255, 255, 255, 0.1);
+        --shadow-down: 0 1px 1px 0 rgba(255, 255, 255, 0.1);
     }
 }

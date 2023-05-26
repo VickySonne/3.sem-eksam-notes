@@ -30,6 +30,7 @@ const expanded = ref(true);
 <style lang="scss" scoped>
 aside {
   padding: var(--default-padding);
+  box-shadow: var(--shadow-right);
 
   &.expanded {
     width: 16rem;
