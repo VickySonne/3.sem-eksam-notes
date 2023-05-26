@@ -4,19 +4,16 @@ import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import CaseInfo from "../read/details/CaseInfo.vue";
 import CaseInfoList from "../read/details/CaseInfoList.vue";
 import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
-import {ref} from "vue";
 
-const summary = ref({
-    status: handleCaseReducer.selectedStatus,
-    responsibleEmployee: handleCaseReducer.selectedEmployee,
-    pickupDate: handleCaseReducer.selectedDate,
-    customer: handleCaseReducer.selectedCustomer,
-    negotiatedPrice: handleCaseReducer.negotiatedPrice,
-    description: handleCaseReducer.description,
-    tasks: handleCaseReducer.selectedTasks,
-    secondaryPayee: handleCaseReducer.secondaryPayee,
-})
-
+const caseStatus = handleCaseReducer.selectedStatus
+const responsibleEmployee = handleCaseReducer.selectedEmployee
+const pickupDate = handleCaseReducer.selectedDate
+const customer = handleCaseReducer.selectedCustomer
+const negotiatedPrice = handleCaseReducer.negotiatedPrice
+const description = handleCaseReducer.description
+const tasks = handleCaseReducer.selectedTasks
+const secondaryPayee = handleCaseReducer.secondaryPayee
+const selectedProducts = handleCaseReducer.selectedProducts
 </script>
 
 <template>
@@ -26,24 +23,24 @@ const summary = ref({
         </template>
 
         <div>
-            <CaseInfo v-if="summary.status" label="Status:">{{ summary.status.name }}</CaseInfo>
-            <CaseInfo v-if="summary.responsibleEmployee" label="Ansvarlig:">{{ summary.responsibleEmployee.name }}</CaseInfo>
-            <CaseInfo v-if="summary.customer" label="Kunde:">{{ summary.customer.name }}</CaseInfo>
-            <CaseInfo v-if="summary.secondaryPayee" label="Anden betaler:">{{ summary.secondaryPayee.name }}</CaseInfo>
+            <CaseInfo v-if="caseStatus" label="Status:">{{ caseStatus.name }}</CaseInfo>
+            <CaseInfo v-if="responsibleEmployee" label="Ansvarlig:">{{ responsibleEmployee.name }}</CaseInfo>
+            <CaseInfo v-if="customer" label="Kunde:">{{ customer.name }}</CaseInfo>
+            <CaseInfo v-if="secondaryPayee" label="Anden betaler:">{{ secondaryPayee.name }}</CaseInfo>
 
-            <CaseInfo v-if="summary.pickupDate" label="Afhentning d.">{{ summary.pickupDate }}</CaseInfo>
-            <CaseInfo v-if="summary.negotiatedPrice" label="Aftalt pris:">{{ summary.negotiatedPrice }}</CaseInfo>
-            <CaseInfo v-if="summary.description" label="Beskrivelse:">{{ summary.description }}</CaseInfo>
+            <CaseInfo v-if="pickupDate" label="Afhentning d.">{{ pickupDate }}</CaseInfo>
+            <CaseInfo v-if="negotiatedPrice" label="Aftalt pris:">{{ negotiatedPrice }}</CaseInfo>
+            <CaseInfo v-if="description" label="Beskrivelse:">{{ description }}</CaseInfo>
 
             <CaseInfo label="Opgaver:">
                 <ul>
-                    <CaseInfoList v-for="task in summary.tasks" :content="task.name" :key="task.id"/>
+                    <CaseInfoList v-for="task in tasks" :content="task.name" :key="task.id"/>
                 </ul>
             </CaseInfo>
 
             <CaseInfo label="Produkter:">
                 <ul>
-                    <CaseInfoList content="test" count="2"/>
+                    <CaseInfoList v-for="product in selectedProducts" :content="product.name" :count="product.count" :key="product.id"/>
                 </ul>
             </CaseInfo>
         </div>
