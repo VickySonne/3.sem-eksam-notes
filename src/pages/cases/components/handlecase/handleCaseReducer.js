@@ -88,17 +88,7 @@ const handleCaseReducer = {
             return
         }
 
-        const caseData = {
-            customer: this.selectedCustomer.value.id,
-            created_by: this.selectedEmployee.value.id,
-            responsible_employee: this.selectedEmployee.value.id,
-            pickup: this.selectedDate.value,
-            payee: this.secondaryPayee.value ? this.secondaryPayee.value.id : null,
-            description: this.description.value,
-            deposit: 0,
-            negotiated_price: this.negotiatedPrice.value.length ? this.negotiatedPrice.value : null,
-            status: this.selectedStatus.value.id,
-        }
+        const caseData = this.generateCaseData()
 
         database.from('cases').insert(caseData).select().single().then(async data => {
             await database.from("cases_tasks").insert(this.selectedTasks.value.map(task => {
@@ -176,7 +166,15 @@ const handleCaseReducer = {
             }
         }
 
-        const caseData = {
+        const caseData = this.generateCaseData()
+
+        database.from('cases').update(caseData).eq('id', this.caseId).then(() => {
+            router.push({path: '/case/' + this.caseId})
+        })
+    },
+
+    generateCaseData: function () {
+        return {
             customer: this.selectedCustomer.value.id,
             created_by: this.selectedEmployee.value.id,
             responsible_employee: this.selectedEmployee.value.id,
@@ -187,10 +185,6 @@ const handleCaseReducer = {
             negotiated_price: this.negotiatedPrice.value.length ? this.negotiatedPrice.value : null,
             status: this.selectedStatus.value.id,
         }
-
-        database.from('cases').update(caseData).eq('id', this.caseId).then(() => {
-            router.push({path: '/case/' + this.caseId})
-        })
     },
 
     parseDate: function (event) {
