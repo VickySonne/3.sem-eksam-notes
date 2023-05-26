@@ -29,7 +29,7 @@ defineProps({
       <CasesDescription></CasesDescription>
       <td>{{ new Date(workCase.pickup).toLocaleDateString() }}</td>
       <!-- <td>STUFF</td> -->
-      <td>
+      <td @click.stop>
         <CustomSelect>
           <CustomSelectItem></CustomSelectItem>
         </CustomSelect>
