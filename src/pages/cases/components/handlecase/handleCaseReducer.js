@@ -25,11 +25,27 @@ const handleCaseReducer = {
 
     initialize: async function (caseNumber) {
         if (caseNumber) {
-            this.caseId.value = caseNumber
+            this.caseId = caseNumber
 
-            const {data: activeCase} = await database.from('cases').select().eq('id', caseNumber).single()
+            const query = "*, tasks(*), products(*), cases_products(*)"
 
-            // this.selectedTasks.value = activeCase.tasks
+            const {data: activeCase} = await database.from('cases').select(query).eq('id', caseNumber).single()
+
+            const activeCaseProducts = activeCase.products.map(product => {
+                const casesProduct = activeCase.cases_products.find(casesProduct => casesProduct.product_id === product.id)
+
+                return {
+                    ...product,
+                    count: casesProduct.count
+                }
+            })
+
+
+            this.activeCaseTasks = activeCase.tasks
+            this.activeCaseProducts = activeCaseProducts
+
+            this.selectedTasks.value = [...activeCase.tasks]
+            this.selectedProducts.value = [...activeCaseProducts]
             this.selectedEmployee.value = activeCase.created_by
             this.selectedStatus.value = activeCase.status
             this.selectedCustomer.value = activeCase.customer
@@ -38,7 +54,6 @@ const handleCaseReducer = {
             this.negotiatedPrice.value = activeCase.negotiated_price === null ? "" : activeCase.negotiated_price
             this.description.value = activeCase.description
             this.hasSecondaryPayee.value = activeCase.payee !== null
-            // this.selectedProducts.value = activeCase.products
         }
 
         // these could, technically, be done in parallel
@@ -106,6 +121,61 @@ const handleCaseReducer = {
     },
 
     updateCase: async function () {
+        const newTasks = this.selectedTasks.value.filter(task => !this.activeCaseTasks.some(t => t.id === task.id))
+        const removedTasks = this.activeCaseTasks.filter(task => !this.selectedTasks.value.some(t => t.id === task.id))
+
+        if (newTasks.length > 0) {
+            await database.from("cases_tasks").insert(newTasks.map(task => {
+                return {
+                    case_id: this.caseId,
+                    task_id: task.id,
+                }
+            }))
+        }
+
+        if (removedTasks.length > 0) {
+            await database.from("cases_tasks")
+                .delete()
+                .eq('case_id', this.caseId)
+                .in('task_id', removedTasks.map(task => task.id))
+        }
+
+        const newProducts = this.selectedProducts.value.filter(product => !this.activeCaseProducts.some(p => p.id === product.id))
+        const removedProducts = this.activeCaseProducts.filter(product => !this.selectedProducts.value.some(p => p.id === product.id))
+        const updatedProducts = this.selectedProducts.value.filter(product => {
+            const caseProduct = this.activeCaseProducts.find(p => p.id === product.id)
+
+            return caseProduct?.count !== product.count
+        })
+
+        if (newProducts.length > 0) {
+            await database.from("cases_products").insert(newProducts.map(product => {
+                return {
+                    case_id: this.caseId,
+                    product_id: product.id,
+                    count: product.count
+                }
+            }))
+        }
+
+        if (removedProducts.length > 0) {
+            await database.from("cases_products")
+                .delete()
+                .eq('case_id', this.caseId)
+                .in('product_id', removedProducts.map(product => product.id))
+        }
+
+        if (updatedProducts.length > 0) {
+            for (const product of updatedProducts) {
+                await database.from("cases_products")
+                    .update({
+                        count: product.count
+                    })
+                    .eq('case_id', this.caseId)
+                    .eq('product_id', product.id)
+            }
+        }
+
         const caseData = {
             customer: this.selectedCustomer.value.id,
             created_by: this.selectedEmployee.value.id,
@@ -118,8 +188,8 @@ const handleCaseReducer = {
             status: this.selectedStatus.value.id,
         }
 
-        database.from('cases').update(caseData).eq('id', this.caseId.value).then(() => {
-            router.push({path: '/case/' + this.caseId.value})
+        database.from('cases').update(caseData).eq('id', this.caseId).then(() => {
+            router.push({path: '/case/' + this.caseId})
         })
     },
 
@@ -134,7 +204,9 @@ const handleCaseReducer = {
         this.selectedDate.value = newDate.toISOString().substring(0, 16)
     },
 
-    caseId: ref(null),
+    caseId: null,
+    activeCaseTasks: null,
+    activeCaseProducts: null,
 
     statusOptions: ref([]),
     employeeOptions: ref([]),
