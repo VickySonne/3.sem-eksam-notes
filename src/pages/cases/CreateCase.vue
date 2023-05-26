@@ -47,7 +47,7 @@
 
                 <HandleCaseActions>
                     <TertiaryButton text="Annuler" />
-                    <PrimaryButton title="Opret Sag" />
+                    <PrimaryButton title="Opret Sag" @click="() => handleCaseReducer.createCase()"/>
                 </HandleCaseActions>
             </template>
         </BaseGrid>

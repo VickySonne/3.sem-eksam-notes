@@ -1,5 +1,6 @@
 import {ref} from "vue";
 import database from "@/database";
+import router from "@/router";
 
 // const forceDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -47,6 +48,44 @@ const handleCaseReducer = {
 
 
         this.parseDate({target: {value: new Date()}})
+    },
+
+    createCase: async function () {
+        if (!this.selectedCustomer.value) {
+            alert("Advarsel: Du skal som minimum vælge en kunde for at oprette en sag.")
+            return
+        }
+
+        const caseData = {
+            customer: this.selectedCustomer.value.id,
+            created_by: this.selectedEmployee.value.id,
+            responsible_employee: this.selectedEmployee.value.id,
+            pickup: this.selectedDate.value,
+            payee: this.secondaryPayee.value ? this.secondaryPayee.value.id : null,
+            description: this.description.value,
+            deposit: 0,
+            negotiated_price: this.negotiatedPrice.value.length ? this.negotiatedPrice.value : null,
+            status: this.selectedStatus.value.id,
+        }
+
+        database.from('cases').insert(caseData).select().single().then(async data => {
+            await database.from("cases_tasks").insert(this.selectedTasks.value.map(task => {
+                return {
+                    case_id: data.data.id,
+                    task_id: task.id,
+                }
+            }))
+
+            await database.from("cases_products").insert(this.selectedProducts.value.map(product => {
+                return {
+                    case_id: data.data.id,
+                    product_id: product.id,
+                    count: product.count
+                }
+            }))
+
+            await router.push({path: '/case/' + data.data.id})
+        })
     },
 
     parseDate: function (event) {
