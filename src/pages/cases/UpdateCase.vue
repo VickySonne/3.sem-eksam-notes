@@ -27,6 +27,12 @@
         isLoading.value = false
     })
 
+    const cancelEdit = () => {
+        if (window.confirm('Er du sikker på du vil annullere?')) {
+            router.push('/case/' + router.currentRoute.value.params.id)
+        }
+    }
+
     onUnmounted(() => {
         handleCaseReducer.flush()
     })
@@ -50,7 +56,7 @@
             <template #right-column>
                 <HandleCaseSummary></HandleCaseSummary>
                 <HandleCaseActions>
-                    <TertiaryButton text="Annuler"/>
+                    <TertiaryButton text="Annuler" @click="cancelEdit"/>
                     <PrimaryButton title="Gem Sag" @click="() => handleCaseReducer.updateCase()"></PrimaryButton>
                 </HandleCaseActions>
             </template>

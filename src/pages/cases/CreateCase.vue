@@ -8,7 +8,6 @@
     import HandleCaseDetails from './components/handlecase/HandleCaseDetails.vue';
     import HandleCaseSummary from './components/handlecase/HandleCaseSummary.vue';
     import HandleCaseActions from './components/handlecase/HandleCaseActions.vue';
-    import TertiaryButton from '../../components/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
     import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
     import {onUnmounted, ref} from "vue";
@@ -46,19 +45,10 @@
                 <HandleCaseSummary />
 
                 <HandleCaseActions>
-                    <TertiaryButton text="Annuler" />
+                    <div></div>
                     <PrimaryButton title="Opret Sag" @click="() => handleCaseReducer.createCase()"/>
                 </HandleCaseActions>
             </template>
         </BaseGrid>
     </template>
 </template>
-
-<style lang="scss" scoped>
-.loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-</style>

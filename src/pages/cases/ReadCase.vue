@@ -23,7 +23,9 @@ readCaseReducer.initialize().then(() => {
 </script>
 
 <template>
-    <div v-if="isLoading" class="loader"></div>
+    <div v-if="isLoading" class="loader-container">
+        <div class="loader"></div>
+    </div>
 
     <template v-if="!isLoading">
         <PageTitle :title="'Sag #' + caseNumber" />
