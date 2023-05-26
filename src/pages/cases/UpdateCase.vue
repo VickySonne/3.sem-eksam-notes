@@ -10,26 +10,52 @@
     import HandleCaseActions from './components/handlecase/HandleCaseActions.vue';
     import TertiaryButton from '../../components/buttons/TertiaryButton.vue';
     import PrimaryButton from '../../components/buttons/PrimaryButton.vue';
+    import router from "@/router";
+    import {onUnmounted, ref} from "vue";
+    import handleCaseReducer from "@/pages/cases/components/handlecase/handleCaseReducer";
+
+    const isLoading = ref(true)
+
+    defineProps({
+        id: {
+            type: String,
+            required: true
+        }
+    })
+
+    handleCaseReducer.initialize(router.currentRoute.value.params.id).then(() => {
+        isLoading.value = false
+    })
+
+    onUnmounted(() => {
+        handleCaseReducer.flush()
+    })
 </script>
 
 <template>
-    <PageTitle :title="'Opdater Sag #' + caseNumber" />
-    <BackButton>Tilbage til sag</BackButton>
-    <BaseGrid>
-        <template #left-column>
-            <HandleCaseCustomer></HandleCaseCustomer>
-            <HandleCaseTasks></HandleCaseTasks>
-            <HandleCaseProducts></HandleCaseProducts>
-            <HandleCaseDetails></HandleCaseDetails>
-        </template>
-        <template #right-column>
-            <HandleCaseSummary></HandleCaseSummary>
-            <HandleCaseActions>
-                <TertiaryButton text="Annuler"/>
-                <PrimaryButton title="Gem Sag"></PrimaryButton>
-            </HandleCaseActions>
-        </template>
-    </BaseGrid>
+    <div v-if="isLoading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <template v-if="!isLoading">
+        <PageTitle :title="'Opdater Sag #' + id" />
+        <BackButton>Tilbage til sag</BackButton>
+        <BaseGrid>
+            <template #left-column>
+                <HandleCaseCustomer></HandleCaseCustomer>
+                <HandleCaseTasks></HandleCaseTasks>
+                <HandleCaseProducts></HandleCaseProducts>
+                <HandleCaseDetails></HandleCaseDetails>
+            </template>
+            <template #right-column>
+                <HandleCaseSummary></HandleCaseSummary>
+                <HandleCaseActions>
+                    <TertiaryButton text="Annuler"/>
+                    <PrimaryButton title="Gem Sag" @click="() => handleCaseReducer.updateCase()"></PrimaryButton>
+                </HandleCaseActions>
+            </template>
+        </BaseGrid>
+    </template>
 </template>
 
 <style lang="scss" scoped>

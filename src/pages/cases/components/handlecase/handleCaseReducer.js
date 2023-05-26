@@ -23,7 +23,24 @@ const handleCaseReducer = {
         this.productSearch.value = ""
     },
 
-    initialize: async function () {
+    initialize: async function (caseNumber) {
+        if (caseNumber) {
+            this.caseId.value = caseNumber
+
+            const {data: activeCase} = await database.from('cases').select().eq('id', caseNumber).single()
+
+            // this.selectedTasks.value = activeCase.tasks
+            this.selectedEmployee.value = activeCase.created_by
+            this.selectedStatus.value = activeCase.status
+            this.selectedCustomer.value = activeCase.customer
+            this.secondaryPayee.value = activeCase.payee
+            this.selectedDate.value = activeCase.pickup
+            this.negotiatedPrice.value = activeCase.negotiated_price
+            this.description.value = activeCase.description
+            this.hasSecondaryPayee.value = activeCase.payee !== null
+            // this.selectedProducts.value = activeCase.products
+        }
+
         // these could, technically, be done in parallel
         // it was done this way to make it easier to deal with
         // because components await the data before rendering
@@ -88,6 +105,24 @@ const handleCaseReducer = {
         })
     },
 
+    updateCase: async function () {
+        const caseData = {
+            customer: this.selectedCustomer.value.id,
+            created_by: this.selectedEmployee.value.id,
+            responsible_employee: this.selectedEmployee.value.id,
+            pickup: this.selectedDate.value,
+            payee: this.secondaryPayee.value ? this.secondaryPayee.value.id : null,
+            description: this.description.value,
+            deposit: 0,
+            negotiated_price: this.negotiatedPrice.value.length ? this.negotiatedPrice.value : null,
+            status: this.selectedStatus.value.id,
+        }
+
+        database.from('cases').update(caseData).eq('id', this.caseId.value).then(() => {
+            router.push({path: '/case/' + this.caseId.value})
+        })
+    },
+
     parseDate: function (event) {
         const currentDate = new Date(event.target.value);
         const timezoneOffset = currentDate.getTimezoneOffset();
@@ -99,6 +134,7 @@ const handleCaseReducer = {
         this.selectedDate.value = newDate.toISOString().substring(0, 16)
     },
 
+    caseId: ref(null),
 
     statusOptions: ref([]),
     employeeOptions: ref([]),

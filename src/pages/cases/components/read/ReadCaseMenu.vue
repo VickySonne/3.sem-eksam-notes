@@ -2,11 +2,12 @@
 import CustomSelectItem from '@/components/inputs/dropdowns/CustomSelectItem.vue';
 import CustomSelect from '@/components/inputs/dropdowns/CustomSelect.vue';
 import TertiaryButton from '@/components/buttons/TertiaryButton.vue';
+import router from "@/router";
 </script>
 
 <template>
 <div>
-    <TertiaryButton text="Ret sag" :callback="() => {}"/>
+    <TertiaryButton text="Ret sag" :callback="() => router.push('/case/' + router.currentRoute.value.params.id + '/edit')"/>
     <TertiaryButton text="Kontakt" :callback="() => {}"/>
     <TertiaryButton text="Print" :callback="() => {}"/>
     <TertiaryButton text="Gem" :callback="() => {}"/>
