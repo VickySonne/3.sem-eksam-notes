@@ -55,7 +55,7 @@ div {
     padding-block: var(--default-padding);
   }
 
-  &:last-child {
+  :last-child {
     cursor: pointer;
   }
 }
