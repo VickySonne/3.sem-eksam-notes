@@ -37,13 +37,41 @@
     --default-gap: 1rem;
     --large-gap: 4rem;
 
-
-    /* media queries */
-    --tablet: 800px;
-    --desktop: 1200px;
-
     /* temporary */
     --muted: rgb(75 85 99);
 
     --bg-danger: maroon;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: rgb(249 250 251); /* done */
+        --text-secondary: rgb(220, 223, 231);
+
+        /*--title-primary: rgb(2 6 23);*/
+        /*--title-secondary: rgb(15 23 42);*/
+
+        --CTA-primary: rgb(30 41 59); /* done */
+        --CTA-primary-hover: rgb(51 65 85); /* done */
+
+        --CTA-secondary: rgb(30 41 59); /* done */
+        --CTA-secondary-hover: rgb(51 65 85); /* done */
+
+        /*--CTA-tertiary: rgb(71 85 105);*/
+        /*--CTA-tertiary-hover: rgb(100 116 139);*/
+
+        --text-small: 0.875rem;
+        --text-heavy: 600;
+
+
+        /* For menu, row & section bacgrounds, søgebare */
+        --bg-dark: #1E293B;
+        /*--bg-medium: grey;*/
+        --bg-light: rgb(31 41 55); /* done */
+        --bg-white: rgb(17 24 39); /* done */
+
+        /* opgaver (& tags for now) */
+        --task-light:#e5e7eb;
+        --task-dark:lightgrey;
+    }
 }

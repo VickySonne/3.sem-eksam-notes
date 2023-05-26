@@ -29,7 +29,7 @@ const selectedProducts = handleCaseReducer.selectedProducts
     }
 
     hr {
-        background-color: #1E293B;
+        background-color: var(--bg-medium);
         border-radius: var(--border-radius);
         height: .25rem;
         margin-block: var(--default-gap);

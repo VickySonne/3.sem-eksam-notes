@@ -22,7 +22,7 @@ defineProps({
     <article :class="{selected: selected}" @click="callback">
         <div>
             <font-awesome-icon icon="check" :class="{
-                invisible: !selected,
+                invisible: !selected
             }"/>
         </div>
 
@@ -37,7 +37,7 @@ defineProps({
 
 article {
   align-items: center;
-  background-color: #fff;
+  background-color: var(--bg-white);
   border-radius: var(--border-radius);
   cursor: pointer;
   display: flex;
@@ -57,5 +57,16 @@ article {
     justify-content: center;
     padding: 0.25rem;
   }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    article {
+        background-color: var(--muted) !important;
+
+        &.selected {
+            background-color: var(--bg-white) !important;
+            color: var(--text-secondary) !important;
+        }
+    }
 }
 </style>

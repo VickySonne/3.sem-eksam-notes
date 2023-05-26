@@ -28,6 +28,8 @@ main {
 }
 
 .app-container {
+    background-color: var(--bg-white);
+    color: var(--text-primary);
     display: flex;
     height: 100%;
     width: 100%;

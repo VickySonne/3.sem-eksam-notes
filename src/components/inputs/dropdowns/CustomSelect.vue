@@ -29,7 +29,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .container {
-    background-color: #fff;
+    background-color: var(--bg-white);
     border-radius: var(--border-radius);
     cursor: pointer;
     position: relative;

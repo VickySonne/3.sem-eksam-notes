@@ -51,4 +51,15 @@ ul {
         }
     }
 }
+
+@media screen and (prefers-color-scheme: dark) {
+    li {
+        background-color: var(--muted) !important;
+
+        &.selected {
+            background-color: var(--bg-white) !important;
+            color: var(--text-secondary) !important;
+        }
+    }
+}
 </style>

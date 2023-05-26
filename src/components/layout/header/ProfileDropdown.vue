@@ -11,7 +11,7 @@ import NavItem from "@/components/layout/navigation/NavItem.vue";
 
 <style lang="scss" scoped>
 ul {
-    background-color: #fff;
+    background-color: var(--bg-light);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     color: var(--text-primary);
