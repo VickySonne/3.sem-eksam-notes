@@ -6,7 +6,7 @@
     --title-secondary: rgb(15 23 42);
 
     --CTA-primary: rgb(29 78 216);
-    --CTA-primary-hover: rgb(15 23 42);
+    --CTA-primary-hover: rgb(30 58 138);
 
     --CTA-secondary: rgb(75 85 99);
     --CTA-secondary-hover: rgb(51 65 85);
@@ -56,10 +56,10 @@
         /*--title-secondary: rgb(15 23 42);*/
 
         --CTA-primary: rgb(190 24 93); /* done */
-        --CTA-primary-hover: rgb(51 65 85); /* done */
+        --CTA-primary-hover: rgb(219 39 119); /* done */
 
         --CTA-secondary: rgb(51 65 85); /* done */
-        --CTA-secondary-hover: rgb(51 65 85); /* done */
+        --CTA-secondary-hover: rgb(100 116 139); /* done */
 
         /*--CTA-tertiary: rgb(71 85 105);*/
         /*--CTA-tertiary-hover: rgb(100 116 139);*/
