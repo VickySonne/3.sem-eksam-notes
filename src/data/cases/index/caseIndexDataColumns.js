@@ -3,7 +3,7 @@ const caseIndexDataColumns = [
     'Status',
     'Ansvarlig',
     'Kunde',
-    'Tags',
+    // 'Tags',
     'Opgaver',
     'Beskrivelse',
     'Pris',

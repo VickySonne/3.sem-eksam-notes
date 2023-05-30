@@ -21,14 +21,13 @@ defineProps({
     <td>{{ workCase.responsible_employee.name }}</td>
       <td>{{ workCase.customer.name }}</td>
       <!-- <td>{{ workCase.tags.length ? workCase.tags.map(tag => tag.name).join(', ') : "-" }}</td> -->
-      <SingleTag></SingleTag>
-      <!-- <td>{{ workCase.tasks.length ? workCase.tasks.map(task => task.name).join(', ') : "-" }}</td> -->
-      <SingleTask></SingleTask>
+      <!-- <SingleTag></SingleTag> -->
+      <td>{{ workCase.tasks.length ? workCase.tasks.map(task => task.name).join(', ') : "-" }}</td>
+      <!-- <SingleTask></SingleTask> -->
       <td>{{ workCase.description ? workCase.description : "-" }}</td>
-      <!-- <td>{{ workCase.negotiated_price ? workCase.negotiated_price : "-" }}</td> -->
-      <CasesDescription></CasesDescription>
+      <td>{{ workCase.negotiated_price ? workCase.negotiated_price : "-" }}</td>
+      <!-- <CasesDescription></CasesDescription> -->
       <td>{{ new Date(workCase.pickup).toLocaleDateString() }}</td>
-      <!-- <td>STUFF</td> -->
       <td @click.stop>
         <CustomSelect>
           <CustomSelectItem>Status</CustomSelectItem>
