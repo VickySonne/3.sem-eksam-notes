@@ -3,8 +3,8 @@ import SectionContainer from "@/components/layout/section/SectionContainer.vue";
 import SectionHeader from "@/components/layout/section/SectionHeader.vue";
 import readCaseReducer from "@/pages/cases/components/read/readCaseReducer";
 
-
 const customer = readCaseReducer.customer
+
 </script>
 
 <template>

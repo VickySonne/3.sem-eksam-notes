@@ -25,6 +25,7 @@ const readCaseReducer = {
             .select("id, customer(name, email, phone, address, city, zipcode)")
             .eq("id", id)
             .single()
+        
 
         const { data: details } = await supabase.from("cases")
             .select("responsible_employee(name), status(name), pickup, negotiated_price, created_by(name), created_at, description")
@@ -51,7 +52,7 @@ const readCaseReducer = {
             }
         })
 
-        this.customer.value = customer
+        this.customer.value = customer.customer
         this.details.value = details
         this.messages.value = messages
     },
