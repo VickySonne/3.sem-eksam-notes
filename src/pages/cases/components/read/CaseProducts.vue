@@ -10,6 +10,6 @@ import TertiaryButton from '../../../../components/buttons/TertiaryButton.vue';
             <SectionHeader title="Produkter" />
         </template>
 
-        <TertiaryButton text="Ingen produkter. Klik for at tilføje et produkt"></TertiaryButton>
+        <TertiaryButton text="Ingen produkter. Klik for at tilføje et produkt."></TertiaryButton>
     </SectionContainer>
 </template>

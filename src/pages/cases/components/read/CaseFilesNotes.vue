@@ -12,12 +12,12 @@ import InputLabel from '../handlecase/details/InputLabel.vue';
         </template>
         <div class="document-info">
             <div>
-                <InputLabel>filer</InputLabel>
-                <TertiaryButton text="Ingen Filer. Klik for at tilføje en fil"></TertiaryButton>
+                <InputLabel>Filer</InputLabel>
+                <TertiaryButton text="Ingen filer. Klik for at tilføje en fil."></TertiaryButton>
             </div>
             <div>
-                <InputLabel>noter</InputLabel>
-               <TertiaryButton text="Ingen Noter. Klik for at tilføje en note"></TertiaryButton>
+                <InputLabel>Noter</InputLabel>
+               <TertiaryButton text="Ingen noter. Klik for at tilføje en note."></TertiaryButton>
             </div>
             
         </div>
