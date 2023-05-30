@@ -1,6 +1,8 @@
 <script setup>
+import TertiaryButton from '../../../../components/buttons/TertiaryButton.vue';
 import SectionContainer from '../../../../components/layout/section/SectionContainer.vue';
 import SectionHeader from '../../../../components/layout/section/SectionHeader.vue';
+import InputLabel from '../handlecase/details/InputLabel.vue';
 </script>
 
 <template>
@@ -9,8 +11,15 @@ import SectionHeader from '../../../../components/layout/section/SectionHeader.v
             <SectionHeader title="Dokumenter" />
         </template>
         <div class="document-info">
-            <h3>Filer</h3>
-            <h3>Noter</h3>
+            <div>
+                <InputLabel>filer</InputLabel>
+                <TertiaryButton text="Ingen Filer. Klik for at tilføje en fil"></TertiaryButton>
+            </div>
+            <div>
+                <InputLabel>noter</InputLabel>
+               <TertiaryButton text="Ingen Noter. Klik for at tilføje en note"></TertiaryButton>
+            </div>
+            
         </div>
     </SectionContainer>
 </template>
@@ -19,8 +28,11 @@ import SectionHeader from '../../../../components/layout/section/SectionHeader.v
 .document-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    & > h3 {
-        font-weight: var(--text-heavy);
+    
+    & > div{
+        display: flex;
+        flex-direction: column;
+        gap: var(--default-gap);
     }
 }
 </style>
