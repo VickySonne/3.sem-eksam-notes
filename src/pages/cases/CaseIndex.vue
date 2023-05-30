@@ -33,7 +33,11 @@ const updateSearch = (search) => {
           <SearchInput placeholder="Søg..." value="" :search-callback="updateSearch"/>
 
           <CustomSelect>
-            <CustomSelectItem>Cookie Dough</CustomSelectItem>
+            <CustomSelectItem>Sorter efter status</CustomSelectItem>
+            <CustomSelectItem>Igangværende</CustomSelectItem>
+            <CustomSelectItem>Klar til kunden</CustomSelectItem>
+            <CustomSelectItem>Afventer</CustomSelectItem>
+            <CustomSelectItem>Færdig</CustomSelectItem>
           </CustomSelect>
 
           <TertiaryButton text="Advanceret søgning" :callback="() => {}" :emphasised="true"/>

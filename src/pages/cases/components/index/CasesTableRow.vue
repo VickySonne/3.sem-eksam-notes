@@ -31,7 +31,11 @@ defineProps({
       <!-- <td>STUFF</td> -->
       <td @click.stop>
         <CustomSelect>
-          <CustomSelectItem>Toaster</CustomSelectItem>
+          <CustomSelectItem>Status</CustomSelectItem>
+          <CustomSelectItem>Igangværende</CustomSelectItem>
+          <CustomSelectItem>Klar til kunden</CustomSelectItem>
+          <CustomSelectItem>Afventer</CustomSelectItem>
+          <CustomSelectItem>Færdig</CustomSelectItem>
         </CustomSelect>
       </td>
   </tr>

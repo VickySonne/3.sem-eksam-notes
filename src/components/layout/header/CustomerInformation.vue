@@ -1,6 +1,6 @@
 <template>
     <section>
-        <p>Team Toaster</p>
+        <p>GadgetGalaxy</p>
         <small>(kunde nr.: 4242)</small>
     </section>
 </template>

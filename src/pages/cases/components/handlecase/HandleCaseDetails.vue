@@ -63,7 +63,7 @@ const setSelectedStatus = (event) => {
                 </template>
 
                 <CustomSelect :is-dark="true">
-                    <CustomSelectItem></CustomSelectItem>
+                    <CustomSelectItem>Kommer snart</CustomSelectItem>
                 </CustomSelect>
             </DetailsInput>
 

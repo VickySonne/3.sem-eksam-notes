@@ -17,7 +17,7 @@ const toggleDropdown = () => {
         <div :class="{active: showDropdown}" @click="toggleDropdown">
             <font-awesome-icon icon="user" />
 
-            <p>CuriousDeveloperTestingStuff</p>
+            <p>Kasper Pedersen</p>
 
             <font-awesome-icon icon="angle-down" v-if=!showDropdown />
             <font-awesome-icon icon="angle-up" v-if=showDropdown />
