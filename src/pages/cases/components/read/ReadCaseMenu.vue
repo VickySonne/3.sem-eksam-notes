@@ -14,6 +14,10 @@ import router from "@/router";
     <span></span>
     <CustomSelect :is-call-to-action="true">
         <CustomSelectItem>Opdater status</CustomSelectItem>
+        <CustomSelectItem>Igangværende</CustomSelectItem>
+        <CustomSelectItem>Klar til kunden</CustomSelectItem>
+        <CustomSelectItem>Afventer</CustomSelectItem>
+        <CustomSelectItem>Færdig</CustomSelectItem>
     </CustomSelect> 
 </div>
 </template>
