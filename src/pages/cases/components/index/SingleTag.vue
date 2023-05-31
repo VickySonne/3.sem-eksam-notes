@@ -4,7 +4,8 @@
 <!-- Jeg tænker det er det samme som Task component, dog med den tilføjede funktion at der kan skiftes farve på baggrundsfarven -->
 <template>
     <td>
-<!--        {{ data.name }} -->
+<!--        {{ data.name }} --> 
+
     </td>
 </template>
 
