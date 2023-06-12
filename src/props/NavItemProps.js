@@ -1,3 +1,5 @@
+// Definere de properties vi vil have tilgengælige i NavItem
+
 const navItemProps = {
     label: {
         type: String,

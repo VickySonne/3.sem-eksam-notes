@@ -2,6 +2,7 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {ref, watch} from "vue";
 
+// What is properties (props)
 const props = defineProps({
     value: {
         type: String,
@@ -19,6 +20,7 @@ const props = defineProps({
 
 const searchRef = ref(props.value);
 
+// watch holder øje med en reference
 watch(searchRef, (value) => {
     props.searchCallback(value);
 })

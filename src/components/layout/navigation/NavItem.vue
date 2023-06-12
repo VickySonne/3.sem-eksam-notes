@@ -5,6 +5,15 @@ import {toRefs} from "vue";
 
 const props = defineProps(navItemProps)
 
+// Object destructuring (props er et object, den tager alle keys og laver dem til refs med toRefs) 
+// Hvilket viser sig ikke at være nødvendigt, da der ikke gøres brug af state i dette component
+// Object destructuring: shorthand for the following
+
+// const label = props.label
+// const icon = props.icon
+// [...]
+
+// Det viser sig ikke at være brugt 
 const {
     label,
     icon,
@@ -13,23 +22,32 @@ const {
     disabled
 } = toRefs(props)
 
-// Check if either label or icon is provided
+// 
+
+// Check if either label or icon is provided, der ingen af dem der er required (se NavItemProps) men vi skal have en af dem
 if (props.label === "" && props.icon === "") {
+    // Bliver vist på skærmen
     throw new Error("You must provide either a label or an icon")
 }
 
+// Det er en funktion der returnere true or false, afhængigt af navnet på routen
+// Hvis routen er fake route deaktiveres highlighted, eller ville alle menupunkter (undtagen sagsstyring) være highligthed
 const isActive = () => {
     const currentRoute = router.currentRoute.value.path;
 
     if (props.route === "/fake-route" || currentRoute === "/fake-route") {
         return false;
     }
-
+    
+    // Dette er for at highlighet forbliver når der navigeres dybere ind i sagsstyring 
     return currentRoute.startsWith(props.route);
 }
 </script>
 
 <template>
+
+    <!-- Class bindings: fx :class er en måde at assign en class til et element ved brug af js. : foran indikerer at det er js -->
+    <!-- an ternary operator :to="!disabled ? route : ''" ?=if :=else -->
     <li>
         <router-link :to="!disabled ? route : ''" :class="{ active: isActive() }">
             <font-awesome-icon :icon=icon />

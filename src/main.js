@@ -68,5 +68,7 @@ library.add([
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 
+// Den fortæller vue at den skal bruge router. Vi udvider vue med vue-router, derfor er det ikke nødvendigt at importere router-view
 app.use(router)
+
 app.mount('#app')

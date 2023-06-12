@@ -5,12 +5,16 @@ import NavItem from "@/components/layout/navigation/NavItem.vue";
 import NavSection from "@/components/layout/navigation/NavSection.vue";
 import topNavItems from "@/data/navigation/TopNavItems";
 
+// gør at vi kan opdatere state
 const expanded = ref(true);
+
 </script>
 
 <template>
     <aside :class="{ expanded: expanded }">
         <nav>
+          <!-- NavSection er kun en container - den indeholder ikke noget noget logic -->
+          <!-- NavItem: skulle have stået label istedet for text -->
           <NavSection>
               <NavItem v-for="item in topNavItems" :route=item.route :label=item.label :icon=item.icon :show-label=expanded :key=item.text />
           </NavSection>
@@ -20,7 +24,7 @@ const expanded = ref(true);
               <NavItem label="Indstillinger" icon="cogs" :show-label=expanded />
 
               <hr />
-
+              <!-- Dette står for at kunne kolapse menuen -->
               <NavItem label="Skjul&nbsp;Sidebjælke" :icon="expanded ? 'arrow-left' : 'arrow-right'" :show-label="expanded" @click="() => expanded = !expanded" :disabled=true />
           </NavSection>
         </nav>

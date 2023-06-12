@@ -1,4 +1,5 @@
 <script setup>
+// Bevæger os rundt i mappe strukturen
 import CasesTable from "@/pages/cases/components/index/CasesTable.vue";
 import CasesPagination from "@/pages/cases/components/index/CasesPagination.vue";
 import ActionToolbar from "./components/shared/ActionToolbar.vue";
@@ -8,16 +9,23 @@ import CustomSelectItem from "../../components/inputs/dropdowns/CustomSelectItem
 import PrimaryButton from "../../components/buttons/PrimaryButton.vue";
 import PageTitle from "@/components/layout/PageTitle.vue";
 import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
+
+// @=src
 import router from "@/router";
 import casesReducer from "@/pages/cases/components/index/casesReducer";
+
+// Det kommer fra en vue - importere det fra vue selv
 import {ref} from "vue";
+
 
 const isLoading = ref(true)
 
+// asynkront: vi afventer at fetchCases er færdig inden vi affyre funktionen 
 casesReducer.fetchCases().then(() => {
     isLoading.value = false
 })
 
+// overordnet
 const updateSearch = (search) => {
     casesReducer.updateSearch(search)
 }
@@ -30,8 +38,10 @@ const updateSearch = (search) => {
     <div>
       <ActionToolbar>
         <template #contentleft>
+          <!-- Placeholder og callback -->
           <SearchInput placeholder="Søg..." value="" :search-callback="updateSearch"/>
 
+          <!-- Hvad er det? -->
           <CustomSelect>
             <CustomSelectItem>Sorter efter status</CustomSelectItem>
             <CustomSelectItem>Igangværende</CustomSelectItem>
@@ -40,6 +50,7 @@ const updateSearch = (search) => {
             <CustomSelectItem>Færdig</CustomSelectItem>
           </CustomSelect>
 
+          <!-- hvorfor tom callback? -->
           <TertiaryButton text="Advanceret søgning" :callback="() => {}" :emphasised="true"/>
         </template>
 
@@ -51,8 +62,10 @@ const updateSearch = (search) => {
       </ActionToolbar>
     </div>
 
-    <div v-if="isLoading" class="loader" />
+    
+    <div v-if="isLoading" class="loader"></div>
 
+    <!-- when loading is set to false, after fetching is finished, renders CasesTable og CasesPagination -->
     <div v-if="!isLoading">
       <CasesTable />
       <CasesPagination />
