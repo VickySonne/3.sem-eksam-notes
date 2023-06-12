@@ -32,6 +32,10 @@ import {
     faCaretRight, faCaretDown, faCaretUp, faAngleUp
 } from '@fortawesome/free-solid-svg-icons'
 
+
+// importeret her istedet for app.vue for at sikre konsistent styling, 
+// og seperarer global styling fra component specifik styling, 
+// da app.vues styling stadig er specifik til det, selv om det er det øverste komponent
 import './assets/reset.css'
 import './assets/global.css'
 
@@ -68,7 +72,9 @@ library.add([
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 
-// Den fortæller vue at den skal bruge router. Vi udvider vue med vue-router, derfor er det ikke nødvendigt at importere router-view
+// Ved at kalde dette, bliver vue-router installeret og intergreret i vores projekt, 
+// derved for vi adgang til componenter som router-view og skal ikke explicit importerer dem i componenter
 app.use(router)
 
+// Tilføjer vores application til DOM´en 
 app.mount('#app')

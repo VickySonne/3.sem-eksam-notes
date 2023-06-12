@@ -13,7 +13,7 @@ const expanded = ref(true);
 <template>
     <aside :class="{ expanded: expanded }">
         <nav>
-          <!-- NavSection er kun en container - den indeholder ikke noget noget logic -->
+          <!-- NavSection er kun en container - den indeholder ikke noget logic -->
           <!-- NavItem: skulle have stået label istedet for text -->
           <NavSection>
               <NavItem v-for="item in topNavItems" :route=item.route :label=item.label :icon=item.icon :show-label=expanded :key=item.text />

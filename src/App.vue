@@ -11,15 +11,13 @@ import AppSidebar from "@/components/layout/AppSidebar.vue";
       <AppHeader/>
 
       <!--
-        suspense er Vue eget component. Nogle child components er assynchrone, 
+        Suspence er et indbygget vue component. Nogle child components er assynchrone, 
         derfor skal vi bruges suspence for at sikre at de ikke render før de har hented/fetched data
-        Suspence er et indbygget vue component
+        Det kan bruges til at lave fallback content ved at bruge <template #fallback>
       -->
-
-      <!-- router ved den skal finde router-view, der er også et indbygget komponent -->
-
       <Suspense>
         <main>
+          <!-- router-view er tilgængelig da det er blevet installeret i main.js -->
           <router-view />
         </main>
       </Suspense>

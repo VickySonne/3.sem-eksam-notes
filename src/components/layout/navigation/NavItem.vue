@@ -3,17 +3,18 @@ import router from "@/router";
 import navItemProps from "@/props/NavItemProps";
 import {toRefs} from "vue";
 
+// Definere props fra NavItemProps
 const props = defineProps(navItemProps)
 
-// Object destructuring (props er et object, den tager alle keys og laver dem til refs med toRefs) 
-// Hvilket viser sig ikke at være nødvendigt, da der ikke gøres brug af state i dette component
 // Object destructuring: shorthand for the following
+// Hvilket viser sig ikke at være nødvendigt, da der ikke gøres brug af state i dette component
+
 
 // const label = props.label
 // const icon = props.icon
 // [...]
 
-// Det viser sig ikke at være brugt 
+
 const {
     label,
     icon,
@@ -22,7 +23,8 @@ const {
     disabled
 } = toRefs(props)
 
-// 
+//toRefs er en function der laver props´ne om til referencer
+// Det viser sig ikke at være brugt 
 
 // Check if either label or icon is provided, der ingen af dem der er required (se NavItemProps) men vi skal have en af dem
 if (props.label === "" && props.icon === "") {
@@ -35,20 +37,30 @@ if (props.label === "" && props.icon === "") {
 const isActive = () => {
     const currentRoute = router.currentRoute.value.path;
 
+    // Den laver først denne if statement, hvis den er true, så køre den videre til næste return.
     if (props.route === "/fake-route" || currentRoute === "/fake-route") {
         return false;
     }
-    
-    // Dette er for at highlighet forbliver når der navigeres dybere ind i sagsstyring 
+
+    // Dette er for at highlighet forbliver når der navigeres dybere ind i sagsstyring
+    // startsWith() retunere en boolean hvis den rute vi er på matcher route defineret i props objektet.
     return currentRoute.startsWith(props.route);
+
+    // Der bliver kun returned 1 boolean værdi
 }
 </script>
 
 <template>
 
     <!-- Class bindings: fx :class er en måde at assign en class til et element ved brug af js. : foran indikerer at det er js -->
+    <!-- :class shorthand for v-bind:class -->
     <!-- an ternary operator :to="!disabled ? route : ''" ?=if :=else -->
+    <!-- 
+        conditional rendering: v-if="showLabel && label.length">{{ label }} 
+        hvis showLabel er true og label har en længde og dermed true, bliver label rendered
+    -->
     <li>
+        <!-- Hvor er det defineret om et navItem er disabled eller ej? -->
         <router-link :to="!disabled ? route : ''" :class="{ active: isActive() }">
             <font-awesome-icon :icon=icon />
             <p v-if="showLabel && label.length">{{ label }}</p>

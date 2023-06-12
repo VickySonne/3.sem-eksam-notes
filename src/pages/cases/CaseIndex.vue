@@ -17,10 +17,11 @@ import casesReducer from "@/pages/cases/components/index/casesReducer";
 // Det kommer fra en vue - importere det fra vue selv
 import {ref} from "vue";
 
-
+// Laver en boolean der hedder isLoading, den starter med at load
 const isLoading = ref(true)
 
-// asynkront: vi afventer at fetchCases er færdig inden vi affyre funktionen 
+// asynkront: vi afventer at fetchCases er færdig inden vi affyre funktionen
+// Denne funktion ændre værdien af isLoading
 casesReducer.fetchCases().then(() => {
     isLoading.value = false
 })
@@ -50,11 +51,13 @@ const updateSearch = (search) => {
             <CustomSelectItem>Færdig</CustomSelectItem>
           </CustomSelect>
 
-          <!-- hvorfor tom callback? -->
+          <!-- hvorfor tom callback? - fordi det er en placeholder? as it is required-->
           <TertiaryButton text="Advanceret søgning" :callback="() => {}" :emphasised="true"/>
         </template>
 
         <template #contentright>
+
+          <!-- router.push sender brugeren til den path når de trygger på knappen -->
           <PrimaryButton title="Opret Ny Sag" :callback="() => router.push({ path: '/case/' })">
               <font-awesome-icon icon="plus" />
           </PrimaryButton>
