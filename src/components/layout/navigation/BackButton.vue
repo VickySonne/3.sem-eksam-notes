@@ -18,7 +18,8 @@ const props = defineProps({
 const navigate = () => {
 
     // !(not) gør at når brugeren trykker ok for at forlade siden, returnere confirm false istedet for true
-    // how does that work????
+    // how does that work???? Der bliver ikke returneret noget når brugeren trykker nej (true) fordi return stopper funktionen
+    // Hvis der bliver returned false, så pusher den.
     if (props.requireConfirmation && !confirm('Er du sikker på du vil forlade siden?')) {
         return;
     }

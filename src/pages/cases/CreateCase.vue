@@ -16,16 +16,26 @@
 
     const isLoading = ref(true)
 
+    // initialise er en funktion/metode i reduceren
     handleCaseReducer.initialize().then(() => {
         isLoading.value = false
     })
 
+    // Når componentent bliver fjernet fra skærmen, når det ikke er rendere mere, så skal denne funktion kaldes
     onUnmounted(() => {
+
+        // flush er også en metode i reducern
         handleCaseReducer.flush()
     })
 
+    // en arrow funktion uden et parameter
     const cancelCreate = () => {
+
+        // confirm er en method med et argument
+        // Det er en metode på vinduet der laver en pop up i browser vinduet
         if (window.confirm('Er du sikker på du vil annullere?')) {
+
+            // .push er en vue-router funktion der sender en til den givende path
             router.push('/')
         }
     }

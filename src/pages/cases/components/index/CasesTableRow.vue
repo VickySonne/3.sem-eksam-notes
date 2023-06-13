@@ -28,6 +28,8 @@ defineProps({
       <td>{{ workCase.negotiated_price ? workCase.negotiated_price : "-" }}</td>
       <!-- <CasesDescription></CasesDescription> -->
       <td>{{ new Date(workCase.pickup).toLocaleDateString() }}</td>
+
+      <!-- Kaldes click propagation, det forhindre at når man trykker på customselect, at den så ikke går ind på casen -->
       <td @click.stop>
         <CustomSelect>
           <CustomSelectItem>Status</CustomSelectItem>

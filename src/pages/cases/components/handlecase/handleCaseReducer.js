@@ -4,7 +4,15 @@ import router from "@/router";
 
 // const forceDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
+
+// reducers er brugt for at kunne få adgang til funktioner m.m flere forskellige steder, istedet for at skulle passere det ned gennem flere componenter
+// Der ved bliver det nemmere at overskue. 
 const handleCaseReducer = {
+    
+    // flush er en funktion (navngivet af os)
+    // nulstiller alle værdierne
+    // det sikre at når vi handler en case (create eller update) så har den ikke daten fra forrige gang det var brugt, da vores kode ikke er memory safe
+    // dette sker når vi er færdige med at oprette eller redigere en case
     flush: function () {
         this.selectedTasks.value = []
         this.selectedTaskOption.value = this.taskOptions.value[0].id
@@ -23,6 +31,7 @@ const handleCaseReducer = {
         this.productSearch.value = ""
     },
 
+    // sætter værdier ind i update case baseret på et specifikt id
     initialize: async function (caseNumber) {
         if (caseNumber) {
             this.caseId = caseNumber
@@ -82,14 +91,20 @@ const handleCaseReducer = {
         this.parseDate({target: {value: new Date()}})
     },
 
+
+    // async, den skal kunne afvente databasen inden den må gå igang
     createCase: async function () {
+
+        // laver en alert hvis ikke der er valgt en kunde
         if (!this.selectedCustomer.value) {
             alert("Advarsel: Du skal som minimum vælge en kunde for at oprette en sag.")
             return
         }
 
+        // generere et objekt med alt vores input og gemmer det i const variablen
         const caseData = this.generateCaseData()
 
+        // Her sættes det ind i databasen
         database.from('cases').insert(caseData).select().single().then(async data => {
             await database.from("cases_tasks").insert(this.selectedTasks.value.map(task => {
                 return {
@@ -106,14 +121,20 @@ const handleCaseReducer = {
                 }
             }))
 
+            // Her sendes brugeren ud til den case der lige er oprettet
             await router.push({path: '/case/' + data.data.id})
         })
     },
 
+    // bliver kaldt når der trykkes på opdater sag i ret sag
     updateCase: async function () {
+
+        // activecasetask er statisk, det er blevet hentet ned fra databasen
+        // selectedtask er det der bliver ændret. 
         const newTasks = this.selectedTasks.value.filter(task => !this.activeCaseTasks.some(t => t.id === task.id))
         const removedTasks = this.activeCaseTasks.filter(task => !this.selectedTasks.value.some(t => t.id === task.id))
 
+        // checker om der er nogle nye task, sammen ligner med databasen, forskellen mellem activecasetasks og selectedtask er det der bliver sendt til databasen
         if (newTasks.length > 0) {
             await database.from("cases_tasks").insert(newTasks.map(task => {
                 return {
@@ -130,6 +151,7 @@ const handleCaseReducer = {
                 .in('task_id', removedTasks.map(task => task.id))
         }
 
+        // Det samme med produkter
         const newProducts = this.selectedProducts.value.filter(product => !this.activeCaseProducts.some(p => p.id === product.id))
         const removedProducts = this.activeCaseProducts.filter(product => !this.selectedProducts.value.some(p => p.id === product.id))
         const updatedProducts = this.selectedProducts.value.filter(product => {
@@ -166,6 +188,7 @@ const handleCaseReducer = {
             }
         }
 
+        // Her sendes case data, ovenfor sendes kun produkter og task
         const caseData = this.generateCaseData()
 
         database.from('cases').update(caseData).eq('id', this.caseId).then(() => {
@@ -173,6 +196,7 @@ const handleCaseReducer = {
         })
     },
 
+    // Der bliver dannet et objekt der senere bliver sendt til databasen
     generateCaseData: function () {
         return {
             customer: this.selectedCustomer.value.id,
@@ -187,6 +211,7 @@ const handleCaseReducer = {
         }
     },
 
+    // Dette er for at når der bliver inputtet en dato bliver det sendt rigtigt til databasen og rendered rigtigt på siden
     parseDate: function (event) {
         const currentDate = new Date(event.target.value);
         const timezoneOffset = currentDate.getTimezoneOffset();
@@ -198,6 +223,7 @@ const handleCaseReducer = {
         this.selectedDate.value = newDate.toISOString().substring(0, 16)
     },
 
+    // Alle de værdier der bruges og kan ændres
     caseId: null,
     activeCaseTasks: null,
     activeCaseProducts: null,
@@ -227,4 +253,6 @@ const handleCaseReducer = {
     productSearch: ref(""),
 }
 
+// Hvis vi ikke exportere objektet kan vi ikke importere det andre steder og få adgang til det
+// Det er kun ved js filer at de explicitly skal exporteres, vue filer gør det automatisk
 export default handleCaseReducer

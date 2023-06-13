@@ -14,7 +14,8 @@ import TertiaryButton from "@/components/buttons/TertiaryButton.vue";
 import router from "@/router";
 import casesReducer from "@/pages/cases/components/index/casesReducer";
 
-// Det kommer fra en vue - importere det fra vue selv
+// Det kommer fra vue - importere det fra vue selv
+// Ref: er en reference til en værdi (man kan derved holde øje med værdi eller ændre den og opdatere den)
 import {ref} from "vue";
 
 // Laver en boolean der hedder isLoading, den starter med at load
@@ -26,7 +27,7 @@ casesReducer.fetchCases().then(() => {
     isLoading.value = false
 })
 
-// overordnet
+// wrappet funktionen fra reducer i en identisk funktion - for at sikre adgang til den
 const updateSearch = (search) => {
     casesReducer.updateSearch(search)
 }
@@ -38,11 +39,19 @@ const updateSearch = (search) => {
 
     <div>
       <ActionToolbar>
+
+        <!-- Vi bruger 2 forskellige slots i actiontoolbar, 
+          derfor bruger vi template til at gruppere indholdet og 
+          navngive for at sikre at det kommer ind i de rigtige slots  
+        -->
+
         <template #contentleft>
           <!-- Placeholder og callback -->
+          <!-- Der bliver sendt properties in -->
+          <!-- Det er searchInput properties -->
           <SearchInput placeholder="Søg..." value="" :search-callback="updateSearch"/>
 
-          <!-- Hvad er det? -->
+          <!-- Hvad er det? - lave custom dropdowns -->
           <CustomSelect>
             <CustomSelectItem>Sorter efter status</CustomSelectItem>
             <CustomSelectItem>Igangværende</CustomSelectItem>
@@ -52,6 +61,7 @@ const updateSearch = (search) => {
           </CustomSelect>
 
           <!-- hvorfor tom callback? - fordi det er en placeholder? as it is required-->
+          <!-- : betyder at det er JS -->
           <TertiaryButton text="Advanceret søgning" :callback="() => {}" :emphasised="true"/>
         </template>
 
@@ -65,10 +75,11 @@ const updateSearch = (search) => {
       </ActionToolbar>
     </div>
 
-    
+    <!-- V-if er en if statement, hvis dette er sandt, så render elementet, hvis det er falsk, så fjern den -->
     <div v-if="isLoading" class="loader"></div>
 
     <!-- when loading is set to false, after fetching is finished, renders CasesTable og CasesPagination -->
+    <!-- ! = ikke (når en boolean, gør den det modsatte) -->
     <div v-if="!isLoading">
       <CasesTable />
       <CasesPagination />

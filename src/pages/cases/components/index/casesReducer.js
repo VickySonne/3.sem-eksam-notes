@@ -2,6 +2,9 @@ import {ref} from "vue";
 import supabase from "@/database";
 import recursiveObjectSearch from "@/utilities/recursiveObjectSearch";
 
+
+// Dette er et object, det består af keys og values (Values kan være alt muligt, 
+// strings, numbers, funktioner(kaldet methods når det er objekter), andre objekter og arrays)
 const casesReducer = {
 
     // når dataen er hentet bliver det sat ind her
@@ -10,6 +13,8 @@ const casesReducer = {
     // EXPLAIN THE SEARCH PART OF THE CODE - I dont understand the flow of `data´ between this file, casesReducer and Search Input Componentet
     search: ref(""),
 
+    // den opdatere search ref når den bliver kaldt
+    // this refere til casesReducerObjekt (virker ikke med arrow funktions da de laver et nyt scope)
     updateSearch: function (value) {
         this.search.value = value
     },
@@ -20,11 +25,13 @@ const casesReducer = {
             = "id, created_at, status(name), responsible_employee(name), pickup, customer(name), tasks(name), description, tags(name), negotiated_price"
 
         // Why the {} around data?
+        // der kommer et object tilbage der har 2 properties (data og error) 
+        // vi skal ikke bruge fejlen, så derfor siger vi at vi kun vil have dataen ved at bruge objekt destructuring
         const  { data } = await supabase.from("cases")
             .select(queryString)
             .order("created_at", { ascending: false })
 
-        // Explain "this" - hvad referer det til her? Is it the object "casesReducer"????
+        // Explain "this" - hvad referer det til her? - the object "casesReducer"
         this.cases.value = data
         this.pagination.value.dataLength = data.length
     },
@@ -55,6 +62,8 @@ const casesReducer = {
         // c referer til hvert case i arrayet af cases - Hvorfor though, forstår ikke syntax?
         // Hvad er callbacket og elementet i denne måde at skrive det p?
         return this.cases.value.filter(c => {
+
+            // Her specificeres hvilke værdier i hver case der kan søges på
             const searchAbleProperties = {
 
                 // ? forhindre fejl så man stadig kan få adgang til nestede properties selv om de er null eller undefined
@@ -63,6 +72,7 @@ const casesReducer = {
                 customer: c.customer?.name,
 
                 // map giver et array af task eller tag, så de også kan søges på
+                // map her sortere alle navne ud af task + tags og laver et nyt array med disse
                 tasks: c.tasks.map(t => t.name),
                 tags: c.tags.map(t => t.name),
                 description: c.description,
@@ -70,6 +80,8 @@ const casesReducer = {
                 created_at: c.created_at,
                 pickup: c.pickup
             }
+
+
 
             // denne funktion gøre igennem alle cases og dertilhørende properties og nestede objekter, 
             // den returnere true eller false alt efter om den finder noget der matcher søge inputtet

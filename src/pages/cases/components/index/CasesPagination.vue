@@ -15,7 +15,7 @@ watch(searchRef, () => {
     pagination.value.page = 1
     pagination.value.dataLength = casesReducer.searchFilteredCases().length
 
-    // hvad betyder deep: true?
+    // hvad betyder deep: true? - Den holder øje med ændringer i alle i elementet ikke kun roden
 }, {deep: true})
 </script>
 

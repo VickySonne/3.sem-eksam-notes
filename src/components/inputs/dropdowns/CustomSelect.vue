@@ -30,6 +30,9 @@ defineProps({
         cta: isCallToAction,
         'is-dark': isDark
     }">
+
+        <!-- $ (er en vue ting) det sender eventet (select reaction når der bliver valgt en option) tilbage til callback funktionen -->
+        <!-- den kalder callback funktionen med eventet -->
         <select @change="callback($event)" :multiple="multiple">
             <slot></slot>
         </select>
