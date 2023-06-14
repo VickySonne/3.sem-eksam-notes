@@ -6,15 +6,20 @@ import {ref} from "vue";
 
 // Consider if it would make sense to move the logic below to the reducer.
 
+// definere om input field for custom task skal vises eller ej
 const showInput = ref(false)
 
+// opdatere overstående når kaldt
 const toggleCustomTask = () => {
     customTaskRef.value = ""
     showInput.value = !showInput.value
 }
 
+
 const customTaskRef = ref("")
 
+// indsætter den custom task ind i databasens task table
+// toggler så customtask input bliver fjernet bag efter (HVilket den ikke burde gøre før brugeren explicitly siger den skal, i tilfælde af at de ville skrive mere end en customtask)
 const createCustomTask = () => {
     supabase.from("tasks").insert({
         name: customTaskRef.value,

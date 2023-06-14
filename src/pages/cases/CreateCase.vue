@@ -17,11 +17,13 @@
     const isLoading = ref(true)
 
     // initialise er en funktion/metode i reduceren
+    // then promise, når initialize er færdig, sæt isLoading til false
     handleCaseReducer.initialize().then(() => {
         isLoading.value = false
     })
 
     // Når componentent bliver fjernet fra skærmen, når det ikke er rendere mere, så skal denne funktion kaldes
+    // Lifecyclehook bliver kaldt når komponentet ikke længere er rendered
     onUnmounted(() => {
 
         // flush er også en metode i reducern

@@ -32,6 +32,8 @@ const cancelSecondaryPayee = () => {
 }
 </script>
 
+<!-- Same as CustomerSearching, mere eller mindre -->
+
 <template>
     <div v-if="hasSecondaryPayee">
         <SectionHeader title="Anden betaler">
