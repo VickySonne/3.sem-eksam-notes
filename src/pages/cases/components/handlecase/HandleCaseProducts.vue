@@ -14,10 +14,15 @@ const productSearch = handleCaseReducer.productSearch
 const productOptions = handleCaseReducer.productOptions
 const selectedProducts = handleCaseReducer.selectedProducts
 
+// opdatere når der søges efter produkter
+
 const updateProductSearch = (value) => {
     productSearch.value = value
 }
 
+// tager en product parameter, der repræsentere et valgt produkt. 
+// Den chekcer om produktet allerede er et valgt product, hvis det er det lægger den en til antallet af det produkt. 
+// hvis det ikke er, tilføjer den produkted med et default antal på 1
 const addProduct = (product) => {
     if (selectedProducts.value.some(p => p.id === product.id)) {
         selectedProducts.value = selectedProducts.value.map(p => {
@@ -28,6 +33,7 @@ const addProduct = (product) => {
             return p
         })
     } else {
+        // "..."= spread operator, gør at alle properties fra et object bliver kopieret ind i et nyt object
         selectedProducts.value.push({...product, count: 1})
     }
 }

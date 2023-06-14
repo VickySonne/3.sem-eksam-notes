@@ -7,6 +7,7 @@ const messages = readCaseReducer.messages;
 
 const messageSubscription = readCaseReducer.subscribeToMessages()
 
+// kalder funktionen lige før den er unmounted/ikke rendered mere
 onBeforeUnmount(() => {
     messageSubscription.unsubscribe();
 })

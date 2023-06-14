@@ -16,6 +16,9 @@ const selectedDate = handleCaseReducer.selectedDate
 const negotiatedPrice = handleCaseReducer.negotiatedPrice
 const description = handleCaseReducer.description
 
+// event.target.value repræsenterer den valgte mulighed
+// .find finder en employee med id der matcher det fra eventet (den valgte medarbejder)
+// opdatere den reaktive referense i reduceren
 const setSelectedEmployee = (event) => {
     handleCaseReducer.selectedEmployee.value = employeeOptions.value.find(employee => employee.id === parseInt(event.target.value))
 }
